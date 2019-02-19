@@ -8,6 +8,7 @@ export const USER_NAME = 'USER_NAME';
 export const USER_ID = 'USER_ID';
 export const USER_WEIGHT = 'USER_WEIGHT';
 export const MAX_ANGLE = 'MAX_ANGLE';
+export const TELASK_KEY = 'TELASK_KEY';
 
 
 // ------------------------------------
@@ -20,6 +21,14 @@ function changeUserName(name) {
     userName: name,
   };
 }
+
+function changeTelaskKey(key) {
+  return {
+    type: TELASK_KEY,
+    telaskKey: key,
+  };
+}
+
 function changeUserID(id) {
   return {
     type: USER_ID,
@@ -43,6 +52,7 @@ export const ConfigurationActions = {
   changeUserID,
   changeUserWeight,
   changeMaxAngle,
+  changeTelaskKey,
 };
 
 const ACTION_HANDLERS = {
@@ -58,6 +68,9 @@ const ACTION_HANDLERS = {
   [MAX_ANGLE]: (state, action) => (
     { ...state, maxAngle: action.maxAngle }
   ),
+  [TELASK_KEY]: (state, action) => (
+    { ...state, telaskKey: action.telaskKey }
+  ),
 };
 
 // ------------------------------------
@@ -69,6 +82,7 @@ export const initConfiguration = {
   userID: '',
   maxAngle: null,
   userWeight: null,
+  telaskKey: '',
 };
 export default function applicationReducer(state = initConfiguration, action) {
   const handler = ACTION_HANDLERS[action.type];

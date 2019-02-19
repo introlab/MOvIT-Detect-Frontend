@@ -10,33 +10,32 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import PropTypes from 'prop-types';
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
 import toJson from 'enzyme-to-json';
-import GoalProgress from '../../../../../src/components/results/angleResults/daily/goalProgress';
+import GoalChart from '../../../../../src/components/results/angleResults/monthly/goalChart';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('GoalProgress Tests', () => {
-  const initialState = { applicationReducer: { language: 'en' } };
-  const mockStore = configureMockStore();
-  const store = mockStore(initialState);
+describe('GoalChart Tests', () => {
   const props = {
-    language: 'en',
     condition: true,
     title: 'This is a test',
-    value: 10,
+    successMessage: 'Success',
+    data: {},
+    options: {},
     isLoaded: true,
     hasErrors: false,
   };
 
   it('should have proptypes', () => {
-    const actualValue = GoalProgress.WrappedComponent.propTypes;
+    const actualValue = GoalChart.propTypes;
 
     const expectedValue = {
-      language: PropTypes.string.isRequired,
       condition: PropTypes.bool.isRequired,
       title: PropTypes.string.isRequired,
-      value: PropTypes.number,
+      successMessage: PropTypes.string.isRequired,
+      data: PropTypes.object,
+      options: PropTypes.object.isRequired,
+      id: PropTypes.string,
       isLoaded: PropTypes.bool.isRequired,
       hasErrors: PropTypes.bool.isRequired,
     };
@@ -45,7 +44,7 @@ describe('GoalProgress Tests', () => {
   });
 
   it('should match the snapshot', () => {
-    const wrapper = shallow(<GoalProgress store={store} {...props} />).dive();
+    const wrapper = shallow(<GoalChart {...props} />);
 
     expect(toJson(wrapper)).toMatchSnapshot();
   });

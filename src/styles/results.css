@@ -5,16 +5,33 @@
   margin-bottom: 5%;
 }
 .resultsContainer {
-  height: 65vh;
+  height: 74.5vh;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  margin-top: -1em;
+  padding-top: 1em;
 }
+
 .leftMenu {
+  margin-top: 10px;
   float: left;
   border-right: solid 1px;
   border-color: #E5E5E5;
-  height: 65vh;
+  height: 75vh;
+  margin-top: 0vh;
 }
+
+@media only screen and (max-width: 990px) {
+  .leftMenu {
+    float: left;
+    border-right: solid 1px;
+    border-color: #E5E5E5;
+    height: auto;
+    margin-top: -3.2vh;
+  }
+}
+
+
 .graphLink {
   border-bottom: solid 1px black;
   list-style-type: none;

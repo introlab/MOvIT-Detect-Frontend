@@ -32,14 +32,19 @@ switch (process.env.NODE_ENV) {
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }
 
+//url = 'http://raspberrypi.local:1880/'
+
 export const URL = url;
 export const OFFSET = offset;
 export const IS_DEMO = isDemo;
 export const IS_MOBILE = window.innerWidth <= 500;
 export const IS_TABLET = window.innerWidth <= 780;
 export const LANGUAGE = 'LANGUAGE';
+export const LANGUAGE_UPDATE = 'LANGUAGE_UPDATE';
 export const FR = 'FR';
 export const EN = 'EN';
+export const cFR = 'cFR';
+export const cEN = 'cEN';
 export const PROFILE = 'PROFILE';
 export const TOKEN = 'TOKEN';
 
@@ -49,6 +54,12 @@ export const TOKEN = 'TOKEN';
 function changeLanguage() {
   return {
     type: LANGUAGE,
+  };
+}
+
+function updateLanguage() {
+  return {
+    type: LANGUAGE_UPDATE,
   };
 }
 
@@ -66,17 +77,73 @@ function changeToken(tokenString) {
   };
 }
 
+
+//Update the ui language when exitting clinician view
+function updateUILanguage(lan, user) {
+  var toReturn = FR;
+  if(user == "clinician") {
+    if(lan.includes("FR")) {
+      toReturn = cFR
+    } else {
+      toReturn = cEN
+    }
+  } else {
+    if(lan.includes("FR")) {
+      toReturn = FR
+    } else {
+      toReturn = EN
+    }
+  }
+  console.log(toReturn)
+  return toReturn
+}
+
+
+//Toggle the language between EN and FR for the user and cFR and cEN for the clinician 
+function switchLanguage(lan, user) {
+  var toReturn = FR;
+  if(user == "clinician") {
+    if(lan.includes("FR")) {
+      toReturn = cFR
+    } else {
+      toReturn = cEN
+    }
+  } else {
+    if(lan.includes("FR")) {
+      toReturn = FR
+    } else {
+      toReturn = EN
+    }
+  }
+
+  if(toReturn == FR) {
+    toReturn = EN
+  } else if (toReturn == EN) {
+    toReturn = FR
+  } else if (toReturn == cEN) {
+    toReturn = cFR
+  } else if (toReturn == cFR) {
+    toReturn = cEN
+  }
+  console.log(toReturn)
+  return toReturn
+}
+
 export const ApplicationActions = {
   changeLanguage,
   changeProfile,
   changeToken,
+  updateLanguage,
 };
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
   [LANGUAGE]: state => (
-    { ...state, language: state.language === FR ? EN : FR }
+    { ...state, language: switchLanguage(state.language, state.profile) }
+  ),
+  [LANGUAGE_UPDATE]: state => (
+    { ...state, language: updateUILanguage(state.language, state.profile) }
   ),
   [PROFILE]: (state, action) => (
     { ...state, profile: action.profile }

@@ -20,6 +20,7 @@ import LogoText from '../components/shared/logoText';
 import SubmitButtons from '../components/shared/submitButtons';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import LogoPassword from '../components/shared/logoPassword';
 
 class Configuration extends Component {
   static propTypes = {
@@ -88,6 +89,7 @@ class Configuration extends Component {
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
       userWeight: this.props.userWeight,
+      telaskKey: this.props.telaskKey,
     };
     try {
       await post(`${URL}configuration`, data);
@@ -136,6 +138,12 @@ class Configuration extends Component {
                   value={this.props.userWeight}
                   onChange={this.props.changeUserWeight}
                 />
+                <LogoPassword
+                  iconClass="fa fa-key"
+                  placeHolder={T.translate(`configurations.telaskKey.${this.props.language}`)}
+                  value={this.props.telaskKey}
+                  onChange={this.props.changeTelaskKey}
+                />
                 <SubmitButtons
                   onSave={this.save.bind(this)}
                   onCancel={this.cancel}
@@ -155,6 +163,7 @@ function mapStateToProps(state) {
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,
+    telaskKey: state.configurationReducer.telaskKey,
     maxAngle: state.configurationReducer.maxAngle,
   };
 }
@@ -164,6 +173,7 @@ function mapDispatchToProps(dispatch) {
     changeUserName: ConfigurationActions.changeUserName,
     changeUserID: ConfigurationActions.changeUserID,
     changeUserWeight: ConfigurationActions.changeUserWeight,
+    changeTelaskKey: ConfigurationActions.changeTelaskKey,
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
   }, dispatch);
 }

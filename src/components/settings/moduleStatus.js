@@ -9,6 +9,7 @@ import ErrorMessage from '../shared/errorMessage';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
+import openSocket from 'socket.io-client';
 
 const POLLING_INTERVAL = 5000;
 
@@ -18,6 +19,23 @@ class ModuleStatus extends Component {
     moduleStatus: PropTypes.object.isRequired,
     hasErrors: PropTypes.bool.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      socket: new WebSocket("ws://10.42.0.209:1880/ws/rawData"),
+      tofConnected: false,
+      flowConnected: false,
+      alarmConnected: false,
+      pressureMatConnected: false,
+      mIMUConnected: false,
+      fIMUConnected: false,
+    }
+
+    this.state.socket.onmessage = function (evt) { 
+      var received_obj = JSON.parse(evt.data);
+   };
   }
 
   componentDidMount() {

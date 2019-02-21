@@ -32,7 +32,7 @@ switch (process.env.NODE_ENV) {
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }
 
-//url = 'http://raspberrypi.local:1880/'
+url = 'http://raspberrypi.local:1880/'
 
 export const URL = url;
 export const OFFSET = offset;

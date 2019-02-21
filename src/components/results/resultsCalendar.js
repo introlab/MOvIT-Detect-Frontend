@@ -38,16 +38,19 @@ class ResultsCalendar extends Component {
   onPeriodChange(e) {
     this.props.onPeriodChange(e.value);
     this.setState({ period: e.value });
+    console.log("period: " + e.value)
   }
 
   onDateChange(e) {
     this.props.onDateChange(e.value);
     this.setState({ date: new Date(e.value) });
+    console.log("Date: " + e.value)
   }
 
   onMonthChange(e) {
     this.props.onMonthChange(e.value);
     this.setState({ month: e.value });
+    console.log("Month: " + e.value)
   }
 
   async setDefaultDate() {
@@ -73,7 +76,7 @@ class ResultsCalendar extends Component {
       { label: T.translate(`graphics.month.${this.props.language}`), value: 'month' },
     ];
 
-    const months = this.props.language === 'FR' ? [
+    const months = (this.props.language === 'FR' || this.props.language === 'cFR') ? [
       { label: 'Janvier', value: 0 },
       { label: 'Février', value: 1 },
       { label: 'Mars', value: 2 },
@@ -87,18 +90,18 @@ class ResultsCalendar extends Component {
       { label: 'Novembre', value: 10 },
       { label: 'Décembre', value: 11 },
     ] : [
-      { label: 'January', value: 0 },
-      { label: 'February', value: 1 },
-      { label: 'March', value: 2 },
-      { label: 'April', value: 3 },
-      { label: 'May', value: 4 },
-      { label: 'June', value: 5 },
-      { label: 'July', value: 6 },
-      { label: 'August', value: 7 },
-      { label: 'September', value: 8 },
-      { label: 'October', value: 9 },
-      { label: 'November', value: 10 },
-      { label: 'December', value: 11 }];
+        { label: 'January', value: 0 },
+        { label: 'February', value: 1 },
+        { label: 'March', value: 2 },
+        { label: 'April', value: 3 },
+        { label: 'May', value: 4 },
+        { label: 'June', value: 5 },
+        { label: 'July', value: 6 },
+        { label: 'August', value: 7 },
+        { label: 'September', value: 8 },
+        { label: 'October', value: 9 },
+        { label: 'November', value: 10 },
+        { label: 'December', value: 11 }];
 
     const title = this.state.period === 'day'
       ? T.translate(`dailyResults.${this.props.language}`)
@@ -116,6 +119,25 @@ class ResultsCalendar extends Component {
           ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc'],
       },
       EN: {
+        firstDayOfWeek: 1,
+        dayNames: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        dayNamesShort: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+        dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+        monthNames:
+          ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+        monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+      },
+      cFR: {
+        firstDayOfWeek: 1,
+        dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+        dayNamesShort: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        monthNames:
+          ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        monthNamesShort:
+          ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc'],
+      },
+      cEN: {
         firstDayOfWeek: 1,
         dayNames: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
         dayNamesShort: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],

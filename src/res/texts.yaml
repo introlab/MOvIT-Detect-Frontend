@@ -345,6 +345,16 @@ configurations:
     EN: "TelAsk SFTP password"
     cFR: "Mot de passe SFTP TelAsk"
     cEN: "TelAsk SFTP password"
+  telaskHost:
+    FR: "Addresse du serveur SFTP TelAsk"
+    EN: "TelAsk SFTP Server Address"
+    cFR: "Addresse du serveur SFTP TelAsk"
+    cEN: "TelAsk SFTP Server Address"
+  telaskUsername:
+    FR: "Nom d'utilisateur SFTP TelAsk"
+    EN: "TelAsk SFTP username"
+    cFR: "Nom d'utilisateur SFTP TelAsk"
+    cEN: "TelAsk SFTP username"
 
 save:
   FR: "Sauvegarder"

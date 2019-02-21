@@ -29,6 +29,7 @@ class Permissions extends Component {
     const data = {
       dataAgreement: this.props.dataAgreement,
     };
+    console.log(this.props.dataAgreement)
     try {
       await post(`${URL}dataAgreement`, data);
       this.props.showSuccess();

@@ -9,6 +9,8 @@ export const USER_ID = 'USER_ID';
 export const USER_WEIGHT = 'USER_WEIGHT';
 export const MAX_ANGLE = 'MAX_ANGLE';
 export const TELASK_KEY = 'TELASK_KEY';
+export const TELASK_USERNAME = 'TELASK_USERNAME';
+export const TELASK_HOST = 'TELASK_HOST';
 
 
 // ------------------------------------
@@ -26,6 +28,20 @@ function changeTelaskKey(key) {
   return {
     type: TELASK_KEY,
     telaskKey: key,
+  };
+}
+
+function changeTelaskUsername(username) {
+  return {
+    type: TELASK_USERNAME,
+    telaskUsername: username,
+  };
+}
+
+function changeTelaskHost(host) {
+  return {
+    type: TELASK_HOST,
+    telaskHost: host,
   };
 }
 
@@ -53,6 +69,8 @@ export const ConfigurationActions = {
   changeUserWeight,
   changeMaxAngle,
   changeTelaskKey,
+  changeTelaskHost,
+  changeTelaskUsername,
 };
 
 const ACTION_HANDLERS = {
@@ -71,6 +89,12 @@ const ACTION_HANDLERS = {
   [TELASK_KEY]: (state, action) => (
     { ...state, telaskKey: action.telaskKey }
   ),
+  [TELASK_HOST]: (state, action) => (
+    { ...state, telaskHost: action.telaskHost }
+  ),
+  [TELASK_USERNAME]: (state, action) => (
+    { ...state, telaskUsername: action.telaskUsername}
+  ),
 };
 
 // ------------------------------------
@@ -83,6 +107,8 @@ export const initConfiguration = {
   maxAngle: null,
   userWeight: null,
   telaskKey: '',
+  telaskUsername: '',
+  telaskHost: '',
 };
 export default function applicationReducer(state = initConfiguration, action) {
   const handler = ACTION_HANDLERS[action.type];

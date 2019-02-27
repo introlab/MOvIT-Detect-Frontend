@@ -160,7 +160,6 @@ class Configuration extends Component {
                   placeHolder={T.translate(`configurations.telaskKey.${this.props.language}`)}
                   value={this.props.telaskKey}
                   onChange={this.props.changeTelaskKey}
-                  style={"width:"}
                 />
                 <SubmitButtons
                   onSave={this.save.bind(this)}

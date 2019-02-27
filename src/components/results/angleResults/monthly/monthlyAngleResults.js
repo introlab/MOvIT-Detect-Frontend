@@ -157,7 +157,7 @@ class MonthlyAngleResults extends Component {
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 offset-lg-2">
             <div>
-              {(this.state.month >= 0 && this.state.month <= 11) 
+              {(this.state.month >= 0 && this.state.month <= 11)
               && (
               <div>
                 <MonthlyAngleDistribution month={this.state.month} />

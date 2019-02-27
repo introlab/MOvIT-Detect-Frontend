@@ -119,14 +119,19 @@ class Wifi extends Component {
           && (this.state.connecting
             ? <Loading key="loading" />
             : (
+            <div className="container">
               <div className="row">
-                <div className="form-horizontal col-12 col-md-8">
+                <div className="col-lg-12">
                   <LogoText
                     iconClass="fa fa-wifi"
                     placeHolder={T.translate(`settings.wifi.name.${this.props.language}`)}
                     value={this.state.wifi}
                     onChange={this.changeWifi}
                   />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
                   <LogoPassword
                     iconClass="fa fa-key"
                     placeHolder={T.translate(`login.password.${this.props.language}`)}
@@ -135,12 +140,17 @@ class Wifi extends Component {
                     onKeyPress={this.handleKeyPress}
                   />
                 </div>
-                <SubmitButtons
-                  displayCancel={this.state.changingNetwork}
-                  onSave={this.save.bind(this)}
-                  onCancel={this.cancel.bind(this)}
-                />
               </div>
+              <div className="row">
+                <div className="col-lg-12">
+                  <SubmitButtons
+                    displayCancel={this.state.changingNetwork}
+                    onSave={this.save.bind(this)}
+                    onCancel={this.cancel.bind(this)}
+                  />
+                </div>
+              </div>
+            </div>
             )
           )
         }

@@ -32,7 +32,7 @@ switch (process.env.NODE_ENV) {
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
 }
 
-url = 'http://raspberrypi.local:1880/'
+url = 'http://raspberrypi.local:1880/';
 
 export const URL = url;
 export const OFFSET = offset;
@@ -78,55 +78,51 @@ function changeToken(tokenString) {
 }
 
 
-//Update the ui language when exitting clinician view
+// Update the ui language when exitting clinician view
 function updateUILanguage(lan, user) {
-  var toReturn = FR;
-  if(user == "clinician") {
-    if(lan.includes("FR")) {
-      toReturn = cFR
+  let toReturn = FR;
+  if (user === 'clinician') {
+    if (lan.includes('FR')) {
+      toReturn = cFR;
     } else {
-      toReturn = cEN
+      toReturn = cEN;
     }
+  } else if (lan.includes('FR')) {
+    toReturn = FR;
   } else {
-    if(lan.includes("FR")) {
-      toReturn = FR
-    } else {
-      toReturn = EN
-    }
+    toReturn = EN;
   }
-  console.log(toReturn)
-  return toReturn
+  console.log(toReturn);
+  return toReturn;
 }
 
 
-//Toggle the language between EN and FR for the user and cFR and cEN for the clinician 
+// Toggle the language between EN and FR for the user and cFR and cEN for the clinician
 function switchLanguage(lan, user) {
-  var toReturn = FR;
-  if(user == "clinician") {
-    if(lan.includes("FR")) {
-      toReturn = cFR
+  let toReturn = FR;
+  if (user === 'clinician') {
+    if (lan.includes('FR')) {
+      toReturn = cFR;
     } else {
-      toReturn = cEN
+      toReturn = cEN;
     }
+  } else if (lan.includes('FR')) {
+    toReturn = FR;
   } else {
-    if(lan.includes("FR")) {
-      toReturn = FR
-    } else {
-      toReturn = EN
-    }
+    toReturn = EN;
   }
 
-  if(toReturn == FR) {
-    toReturn = EN
-  } else if (toReturn == EN) {
-    toReturn = FR
-  } else if (toReturn == cEN) {
-    toReturn = cFR
-  } else if (toReturn == cFR) {
-    toReturn = cEN
+  if (toReturn === FR) {
+    toReturn = EN;
+  } else if (toReturn === EN) {
+    toReturn = FR;
+  } else if (toReturn === cEN) {
+    toReturn = cFR;
+  } else if (toReturn === cFR) {
+    toReturn = cEN;
   }
-  console.log(toReturn)
-  return toReturn
+  console.log(toReturn);
+  return toReturn;
 }
 
 export const ApplicationActions = {

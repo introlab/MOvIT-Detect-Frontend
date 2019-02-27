@@ -38,19 +38,19 @@ class ResultsCalendar extends Component {
   onPeriodChange(e) {
     this.props.onPeriodChange(e.value);
     this.setState({ period: e.value });
-    console.log("period: " + e.value)
+    console.log(`period: ${e.value}`);
   }
 
   onDateChange(e) {
     this.props.onDateChange(e.value);
     this.setState({ date: new Date(e.value) });
-    console.log("Date: " + e.value)
+    console.log(`Date: ${e.value}`);
   }
 
   onMonthChange(e) {
     this.props.onMonthChange(e.value);
     this.setState({ month: e.value });
-    console.log("Month: " + e.value)
+    console.log(`Month: ${e.value}`);
   }
 
   async setDefaultDate() {
@@ -90,18 +90,18 @@ class ResultsCalendar extends Component {
       { label: 'Novembre', value: 10 },
       { label: 'Décembre', value: 11 },
     ] : [
-        { label: 'January', value: 0 },
-        { label: 'February', value: 1 },
-        { label: 'March', value: 2 },
-        { label: 'April', value: 3 },
-        { label: 'May', value: 4 },
-        { label: 'June', value: 5 },
-        { label: 'July', value: 6 },
-        { label: 'August', value: 7 },
-        { label: 'September', value: 8 },
-        { label: 'October', value: 9 },
-        { label: 'November', value: 10 },
-        { label: 'December', value: 11 }];
+      { label: 'January', value: 0 },
+      { label: 'February', value: 1 },
+      { label: 'March', value: 2 },
+      { label: 'April', value: 3 },
+      { label: 'May', value: 4 },
+      { label: 'June', value: 5 },
+      { label: 'July', value: 6 },
+      { label: 'August', value: 7 },
+      { label: 'September', value: 8 },
+      { label: 'October', value: 9 },
+      { label: 'November', value: 10 },
+      { label: 'December', value: 11 }];
 
     const title = this.state.period === 'day'
       ? T.translate(`dailyResults.${this.props.language}`)

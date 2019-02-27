@@ -50,7 +50,7 @@ class Home extends Component {
     this.props.changeToken(token);
     localStorage.setItem('token', token);
     localStorage.setItem('profile', profileName);
-    this.props.updateLanguage()
+    this.props.updateLanguage();
     if (profileName === 'user') {
       this.props.history.push('/goals');
     } else {

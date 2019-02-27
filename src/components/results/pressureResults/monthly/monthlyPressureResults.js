@@ -101,9 +101,9 @@ class MonthlyPressureResults extends Component {
           )
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
-          <div className="col-lg-8 graphic" style={{margin: 'auto'}}>
+          <div className="col-lg-8 graphic" style={{ margin: 'auto' }}>
             <div>
-              {(this.state.month >= 0 && this.state.month <= 11) 
+              {(this.state.month >= 0 && this.state.month <= 11)
                 && (<MonthlySittingTime month={this.state.month} />)
               }
               <div id="reduceWeight">

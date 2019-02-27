@@ -812,10 +812,10 @@ calibrateIMU:
     cFR: "Confirmation de la calibration"
     cEN: "Confirmation of the calibration"
   confirmation:
-    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, autant que les accéléromètres, demeurent immobiles. À noter également que la calibration dure 2 minutes."
-    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Also, know that the calibration lasts 2 minutes."
-    cFR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, autant que les accéléromètres, demeurent immobiles. À noter également que la calibration dure 2 minutes."
-    cEN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Also, know that the calibration lasts 2 minutes."
+    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, est a la positions considérée comme le zéro du fauteuil"
+    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Place the seat in the upright position"
+    cFR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, est a la positions considérée comme le zéro du fauteuil"
+    cEN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Place the seat in the upright position"
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"
@@ -863,6 +863,16 @@ settings:
         EN: "Pressure Mat"
         cFR: "Tapis de pression"
         cEN: "Pressure Mat"
+      flowSensor:
+        FR: "Capteur de flux"
+        EN: "Flow sensor"
+        cFR: "Capteur de flux"
+        cEN: "Flow sensor"
+      tofSensor:
+        FR: "Capteur de distance"
+        EN: "Distance sensor"
+        cFR: "Capteur de distance"
+        cEN: "Distance sensor"
   modules:
     FR: "Capteurs"
     EN: "Sensors"

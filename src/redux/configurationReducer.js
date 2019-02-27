@@ -93,7 +93,7 @@ const ACTION_HANDLERS = {
     { ...state, telaskHost: action.telaskHost }
   ),
   [TELASK_USERNAME]: (state, action) => (
-    { ...state, telaskUsername: action.telaskUsername}
+    { ...state, telaskUsername: action.telaskUsername }
   ),
 };
 

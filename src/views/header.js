@@ -39,7 +39,7 @@ class Header extends Component {
   logout() {
     this.props.changeProfile('');
     this.props.changeToken('');
-    this.props.updateLanguage()
+    this.props.updateLanguage();
     localStorage.setItem('token', '');
     localStorage.setItem('profile', '');
     $('.navbar-collapse').collapse('hide');

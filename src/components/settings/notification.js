@@ -45,6 +45,7 @@ class Notification extends Component {
   async calibrate() {
     await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdownMat: true });
+    console.log("Hello lol")
   }
 
   async calibrateIMU() {

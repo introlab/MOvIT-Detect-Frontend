@@ -31,16 +31,16 @@ class ModuleStatus extends Component {
       mIMUConnected: false,
       fIMUConnected: false,
     };
-    let self = this
+    const self = this;
     this.state.socket.onmessage = function (evt) {
       const receivedObj = JSON.parse(evt.data);
-      self.state.tofConnected = receivedObj.ToFSensor.connected
-      self.state.flowConnected = receivedObj.flowSensor.connected
-      self.state.alarmConnected = receivedObj.alarmSensor.connected
-      self.state.pressureMatConnected = receivedObj.pressureMat.connected
-      self.state.mIMUConnected = receivedObj.mIMU.connected
-      self.state.fIMUConnected = receivedObj.fIMU.connected
-      self.updateModulesStatus()
+      self.state.tofConnected = receivedObj.ToFSensor.connected;
+      self.state.flowConnected = receivedObj.flowSensor.connected;
+      self.state.alarmConnected = receivedObj.alarmSensor.connected;
+      self.state.pressureMatConnected = receivedObj.pressureMat.connected;
+      self.state.mIMUConnected = receivedObj.mIMU.connected;
+      self.state.fIMUConnected = receivedObj.fIMU.connected;
+      self.updateModulesStatus();
     };
   }
 
@@ -51,14 +51,14 @@ class ModuleStatus extends Component {
   }
 
   getModulesStatus() {
-    var a = { 
-              "notificationModule": this.state.alarmConnected,
-              "fixedAccelerometer": this.state.fIMUConnected,
-              "mobileAccelerometer": this.state.mIMUConnected,
-              "pressureMat": this.state.pressureMatConnected, 
-              "flowSensor": this.state.flowConnected, 
-              "tofSensor": this.state.tofConnected
-            }
+    const a = {
+      notificationModule: this.state.alarmConnected,
+      fixedAccelerometer: this.state.fIMUConnected,
+      mobileAccelerometer: this.state.mIMUConnected,
+      pressureMat: this.state.pressureMatConnected,
+      flowSensor: this.state.flowConnected,
+      tofSensor: this.state.tofConnected,
+    };
     return a;
   }
 

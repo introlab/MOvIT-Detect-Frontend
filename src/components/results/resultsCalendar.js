@@ -153,6 +153,13 @@ class ResultsCalendar extends Component {
         <div style={style.content}>
           <h2 className="mb-4">{title}</h2>
           <span>Date: </span>
+          <Dropdown
+            value={this.state.period}
+            options={periods}
+            onChange={e => this.onPeriodChange(e)}
+            style={{ width: '150px', marginRight: '15px' }}
+            placeholder="Select a period"
+          />
           {
             this.state.period === 'day'
               ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} dateFormat="yy-mm-dd" />
@@ -166,13 +173,6 @@ class ResultsCalendar extends Component {
                 />
               )
           }
-          <Dropdown
-            value={this.state.period}
-            options={periods}
-            onChange={e => this.onPeriodChange(e)}
-            style={{ width: '150px', marginLeft: '15px' }}
-            placeholder="Select a period"
-          />
         </div>
       </div>
     );

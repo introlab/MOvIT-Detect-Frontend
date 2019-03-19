@@ -82,8 +82,8 @@ class Header extends Component {
             <ul className="nav navbar-nav mr-auto">
               {this.props.profile === 'clinician'
                 && (
-                  <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
-                    <Link to="/configurations" className="navLink">{T.translate(`configurations.${this.props.language}`)}</Link>
+                  <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show" >
+                    <Link to="/configurations"className="navLink">{T.translate(`configurations.${this.props.language}`)}</Link>
                   </li>
                 )
               }

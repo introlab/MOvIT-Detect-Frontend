@@ -33,7 +33,7 @@ switch (process.env.NODE_ENV) {
 }
 
 url = 'http://raspberrypi.local:1880/';
-//url = 'http://'+process.env.NODE_ENV+':1880/';
+// url = 'http://'+process.env.NODE_ENV+':1880/';
 
 export const URL = url;
 export const OFFSET = offset;

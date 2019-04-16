@@ -92,12 +92,12 @@ class MonthlyPressureResults extends Component {
                 <li className="graphLink">
                   <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
                 </li>
-                {/*this.props.reduceWeight
+                {/* this.props.reduceWeight
                   && (
                     <li className="graphLink">
                       <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
                     </li>
-                  )*/}
+                  ) */}
               </ul>
             </div>
           )

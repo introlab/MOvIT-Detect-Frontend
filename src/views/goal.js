@@ -192,7 +192,7 @@ class Goal extends Component {
           <h2>
             {T.translate(`goals.${this.props.language}`)}
               &nbsp;
-            <h6 className="col-12 col-md-8 offset-md-2" style={{justifyContent: 'center'}}>{T.translate(`toolTip.goals.${this.props.language}`)}</h6>
+            <h6 className="col-12 col-md-8 offset-md-2" style={{ justifyContent: 'center' }}>{T.translate(`toolTip.goals.${this.props.language}`)}</h6>
           </h2>
         </legend>
         {this.state.hasErrors

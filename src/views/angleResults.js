@@ -50,9 +50,9 @@ class AngleResults extends Component {
 
   changeYear(newDate) {
     this.setState({ year: newDate });
-    var now = new Date(0);
-    console.log(now)
-    this.setState({ date: now});
+    const now = new Date(0);
+    console.log(now);
+    this.setState({ date: now });
   }
 
   changePeriod(newPeriod) {

@@ -39,18 +39,15 @@ class DailyAngleResults extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("changed date");
-    //if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getDailySlidingProgress(nextProps.date);
-    //}
+   if (nextProps.date !== this.state.date) {
+    this.setState({ date: nextProps.date });
+    this.getDailySlidingProgress(nextProps.date);
+   }
   }
 
   async getDailySlidingProgress(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      console.log('trying');
-
       const response = await get(`${URL}dailySlideProgress?Day=${+date}&Offset=${OFFSET}`);
       this.loadDailySlidingData(response.data);
     } catch (error) {

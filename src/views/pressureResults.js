@@ -21,6 +21,7 @@ class PressureResults extends Component {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
     month: PropTypes.string,
+    year: PropTypes.string,
   }
 
   constructor(props) {
@@ -29,11 +30,13 @@ class PressureResults extends Component {
       period: 'day',
       date: props.date,
       month: props.month,
+      year: props.year,
     };
 
     this.changePeriod = this.changePeriod.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.changeMonth = this.changeMonth.bind(this);
+    this.changeYear = this.changeYear.bind(this);
   }
 
   changeMonth(newMonth) {
@@ -48,10 +51,14 @@ class PressureResults extends Component {
     this.setState({ period: newPeriod });
   }
 
+  changeYear(newPeriod) {
+    this.setState({ year: newPeriod });
+  }
+
   render() {
     return (
       <div>
-        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
+        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} onYearChange={this.changeYear} />
         <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
         {this.state.period === 'day'

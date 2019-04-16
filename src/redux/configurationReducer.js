@@ -8,6 +8,7 @@ export const USER_NAME = 'USER_NAME';
 export const USER_ID = 'USER_ID';
 export const USER_WEIGHT = 'USER_WEIGHT';
 export const MAX_ANGLE = 'MAX_ANGLE';
+export const MIN_ANGLE = 'MIN_ANGLE';
 export const TELASK_KEY = 'TELASK_KEY';
 export const TELASK_USERNAME = 'TELASK_USERNAME';
 export const TELASK_HOST = 'TELASK_HOST';
@@ -63,11 +64,20 @@ function changeMaxAngle(angle) {
     maxAngle: angle,
   };
 }
+
+function changeMinAngle(angle) {
+  return {
+    type: MIN_ANGLE,
+    minAngle: angle,
+  };
+}
+
 export const ConfigurationActions = {
   changeUserName,
   changeUserID,
   changeUserWeight,
   changeMaxAngle,
+  changeMinAngle,
   changeTelaskKey,
   changeTelaskHost,
   changeTelaskUsername,
@@ -85,6 +95,9 @@ const ACTION_HANDLERS = {
   ),
   [MAX_ANGLE]: (state, action) => (
     { ...state, maxAngle: action.maxAngle }
+  ),
+  [MIN_ANGLE]: (state, action) => (
+    { ...state, minAngle: action.minAngle }
   ),
   [TELASK_KEY]: (state, action) => (
     { ...state, telaskKey: action.telaskKey }

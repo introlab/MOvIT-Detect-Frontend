@@ -12,7 +12,7 @@ import SubmitButtons from '../shared/submitButtons';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 
-const NUMBER_OF_RETRIES = 15;
+const NUMBER_OF_RETRIES = 30;
 const RETRY_INTERVAL = 1000;
 const ENTER_KEY = 'Enter';
 

@@ -21,6 +21,7 @@ class MonthlyPressureResults extends Component {
     language: PropTypes.string.isRequired,
     reduceWeight: PropTypes.bool,
     month: PropTypes.number,
+    year: PropTypes.number,
   }
 
   constructor(props) {
@@ -28,6 +29,7 @@ class MonthlyPressureResults extends Component {
     this.state = {
       width: window.innerWidth,
       month: props.month,
+      year: props.year,
       isLoaded: false,
       hasErrors: false,
     };
@@ -90,12 +92,12 @@ class MonthlyPressureResults extends Component {
                 <li className="graphLink">
                   <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
                 </li>
-                {this.props.reduceWeight
+                {/*this.props.reduceWeight
                   && (
                     <li className="graphLink">
                       <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
                     </li>
-                  )}
+                  )*/}
               </ul>
             </div>
           )
@@ -106,6 +108,7 @@ class MonthlyPressureResults extends Component {
               {(this.state.month >= 0 && this.state.month <= 11)
                 && (<MonthlySittingTime month={this.state.month} />)
               }
+              {/*
               <div id="reduceWeight">
                 <RecGoalChart
                   condition={this.props.reduceWeight}
@@ -116,6 +119,7 @@ class MonthlyPressureResults extends Component {
                   recData={personalTiltData}
                 />
               </div>
+              */}
             </div>
           </div>
         </div>

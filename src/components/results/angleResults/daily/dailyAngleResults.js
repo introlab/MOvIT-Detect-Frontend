@@ -39,10 +39,11 @@ class DailyAngleResults extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
+    console.log("changed date");
+    //if (nextProps.date !== this.state.date) {
       this.setState({ date: nextProps.date });
       this.getDailySlidingProgress(nextProps.date);
-    }
+    //}
   }
 
   async getDailySlidingProgress(date) {

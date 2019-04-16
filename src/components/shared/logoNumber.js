@@ -13,6 +13,8 @@ export default class LogoNumber extends Component {
     iconClass: PropTypes.string.isRequired,
     placeHolder: PropTypes.string.isRequired,
     value: PropTypes.number,
+    min: PropTypes.number,
+    max: PropTypes.number,
     onChange: PropTypes.func.isRequired,
   }
 
@@ -36,6 +38,8 @@ export default class LogoNumber extends Component {
             placeholder={this.props.placeHolder}
             className="form-control"
             id="logoNumber"
+            min={this.props.min || 0}
+            max={this.props.max || 90}
             onChange={e => this.props.onChange(Number(e.target.value))}
             value={this.props.value || ''}
           />

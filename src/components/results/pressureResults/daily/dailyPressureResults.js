@@ -51,12 +51,12 @@ class DailyPressureResults extends Component {
                 <li className="graphLink">
                   <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
                 </li>
-                {this.props.reduceWeight
+                {/*this.props.reduceWeight
                   && (
                     <li className="graphLink">
                       <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
                     </li>
-                  )}
+                  )*/}
               </ul>
             </div>
           )
@@ -70,7 +70,7 @@ class DailyPressureResults extends Component {
                     <PressureCenter
                       title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
                       date={this.state.date}
-                    />
+                    />{/*
                     <div id="reduceWeight">
                       <RecGoalProgress
                         condition={this.props.reduceWeight}
@@ -78,7 +78,7 @@ class DailyPressureResults extends Component {
                         goalValue={this.state.value2}
                         recValue={this.state.value1}
                       />
-                    </div>
+                    </div>*/}
                   </div>
                 )
               }

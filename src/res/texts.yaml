@@ -72,11 +72,37 @@ recommendations:
     EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations and saving them."
     cFR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations et en les enregistrant"
     cEN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations and saving them."
+  reduceWeight2:
+    FR: "Cliquer sur le crayon pour modifier votre objectif"
+    EN: "Press on the pencil to edit your goal"
+    cFR: "Objectif choisi par l'usager"
+    cEN: "Goal chosen by user"
   reduceWeight:
     FR: "Réduire la pression sur le siège"
     EN: "Relieving pressure on your buttocks"
     cFR: "Réduire la pression sur le siège"
     cEN: "Relieving pressure on your buttocks"
+    textPart1:
+      FR: "Basculez à tous les "
+      EN: "Tilt every "
+      cFR: "Basculez à tous les "
+      cEN: "Tilt every "
+    textPart2:
+      FR: " minutes, pendant "
+      EN: " minutes for "
+      cFR: " minutes, pendant "
+      cEN: " minutes for "
+    textPart3:
+      FR: " minutes à un angle de "
+      EN: " minutes at an angle of "
+      cFR: " minutes à un angle de "
+      cEN: " minutes at an angle of "
+    textPart4:
+      FR: "°"
+      EN: "°"
+      cFR: "°"
+      cEN: "°"
+
     tooltip:
       FR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°."
       EN: "To relieve pressure effectively, it is recommended to tilt every 30 minutes, for one to two minutes at an angle of 45°."
@@ -335,6 +361,11 @@ configurations:
     EN: "Maximum tilt angle"
     cFR: "Angle maximal de bascule"
     cEN: "Maximum tilt angle"
+  minTilt:
+    FR: "Angle minimal de bascule"
+    EN: "Minimum tilt angle"
+    cFR: "Angle minimale de bascule"
+    cEN: "Minimum tilt angle"
   weight:
     FR: "Poids de l'usager (kg)"
     EN: "User's weight (kg)"

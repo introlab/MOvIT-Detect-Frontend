@@ -31,7 +31,9 @@ class Configuration extends Component {
     userID: PropTypes.string.isRequired,
     changeUserID: PropTypes.func.isRequired,
     maxAngle: PropTypes.number,
+    minAngle: PropTypes.number,
     changeMaxAngle: PropTypes.func.isRequired,
+    changeMinAngle: PropTypes.func.isRequired,
     userWeight: PropTypes.number,
     changeUserWeight: PropTypes.func.isRequired,
   };
@@ -63,6 +65,7 @@ class Configuration extends Component {
         self.props.changeUserName(response.userName);
         self.props.changeUserID(response.userID);
         self.props.changeMaxAngle(response.maxAngle);
+        self.props.changeMinAngle(response.minAngle);
         self.props.changeUserWeight(response.userWeight);
         self.props.changeTelaskHost(response.telaskHost);
         self.props.changeTelaskKey(response.telaskKey);
@@ -91,6 +94,7 @@ class Configuration extends Component {
       userName: this.props.userName,
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
+      minAngle: this.props.minAngle,
       userWeight: this.props.userWeight,
       telaskKey: this.props.telaskKey,
       telaskUsername: this.props.telaskUsername,
@@ -132,10 +136,20 @@ class Configuration extends Component {
                   onChange={this.props.changeUserID}
                 />
                 <LogoNumber
-                  iconClass="fa fa-wheelchair"
+                  iconClass="fa fa-plus-circle"
                   placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
                   value={this.props.maxAngle}
+                  min="-90"
+                  max="90"
                   onChange={this.props.changeMaxAngle}
+                />
+                <LogoNumber
+                  iconClass="fa fa-minus-circle"
+                  placeHolder={T.translate(`configurations.minTilt.${this.props.language}`)}
+                  value={this.props.minAngle}
+                  min="-90"
+                  max="90"
+                  onChange={this.props.changeMinAngle}
                 />
                 <LogoNumber
                   iconClass="fa fa-balance-scale"
@@ -184,6 +198,7 @@ function mapStateToProps(state) {
     telaskUsername: state.configurationReducer.telaskUsername,
     telaskHost: state.configurationReducer.telaskHost,
     maxAngle: state.configurationReducer.maxAngle,
+    minAngle: state.configurationReducer.minAngle,
   };
 }
 
@@ -196,6 +211,7 @@ function mapDispatchToProps(dispatch) {
     changeTelaskHost: ConfigurationActions.changeTelaskHost,
     changeTelaskUsername: ConfigurationActions.changeTelaskUsername,
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
+    changeMinAngle: ConfigurationActions.changeMinAngle,
   }, dispatch);
 }
 

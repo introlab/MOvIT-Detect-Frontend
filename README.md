@@ -1,10 +1,10 @@
 # MOvIT-Detect-Frontend
 
-MOvIT-Detect-Frontend est la partie Frontend du projet MOvIT+, destiné a fonctionné sur un ordinateur embarqué Raspberry Pi zero w. La page web est fait en React ce qui la rends flexible et rapide. Le serveur web est sous nodeJS. Le serveur une fois démarrer est accesible a l'adresse http://<Adresse ip>:3000 
+MOvIT-Detect-Frontend est la partie Frontend du projet MOvIT+, destiné a fonctionné sur un ordinateur embarqué de type Raspberry Pi zero w. La page web est conçu en React ce qui la rends flexible et rapide. Le serveur web est sous nodeJS. Le serveur une fois démarrer est accesible a l'adresse http://192.168.10.1:3000, si le point d'accèes du Raspberry Pi Zero w est utilisé, autrement, il faudra utilisé l'adresse DHCP assigné par le routeur.
 
 # Mots de passe
-   - Client: `movit-user`
-   - Clinicien: `movit-admin`
+   - Client: `user`
+   - Clinicien: `admin`
 
 # Installation
 Pour gerer les dépendances, le gestionnaire de dépendances yarn est utiliser. La versiont 1.13.0 est la plus récente en date du 16 Janvier 2019. Il faut l'installer comme suit:
@@ -29,14 +29,11 @@ git clone https://github.com/introlab/MOvIT-Detect-Frontend.git
 cd ~/MOvIT-Detect-Frontend/
 git checkout develop
 ```
-On démarre le serveur en utilisant le cammande suivante a partir du dossier racine du projet:
+On démarre le serveur en utilisant le commande suivante a partir du dossier racine du projet:
 ```bash
 npm start
 ```
+Le serveur prends un certains temps (~6 minutes) a démarrer sur un Raspberry Pi zero w, c'est du a la compilation du projet avec WebPack a chaque démarrage. 
 
-
-# License
-----
-TODO
 
 

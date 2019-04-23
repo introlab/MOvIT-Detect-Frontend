@@ -12,7 +12,7 @@ import SubmitButtons from '../shared/submitButtons';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 
-const NUMBER_OF_RETRIES = 15;
+const NUMBER_OF_RETRIES = 30;
 const RETRY_INTERVAL = 1000;
 const ENTER_KEY = 'Enter';
 
@@ -119,27 +119,37 @@ class Wifi extends Component {
           && (this.state.connecting
             ? <Loading key="loading" />
             : (
-              <div className="row">
-                <div className="form-horizontal col-12 col-md-8">
-                  <LogoText
-                    iconClass="fa fa-wifi"
-                    placeHolder={T.translate(`settings.wifi.name.${this.props.language}`)}
-                    value={this.state.wifi}
-                    onChange={this.changeWifi}
-                  />
-                  <LogoPassword
-                    iconClass="fa fa-key"
-                    placeHolder={T.translate(`login.password.${this.props.language}`)}
-                    value={this.state.password}
-                    onChange={this.changePassword}
-                    onKeyPress={this.handleKeyPress}
-                  />
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <LogoText
+                      iconClass="fa fa-wifi"
+                      placeHolder={T.translate(`settings.wifi.name.${this.props.language}`)}
+                      value={this.state.wifi}
+                      onChange={this.changeWifi}
+                    />
+                  </div>
                 </div>
-                <SubmitButtons
-                  displayCancel={this.state.changingNetwork}
-                  onSave={this.save.bind(this)}
-                  onCancel={this.cancel.bind(this)}
-                />
+                <div className="row">
+                  <div className="col-lg-12">
+                    <LogoPassword
+                      iconClass="fa fa-key"
+                      placeHolder={T.translate(`login.password.${this.props.language}`)}
+                      value={this.state.password}
+                      onChange={this.changePassword}
+                      onKeyPress={this.handleKeyPress}
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-lg-12">
+                    <SubmitButtons
+                      displayCancel={this.state.changingNetwork}
+                      onSave={this.save.bind(this)}
+                      onCancel={this.cancel.bind(this)}
+                    />
+                  </div>
+                </div>
               </div>
             )
           )

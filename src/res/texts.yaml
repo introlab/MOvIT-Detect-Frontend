@@ -1,646 +1,1105 @@
 home:
   FR: "Accueil"
   EN: "Home"
+  cFR: "Accueil"
+  cEN: "Home"
 preferences:
   FR: "Préférences"
   EN: "Preferences"
+  cFR: "Préférences"
+  cEN: "Preferences"
 
 time:
   min:
     FR: "min"
     EN: "min"
+    cFR: "min"
+    cEN: "min"
   minutes:
     FR: "minutes"
     EN: "minutes"
+    cFR: "minutes"
+    cEN: "minutes"
   hours:
     FR: "heures"
     EN: "hours"
+    cFR: "heures"
+    cEN: "hours"
   week:
     FR: "semaine"
     EN: "week"
+    cFR: "semaine"
+    cEN: "week"
   month:
     FR: "mois"
     EN: "month"
+    cFR: "mois"
+    cEN: "month"
 
 graphics:
   FR: "Résultats"
   EN: "Results"
+  cFR: "Résultats"
+  cEN: "Results"
   day:
     FR: "jour"
     EN: "day"
+    cFR: "jour"
+    cEN: "day"
   month:
     FR: "mois"
     EN: "month"
+    cFR: "mois"
+    cEN: "month"
 
 recommendations:
   FR: "Recommandations"
   EN: "Recommendations"
+  cFR: "Recommandations"
+  cEN: "Recommendations"
   tiltAsNeeded:
-    FR: "Basculer au besoin"
+    FR: "Basculez au besoin"
     EN: "Tilt as needed"
+    cFR: "Basculez au besoin"
+    cEN: "Tilt as needed"
   otherTitle:
     FR: "Indiquez ici le titre de la cible que vous voulez transmettre à l’usager"
     EN: "Indicate here the title of the target that you want to transmit to the user"
+    cFR: "Indiquez ici le titre de la cible que vous voulez transmettre à l’usager"
+    cEN: "Indicate here the title of the target that you want to transmit to the user"
   recommendationsText:
-    FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations."
-    EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations"
+    FR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations et en les enregistrant"
+    EN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations and saving them."
+    cFR: "Veuillez sélectionner la ou les cibles d’usage de la bascule destinée(s) à l’usager. Veuillez également personnaliser chacune des cibles sélectionnées aux besoins de l’usager en y saisissant vos recommandations et en les enregistrant"
+    cEN: "Please select the goal(s) for the recommend use of the tilt. Please personalise every selected goal for the user's need by entering you recommendations and saving them."
+  reduceWeight2:
+    FR: "Cliquer sur le crayon pour modifier votre objectif"
+    EN: "Press on the pencil to edit your goal"
+    cFR: "Objectif choisi par l'usager"
+    cEN: "Goal chosen by user"
   reduceWeight:
     FR: "Réduire la pression sur le siège"
-    EN: "Reduce pressure on the buttocks"
+    EN: "Relieving pressure on your buttocks"
+    cFR: "Réduire la pression sur le siège"
+    cEN: "Relieving pressure on your buttocks"
+    textPart1:
+      FR: "Basculez à tous les "
+      EN: "Tilt every "
+      cFR: "Basculez à tous les "
+      cEN: "Tilt every "
+    textPart2:
+      FR: " minutes, pendant "
+      EN: " minutes for "
+      cFR: " minutes, pendant "
+      cEN: " minutes for "
+    textPart3:
+      FR: " minutes à un angle de "
+      EN: " minutes at an angle of "
+      cFR: " minutes à un angle de "
+      cEN: " minutes at an angle of "
+    textPart4:
+      FR: "°"
+      EN: "°"
+      cFR: "°"
+      cEN: "°"
+
     tooltip:
-      FR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°"
-      EN: "To reduce pressure on the buttocks, it is recommended to tilt every 30 minutes, for one to two minutes and at a 45 ° angle"
+      FR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°."
+      EN: "To relieve pressure effectively, it is recommended to tilt every 30 minutes, for one to two minutes at an angle of 45°."
+      cFR: "Pour profiter des bénéfices de la bascule en matière de réduction de la pression, il est recommandé de basculer à une fréquence de 30 minutes, pendant une à deux minutes et à un angle de 45°."
+      cEN: "To relieve pressure effectively, it is recommended to tilt every 30 minutes, for one to two minutes at an angle of 45°."
     recPanel:
       tooltip:
-        FR: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible."
-        EN: "Your wheelchair tilt is an effective way to reduce pressure on your buttocks to avoid developing pressure ulcers. To reduce pressure under your buttocks effectively, it is recommended to switch over as often as possible and for as long as possible."
+        FR: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible. "
+        EN: "The tilt of your wheelchair is an effective way to reduce the pressure on your buttocks in order to avoid developing pressure sores. To relieve the pressure on your buttocks effectively, it is recommended to tilt as often  as possible and as long as possible."
+        cFR: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible. "
+        cEN: "The tilt of your wheelchair is an effective way to reduce the pressure on your buttocks in order to avoid developing pressure sores. To relieve the pressure on your buttocks effectively, it is recommended to tilt as often  as possible and as long as possible."
   reduceSwelling:
-    FR: "Reduire l’œdème aux membres inférieurs"
-    EN: "Reduce swelling of the legs"
+    FR: "Réduire l’œdème aux membres inférieurs"
+    EN: "Reduce edema in the lower limbs"
+    cFR: "Réduire l’œdème aux membres inférieurs"
+    cEN: "Reduce edema in the lower limbs"
     tooltip:
-      FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
-      EN: "To reduce the accumulation of edema in the lower limbs, it is recommended to combine the use of the tilt with the legrest so that the lower limbs are above the heart."
+        FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        EN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
+        cFR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        cEN: "TTo reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
+    
     recPanel:
       tooltip:
-        FR: "L’utilisation combinée de la bascule et du repose-jambes de votre fauteuil est un moyen efficace pour diminuer l’enflure aux jambes. "
-        EN: "The combined use of the tilt and the legrest of your wheelchair is an effective way to reduce swelling in the legs. "
+        FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        EN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
+        cFR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        cEN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
   reducePain:
     FR: "Réduire la douleur"
-    EN: "Reduce pain"
+    EN: "Ease your pain"
+    cFR: "Réduire la douleur"
+    cEN: "Ease your pain"
     tooltip:
       FR: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
-      EN: "To reduce or manage pain, it is recommended to tilt according to the preferences of the user."
+      EN: "To reduce or manage pain, it is recommended to tilt to the user’s preference."
+      cFR: "Pour diminuer ou bien gérer la douleur, il est recommandé de basculer selon les préférences de l’usager."
+      cEN: "To reduce or manage pain, it is recommended to tilt to the user’s preference."
     recPanel:
       tooltip:
         FR: "La bascule de votre fauteuil peut vous aider à mieux gérer vos douleurs."
-        EN: "Tilting your chair can help you better manage your pain."
+        EN: "Your tilt can help you manage your pain."
+        cFR: "La bascule de votre fauteuil peut vous aider à mieux gérer vos douleurs."
+        cEN: "Your tilt can help you manage your pain."
   frequency:
-    FR: "Fréquence de bascule"
-    EN: "Tilt frequency"
+    FR: "Basculez à toutes les"
+    EN: "Tilt every"
+    cFR: "Basculez à toutes les"
+    cEN: "Tilt every"
   duration:
     FR: "Durée de bascule"
-    EN: "Tilt duration"
+    EN: "Tilt for"
+    cFR: "Durée de bascule"
+    cEN: "Tilt for"
   angle:
-    FR: "Angle de bascule"
-    EN: "Tilt angle"
+    FR: "À un angle de"
+    EN: "Tilt at an angle of"
+    cFR: "À un angle de"
+    cEN: "Tilt at an angle of"
   slidingMoving:
     FR: "Réduire le glissement lors des déplacements"
     EN: "Reduce sliding while moving"
+    cFR: "Réduire le glissement lors des déplacements"
+    cEN: "Reduce sliding while moving"
     tooltip:
-      FR: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5 - 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5 - 30°."
-      EN: "To increase wheelchair stability when moving, it is recommended to tilt to an angle of 5 - 25 °. In addition, to avoid sliding forward in a downward slope, it is recommended to tilt to an angle of 5 - 30 °."
+      FR: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5° à 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5° à 30°."
+      EN: "To improve stability when moving in the wheelchair, it is recommended to tilt at an angle between 5° and 25°. Moreover, to avoid sliding forward on descending slopes, it is recommended to tilt at an angle between 5° and 30°."
+      cFR: "Pour augmenter la stabilité au fauteuil lors de la conduite, il est recommandé de basculer à un angle de 5° à 25°. De plus, pour éviter de glisser vers l’avant dans d’une pente descendante, il est recommandé de basculer à un angle de 5° à 30°."
+      cEN: "To improve stability when moving in the wheelchair, it is recommended to tilt at an angle between 5° to 25°. Moreover, to avoid sliding forward on descending slopes, it is recommended to tilt at an angle between 5° to 30°."
     recPanel:
       tooltip:
         FR: "Lors de vos déplacements quotidiens et lorsque vous descendez une pente, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
-        EN: "During your daily commute and as you descend a slope, you may slip from your chair. Tilting backwards will reduce your risk of sliding forward."
+        EN: "During your daily commute and as you are descending a slope, you may slip in your wheelchair. By tilting your wheelchair backwards, you will decrease your risk of slipping forward."
+        cFR: "Lors de vos déplacements quotidiens et lorsque vous descendez une pente, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
+        cEN: "During your daily commute and as you are descending a slope, you may slip in your wheelchair. By tilting your wheelchair backwards, you will decrease your risk of slipping forward."
   slidingRest:
     FR: "Réduire le glissement au repos"
     EN: "Reduce sliding while at rest"
+    cFR: "Réduire le glissement au repos"
+    cEN: "Reduce sliding while at rest"
     tooltip:
-      FR: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5 - 25°."
-      EN: "To increase the chair stability in the stationary position, it is recommended to tilt to an angle of 5 - 25 °."
+      FR: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5° à 25°."
+      EN: "To improve stability when the wheelchair is stationary, it is recommended to tilt  at an angle between 5° to 25°."
+      cFR: "Pour augmenter la stabilité au fauteuil en position stationnaire, il est recommandé de basculer à un angle de 5° à 25°."
+      cEN: "To improve stability when the wheelchair is stationary, it is recommended to tilt  at an angle between 5° to 25°."
     recPanel:
       tooltip:
         FR: "Lorsque vous êtes immobile, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
-        EN: "When you are still, it is possible that you slip from your chair. Tilting backwards will reduce your risk of sliding forward."
+        EN: "When you are not moving you may slip in your wheelchair. By tilting your wheelchair backwards, you will decrease your risk of slipping forward."
+        cFR: "Lorsque vous êtes immobile, il est possible que vous glissiez de votre fauteuil. En basculant vers l’arrière, vous diminuerez vos risques de glisser vers l’avant."
+        cEN: "When you are not moving you may slip in your wheelchair. By tilting your wheelchair backwards, you will decrease your risk of slipping forward."
   pain:
     FR: "Réduire la douleur"
-    EN: "Reduce pain"
+    EN: "Ease your pain"
+    cFR: "Réduire la douleur"
+    cEN: "Ease your pain"
     recommendation:
       FR: "Recommandations pour réduire la douleur"
-      EN: "Recommendations for reducing pain"
+      EN: "Recommendations to ease your pain"
+      cFR: "Recommandations pour réduire la douleur"
+      cEN: "Recommendations to ease your pain"
   rest:
     FR: "Permettre le repos"
-    EN: "Permit a time of rest in the wheelchair "
+    EN: "Allow resting in the wheelchair"
+    cFR: "Permettre le repos"
+    cEN: "Allow resting in the wheelchair"
     tooltip:
       FR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
       EN: "The literature reports that many users use their wheelchair tilt to rest or take a nap."
+      cFR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour se reposer ou bien pour faire une sieste."
+      cEN: "The literature reports that many users use their wheelchair tilt to rest or take a nap."
     recPanel:
       tooltip:
-        FR: "Avez-vous déjà pensé à utiliser votre bascule pour vous reposer quelques minutes ou bien pour faire une sieste? "
-        EN: "Have you ever thought of using your wheelchair tilt to rest for a few minutes or to take a nap? "
+        FR: "Avez-vous déjà pensé à utiliser votre bascule pour vous reposer quelques minutes ou bien pour faire une sieste?"
+        EN: "Have you ever thought of using your wheelchair tilt to rest for a few minutes or to take a nap?"
+        cFR: "Avez-vous déjà pensé à utiliser votre bascule pour vous reposer quelques minutes ou bien pour faire une sieste? "
+        cEN: "Have you ever thought of using your wheelchair tilt to rest for a few minutes or to take a nap? "
     recommendation:
-      FR: "Recommandations pour le repos"
-      EN: "Recommendations to permit a time of rest in the wheelchair "
+      FR: "Recommandations pour le repos "
+      EN: "Recommendations to ease rest in a wheelchair"
+      cFR: "Recommandations pour le repos"
+      cEN: "Recommendations to ease rest in a wheelchair"
   transfer:
     FR: "Faciliter les transferts"
     EN: "Ease transfers"
+    cFR: "Faciliter les transferts"
+    cEN: "Ease transfers"
     tooltip:
-      FR: "Lors d’un transfert avec un lève-personne, la bascule arrière permet un meilleur alignement avec la toile, en plus d’offrir un meilleur positionnement avec le fauteuil. Lors d’un transfert assis-debout et pivot, la bascule avant peut faciliter l’impulsion de l’usager."
-      EN: "During a transfer with a lift, the rear tilt allows better alignment with the canvas, in addition to providing better positioning with the wheelchair. During a sit-stand and pivot transfer, a front tilt can facilitate the impulse of the user."
+      FR: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
+      EN: "During a transfer with a patient lift and sling, the backward tilt allows the user to be better positioned in the wheelchair. During a sit-stand and pivot transfer, the forward tilt can facilitate the user during this transfer."
+      cFR: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
+      cEN: "During a transfer with a patient lift and sling, the backward tilt allows the user to be better positioned in the wheelchair. During a sit-stand and pivot transfer, the forward tilt can facilitate the user during this transfer."
     recommendation:
       FR: "Recommandations pour faciliter le transport"
       EN: "Recommendations to ease transfers"
+      cFR: "Recommandations pour faciliter le transport"
+      cEN: "Recommendations to ease transfers"
     recPanel:
       tooltip:
         FR: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
-        EN: "The rear tilt of your chair facilitates transfers with the lift. In addition, a front tilt of your chair can help you get up more easily from your seat during your transfers (eg in bed, in the toilet, on a chair)."
+        EN: "The backward tilt of your wheelchair facilitates transfers when using a patient lift. In addition, the forward tilt of your wheelchair can help you to get up more easily from a seated position when doing standing transfers (e.g. in bed, in the toilet, on a chair)."
+        cFR: "La bascule arrière de votre fauteuil facilite les transferts avec le lève-personne. De plus, la bascule avant de votre fauteuil peut vous aider à vous lever plus facilement de votre siège lors de vos transferts (ex. au lit, à la toilette, sur une chaise)."
+        cEN: "The backward tilt of your wheelchair facilitates transfers when using a patient lift. In addition, the forward tilt of your wheelchair can help you to get up more easily from a seated position when doing standing transfers (e.g. in bed, in the toilet, on a chair)."
   comfort:
     FR: "Améliorer le confort"
-    EN: "Improve comfort"
+    EN: "Improve your wheelchair comfort"
+    cFR: "Améliorer le confort"
+    cEN: "Improve your wheelchair comfort"
     tooltip:
       FR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour augmenter leur confort et diminuer leur inconfort."
-      EN: "The literature reports that many users use their wheelchair tilt to increase their comfort and reduce their discomfort."
+      EN: "The literature tells us that many wheelchair users use the tilt to increase their comfort thus  decreasing their discomfort."
+      cFR: "La littérature rapporte que de nombreux usagers se servent de leur bascule pour augmenter leur confort et diminuer leur inconfort."
+      cEN: "The literature tells us that many wheelchair users use the tilt to increase their comfort thus  decreasing their discomfort."
     recommendation:
       FR: "Recommandations pour améliorer le confort"
       EN: "Recommendations to improve comfort"
+      cFR: "Recommandations pour améliorer le confort"
+      cEN: "Recommendations to improve your comfort"
     recPanel:
       tooltip:
         FR: "La bascule de votre fauteuil est un moyen efficace pour améliorer votre confort au fauteuil."
-        EN: "Tilting your wheelchair is an effective way to improve your comfort."
+        EN: "Your tilt is an effective way to improve your comfort."
+        cFR: "La bascule de votre fauteuil est un moyen efficace pour améliorer votre confort au fauteuil."
+        cEN: "Your tilt is an effective way to improve your comfort."
   other:
     FR: "Autre"
     EN: "Other"
+    cFR: "Autre"
+    cEN: "Other"
     tooltip:
       FR: "Afin de compléter vos recommandations, il vous est également possible de créer une ou des cibles de bascule personnalisée(s)."
-      EN: "In order to complete your recommendations, you can also create a custom target(s)."
+      EN: "To complete your recommendations it is also possible to create one or more personalized tilt goal(s)."
+      cFR: "Afin de compléter vos recommandations, il vous est également possible de créer une ou des cibles de bascule personnalisée(s)."
+      cEN: "To complete your recommendations it is also possible to create one or more personalized tilt goal(s)."
     recommendation:
       FR: "Autres recommandations"
       EN: "Other recommendations"
+      cFR: "Autres recommandations"
+      cEN: "Other recommendations"
   angleRecommandation:
     FR: "Basculez à un angle de"
     EN: "Tilt at an angle of"
+    cFR: "Basculez à un angle de"
+    cEN: "Tilt at an angle of"
 
 
 goals:
   FR: "Objectifs de bascule"
   EN: "Tilt goals"
+  cFR: "Objectifs de bascule"
+  cEN: "Tilt goals"
   personalGoals:
     FR: "Objectif personnel"
     EN: "Personal goal"
+    cFR: "Objectifs de l’usager"
+    cEN: "User personal goal"
   recommendedGoals:
     FR: "Objectif recommandé"
     EN: "Recommended goal"
+    cFR: "Objectif recommandé"
+    cEN: "Recommended goal"
+
   tiltFrequency:
     FR: "Basculez à toutes les"
-    EN: "Tilt frequency"
+    EN: "Tilt every"
+    cFR: "Basculez à toutes les"
+    cEN: "Tilt every"
   tiltLength:
     FR: "Pendant une durée de"
-    EN: "Tilt duration"
+    EN: "Tilt for"
+    cFR: "Pendant une durée de"
+    cEN: "Tilt for"
   tiltAngle:
     FR: "À un angle de"
-    EN: "Tilt angle"
+    EN: "Tilt at an angle of"
+    cFR: "À un angle de"
+    cEN: "Tilt at an angle of"
   reduceSlidingMoving:
     FR: "pendant vos déplacements pour éviter de glisser"
     EN: "while moving to avoid sliding"
+    cFR: "pendant vos déplacements pour éviter de glisser"
+    cEN: "while moving to avoid sliding"
   reduceSlidingRest:
     FR: "lorsque vous êtes immobile pour éviter de glisser"
     EN: "while at rest to avoid sliding"
+    cFR: "lorsque vous êtes immobile pour éviter de glisser"
+    cEN: "while at rest to avoid sliding"
   reduceSwelling:
     FR: "Libérer l'enflure aux membres inférieurs"
     EN: "Release swelling"
+    cFR: "Libérer l'enflure aux membres inférieurs"
+    cEN: "Release swelling"
   noRecommendations:
     FR: "Il n'y a pas de recommandation enregistré"
     EN: "There are no recorded recommendations"
+    cFR: "Il n'y a pas de recommandation enregistré"
+    cEN: "There are no recorded recommendations"
 
 configurations:
   FR: "Configurations"
   EN: "Configurations"
+  cFR: "Configurations"
+  cEN: "Configurations"
   name:
     FR: "Nom complet de l'usager"
     EN: "User's full name"
+    cFR: "Nom complet de l'usager"
+    cEN: "User's full name"
   telask:
     FR: "Identifiant TelASK"
     EN: "TelASK ID"
+    cFR: "Identifiant TelASK"
+    cEN: "TelASK ID"
   maxTilt:
     FR: "Angle maximal de bascule"
     EN: "Maximum tilt angle"
+    cFR: "Angle maximal de bascule"
+    cEN: "Maximum tilt angle"
+  minTilt:
+    FR: "Angle minimal de bascule"
+    EN: "Minimum tilt angle"
+    cFR: "Angle minimale de bascule"
+    cEN: "Minimum tilt angle"
   weight:
     FR: "Poids de l'usager (kg)"
     EN: "User's weight (kg)"
+    cFR: "Poids de l'usager (kg)"
+    cEN: "User's weight (kg)"
+  telaskKey:
+    FR: "Mot de passe SFTP TelAsk"
+    EN: "TelAsk SFTP password"
+    cFR: "Mot de passe SFTP TelAsk"
+    cEN: "TelAsk SFTP password"
+  telaskHost:
+    FR: "Addresse du serveur SFTP TelAsk"
+    EN: "TelAsk SFTP Server Address"
+    cFR: "Addresse du serveur SFTP TelAsk"
+    cEN: "TelAsk SFTP Server Address"
+  telaskUsername:
+    FR: "Nom d'utilisateur SFTP TelAsk"
+    EN: "TelAsk SFTP username"
+    cFR: "Nom d'utilisateur SFTP TelAsk"
+    cEN: "TelAsk SFTP username"
 
 save:
   FR: "Sauvegarder"
   EN: "Save"
+  cFR: "Sauvegarder"
+  cEN: "Save"
 
 cancel:
   FR: "Annuler"
   EN: "Cancel"
+  cFR: "Annuler"
+  cEN: "Cancel"
 
 welcome:
   FR: "Bienvenue sur la plateforme MOvIT+"
   EN: "Welcome to the MOvIT+ platform"
+  cFR: "Bienvenue sur la plateforme MOvIT+"
+  cEN: "Welcome to the MOvIT+ platform"
   chooseProfile:
     FR: "Choisissez votre profil"
     EN: "Choose your profile"
+    cFR: "Choisissez votre profil"
+    cEN: "Choose your profile"
   loginMessage:
     FR: "Vous êtes connecté en tant que {userType}"
     EN: "You connected as a {userType}"
+    cFR: "Vous êtes connecté en tant que {userType}"
+    cEN: "You connected as a {userType}"
   logout:
-    FR: "Déconnecter"
-    EN: "Sign out"
+    FR: "Déconnexion usager"
+    EN: "User logout"
+    cFR: "Déconnexion clinicien"
+    cEN: "Clinican sign out"
 
 login:
   EN: "Sign in"
   FR: "Connexion"
+  cEN: "Sign in"
+  cFR: "Connexion"
   password:
     EN: "Password"
     FR: "Mot de passe"
+    cEN: "Password"
+    cFR: "Mot de passe"
   newPassword:
     EN: "New password"
     FR: "Nouveau mot de passe"
+    cEN: "New password"
+    cFR: "Nouveau mot de passe"
   wrongPassword:
     EN: "Wrong password"
     FR: "Mauvais mot de passe"
+    cEN: "Wrong password"
+    cFR: "Mauvais mot de passe"
   forgotPassword:
     EN: "Forgotten password"
     FR: "Mot de passe oublié"
+    cEN: "Forgotten password"
+    cFR: "Mot de passe oublié"
     secret:
       EN: "Secret"
       FR: "Secret"
+      cEN: "Secret"
+      cFR: "Secret"
 
 user:
   FR: "Usager"
   EN: "User"
+  cFR: "Usager"
+  cEN: "User"
 clinician:
   FR: "Clinicien"
   EN: "Clinician"
+  cFR: "Clinicien"
+  cEN: "Clinician"
 personnal:
   FR: "Personnel"
   EN: "Personnal"
+  cFR: "Personnel"
+  cEN: "Personnal"
 
 dailyResults:
   FR: "Mes résultats quotidiens"
   EN: "My daily results"
+  cFR: "Les résultats quotidiens"
+  cEN: "My daily results"
   howDo:
     FR: "Comment j'utilise ma bascule en général?"
     EN: "How do I use my wheelchair tilt in general"
+    cFR: "Comment j'utilise ma bascule en général?"
+    cEN: "How do I use my wheelchair tilt in general"
   angleDistribution:
     FR: "Distribution des angles de bascule au cours de la journée"
     EN: "Distribution of tilt angles during the day"
+    cFR: "Distribution des angles de bascule au cours de la journée"
+    cEN: "Distribution of tilt angles during the day"
     zero:
       FR: "Moins de 0°"
       EN: "Less than 0°"
+      cFR: "Moins de 0°"
+      cEN: "Less than 0°"
     fifteen:
       FR: "0° à 15°"
       EN: "0° to 15°"
+      cFR: "0° à 15°"
+      cEN: "0° to 15°"
     thirty:
       FR: "15° à 30°"
       EN: "15° to 30°"
+      cFR: "15° à 30°"
+      cEN: "15° to 30°"
     fortyfive:
       FR: "30° à 45°"
       EN: "30° to 45°"
+      cFR: "30° à 45°"
+      cEN: "30° to 45°"
     more:
       FR: "45° et plus"
       EN: "45° and more"
+      cFR: "45° et plus"
+      cEN: "45° and more"
   pressure:
-    FR: "Libérer la pression sous le siège"
+    FR: "Libérer la pression sur le siège"
     EN: "Relieving pressure on the buttocks"
+    cFR: "Libérer la pression sur le siège"
+    cEN: "Relieving pressure on the buttocks"
   travel:
     FR: "Faciliter vos déplacements"
     EN: "Making your travel easier"
+    cFR: "Faciliter vos déplacements"
+    cEN: "Making your travel easier"
   rest:
     FR: "Réduire le glissement au repos"
     EN: "Reduce sliding at rest"
+    cFR: "Réduire le glissement au repos"
+    cEN: "Reduce sliding at rest"
   personal:
     FR: "Objectif personnel"
     EN: "Personal Goal"
+    cFR: "Objectif personnel"
+    cEN: "Personal Goal"
     description:
       FR: "Vous avez atteint {percent}% de votre objectif personnel. Ressentez-vous le besoin de modifier votre objectif personnel?"
       EN: "You have reached {percent}% of your personnal goal. Do you feel the need to change your personnal goal?"
+      cFR: "Vous avez atteint {percent}% de votre objectif personnel. Ressentez-vous le besoin de modifier votre objectif personnel?"
+      cEN: "You have reached {percent}% of your personnal goal. Do you feel the need to change your personnal goal?"
   recommended:
     FR: "Objectif recommandé"
     EN: "Recommended Goal"
+    cFR: "Objectif recommandé"
+    cEN: "Recommended Goal"
     description:
       FR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       EN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
+      cFR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
+      cEN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
 
 
 SuccessfulTilt:
   tiltMade:
     FR: "Bascules réalisées"
     EN: "Tilts made"
+    cFR: "Bascules réalisées"
+    cEN: "Tilts made"
   rightAngle:
     FR: "Bon angle"
     EN: "Right angle"
+    cFR: "Bon angle"
+    cEN: "Right angle"
   rightDuration:
     FR: "Bonne durée"
     EN: "Right duration"
+    cFR: "Bonne durée"
+    cEN: "Right duration"
   wrongAngle:
     FR: "Angle insuffisant"
     EN: "Insufficient angle"
+    cFR: "Angle insuffisant"
+    cEN: "Insufficient angle"
   wrongDuration:
     FR: "Durée insuffisante"
     EN: "Insufficient duration"
+    cFR: "Durée insuffisante"
+    cEN: "Insufficient duration"
   tiltNotMade:
-    FR: "Bascules non réalisées"
+    FR: "Bascules non réalisées"
     EN: "Tilt not made"
+    cFR: "Bascules non réalisées"
+    cEN: "Tilt not made"
   tiltSnoozed:
-    FR: "Snooze de bascule"
-    EN: "Tilt snoozed"
+    FR: "Bascules mise en veille"
+    EN: "Snoozed tilt"
+    cFR: "Bascules mise en veille"
+    cEN: "Snoozed tilt"
   tiltSucessful:
-    FR: "Bascules réalisées au bon angle et de bonne durée"
-    EN: "Tilt made at the right angle and the right duration"
+    FR: "Bon angle et bonne durée"
+    EN: "Right angle and duration"
+    cFR: "Bon angle et bonne durée"
+    cEN: "Right angle and duration"
   tiltBadAngle:
-    FR: "Bascules réalisées de bonne durée mais à un angle insuffisant"
-    EN: "Tile made for the right duration but at an insufficient angle"
+    FR: "Bonne durée mais angle insuffisant"
+    EN: "Right duration but insufficient angle"
+    cFR: "Bonne durée mais angle insuffisant"
+    cEN: "Right duration but insufficient angle"
   tiltBadDuration:
-    FR: "Bascules réalisées au bon angle mais de durée insuffisante"
-    EN: "Tilt made at the right angle but for an insufficient duration"
+    FR: "Bon angle mais durée insuffisante"
+    EN: "Right angle but insufficient duration"
+    cFR: "Bon angle mais durée insuffisante"
+    cEN: "Right angle but insufficient duration"
 
 lastTilts:
   title:
     FR: "Dernières bascules réalisées"
     EN: "Last tilts made"
+    cFR: "Dernières bascules réalisées"
+    cEN: "Last tilts made"
   result:
     FR: "Résultat"
     EN: "Result"
+    cFR: "Résultat"
+    cEN: "Result"
   time:
     FR: "Heure"
     EN: "Hour"
+    cFR: "Heure"
+    cEN: "Hour"
   successful:
     FR: "Réalisée"
     EN: "Made"
+    cFR: "Réalisée"
+    cEN: "Made"
   tooShort:
     FR: "Durée insuffisante"
     EN: "Insufficient duration"
+    cFR: "Durée insuffisante"
+    cEN: "Insufficient duration"
   tooSmallAngle:
     FR: "Angle insuffisant"
     EN: "Insufficient angle"
+    cFR: "Angle insuffisant"
+    cEN: "Insufficient angle"
   unsuccessful:
     FR: "Non réalisée"
     EN: "Not made"
+    cFR: "Non réalisée"
+    cEN: "Not made"
   snooze:
     FR: "Snooze"
     EN: "Snooze"
-
+    cFR: "Snooze"
+    cEN: "Snooze"
 
 results:
   FR: "Résultats"
   EN: "Results"
+  cFR: "Résultats"
+  cEN: "Results"
   categories:
     FR: "Choisissez une catégorie"
     EN: "Choose a category"
+    cFR: "Choisissez une catégorie"
+    cEN: "Choose a category"
     pressure:
       FR: "Pression"
       EN: "Pressure"
+      cFR: "Pression"
+      cEN: "Pressure"
       units:
         FR: "Pouces"
         EN: "Inches"
+        cFR: "Pouces"
+        cEN: "Inches"
       legend:
         FR: "Légende"
         EN: "Legend"
+        cFR: "Légende"
+        cEN: "Legend"
         center:
           FR: "Centre global"
           EN: "Global center"
+          cFR: "Centre global"
+          cEN: "Global center"
         quadrant:
           FR: "Centre du quadrant"
           EN: "Quadrant center"
+          cFR: "Centre du quadrant"
+          cEN: "Quadrant center"
     angle:
       FR: "Bascules"
       EN: "Tilts"
+      cFR: "Bascules"
+      cEN: "Tilts"
     progress:
       FR: "Progrès"
       EN: "Progress"
+      cFR: "Progrès"
+      cEN: "Progress"
   graphicsLink:
     angle:
       FR: "Distribution des angles de bascules"
       EN: "Distribution of tilt angles"
+      cFR: "Distribution des angles de bascules"
+      cEN: "Distribution of tilt angles"
     pressureCenter:
       EN: "Pressure center"
       FR: "Centre de pression"
+      cEN: "Pressure center"
+      cFR: "Centre de pression"
     sittingTime:
       FR: "Temps passé au fauteuil"
       EN: "Time spent in the wheelchair"
+      cFR: "Temps passé au fauteuil"
+      cEN: "Time spent in the wheelchair"
 
 monthlyResults:
   FR: "Mes résultats mensuels"
   EN: "My monthly results"
+  cFR: "Les résultats mensuels"
+  cEN: "My monthly results"
   howDo:
     FR: "Comment j'utilise ma bascule en général?"
     EN: "How do I use my wheelchair in general"
+    cFR: "Comment j'utilise ma bascule en général?"
+    cEN: "How do I use my wheelchair in general"
   tiltDistribution:
     FR: "Distribution des angles de bascule au cours du mois"
     EN: "Distribution of tilt angles during the month"
+    cFR: "Distribution des angles de bascule au cours du mois"
+    cEN: "Distribution of tilt angles during the month"
     zero:
       FR: "Moins de 0°"
       EN: "Less than 0°"
+      cFR: "Moins de 0°"
+      cEN: "Less than 0°"
     fifteen:
       FR: "0° à 15°"
       EN: "0° to 15°"
+      cFR: "0° à 15°"
+      cEN: "0° to 15°"
     thirty:
       FR: "15° à 30°"
       EN: "15° to 30°"
+      cFR: "15° à 30°"
+      cEN: "15° to 30°"
     fortyfive:
       FR: "30° à 45°"
       EN: "30° to 45°"
+      cFR: "30° à 45°"
+      cEN: "30° to 45°"
     more:
       FR: "45° et plus"
       EN: "45° and more"
+      cFR: "45° et plus"
+      cEN: "45° and more"
   wheelChair:
     FR: "Temps passé au fauteuil au cours du mois"
     EN: "Time spent in the wheelchair during the month"
+    cFR: "Temps passé au fauteuil au cours du mois"
+    cEN: "Time spent in the wheelchair during the month"
   hours:
     FR: "Temps passé en heures"
     EN: "Time spent in hours"
+    cFR: "Temps passé en heures"
+    cEN: "Time spent in hours"
   pressure:
     FR: "Libérer la pression sur le siège"
     EN: "Release pressure under the seat"
+    cFR: "Libérer la pression sur le siège"
+    cEN: "Release pressure under the seat"
     personal:
       FR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
       EN: "~Personal goal~: comparison between the number of tilts made during the month and the goal to be achieved"
+      cFR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
+      cEN: "~Personal goal~: comparison between the number of tilts made during the month and the goal to be achieved"
     recommended:
       FR: "~Objectif recommandé~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
       EN: "~Recommended goal~: comparison between the number of tilts made during the month and the goal to be achieved"
+      cFR: "~Objectif recommandé~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
+      cEN: "~Recommended goal~: comparison between the number of tilts made during the month and the goal to be achieved"
     tiltMade:
       FR: "Nombre de bascules réalisées"
       EN: "Number of tilts made"
+      cFR: "Nombre de bascules réalisées"
+      cEN: "Number of tilts made"
     tiltGoal:
       FR: "Objectif de bascules à atteindre"
       EN: "Tilt goal to be achieved"
+      cFR: "Objectif de bascules à atteindre"
+      cEN: "Tilt goal to be achieved"
   travel:
-    FR: "Faciliter vos déplacements"
-    EN: "Making your travel easier"
+    FR: "Réduire le glissement lors des déplacements"
+    EN: "Reduce sliding while moving"
+    cFR: "Réduire le glissement lors des déplacements"
+    cEN: "Reduce sliding while moving"
     success:
       FR: "Taux de réussite de l’objectif recommandé au cours du mois"
       EN: "Success rate for the recommended goal of the month"
+      cFR: "Taux de réussite de l’objectif recommandé au cours du mois"
+      cEN: "Success rate for the recommended goal of the month"
     successRate:
       FR: "Taux de réussite"
       EN: "Success Rate"
+      cFR: "Taux de réussite"
+      cEN: "Success Rate"
   rest:
     FR: "Réduire le glissement au repos"
-    EN: "Reduce sliding at rest"
+    EN: "Reduce sliding while at rest"
+    cFR: "Réduire le glissement au repos"
+    cEN: "Reduce sliding while at rest"
     success:
       FR: "Taux de réussite de l’objectif recommandé au cours du mois"
       EN: "Success rate for the recommended goal of the month"
+      cFR: "Taux de réussite de l’objectif recommandé au cours du mois"
+      cEN: "Success rate for the recommended goal of the month"
     successRate:
       FR: "Taux de réussite"
       EN: "Success Rate"
+      cFR: "Taux de réussite"
+      cEN: "Success Rate"
 toolTip:
   goals:
     FR: "Sur cette page se retrouve l’ensemble des objectifs que vous pouvez atteindre en vous servant de la bascule de votre fauteuil roulant. Ils ont tous été sélectionnés et personnalisés par votre ergothérapeute en fonction de votre condition de santé. Afin d’atteindre vos objectifs, n’oubliez pas de porter attention aux consignes en bas de chaque objectif."
-    EN: "On this page, you will find all your wheelchair tilt goals. They have all been selected and personalized by your occupational therapist according to your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal."
+    EN: "On this page you will find the goals you can achieve using the tilt function on your wheelchair. They have been selected and personalized by your occupational therapist based on your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal."
+    cFR: "Sur cette page se retrouve l’ensemble des objectifs que vous pouvez atteindre en vous servant de la bascule de votre fauteuil roulant. Ils ont tous été sélectionnés et personnalisés par votre ergothérapeute en fonction de votre condition de santé. Afin d’atteindre vos objectifs, n’oubliez pas de porter attention aux consignes en bas de chaque objectif."
+    cEN: "On this page you will find the goals you can achieve using the tilt function on your wheelchair. They have been selected and personalized by your occupational therapist based on your health condition. In order to achieve your goals, be sure to pay attention to the instructions at the bottom of each goal."
   personalGoal:
-    FR: "Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel. De plus, le boitier d’alerte installé sur votre fauteuil roulant s’activera en fonction de votre objectif personnel pour vous rappeler de basculer dans le cas où vous auriez oublié de le faire."
-    EN: "Perhaps you find the recommended goal too difficult or easy to achieve. In this case, create your own goal according to your preferences! Just like your recommended goal, you will have access to your personal goal results. Additionally, the light installed on your wheelchair will light up according to your personal goal to remind you to tilt in case you have forgotten to do so."
+    FR: "Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel."
+    EN: "Perhaps you will find the recommended goal too easy or too difficult to reach? In this case, you can create you own goal! You will have access to the results of your individualized/preferred goal as you do with those set for you"
+    cFR: "Peut-être trouvez-vous l’objectif recommandé trop difficile ou facile à atteindre ? Dans ce cas, créez votre propre objectif selon vos préférences! Tout comme votre objectif recommandé, vous aurez accès à des résultats qui tiennent compte de votre objectif personnel."
+    cEN: "Perhaps you will find the recommended goal too easy or too difficult to reach? In this case, you can create you own goal! You will have access to the results of your individualized/preferred goal as you do with those set for you."
 alert:
   on:
     FR: "Allumer la notification"
     EN: "Turn on notification"
+    cFR: "Allumer la notification"
+    cEN: "Turn on notification"
   off:
     FR: "Fermer la notification"
     EN: "Turn off notification"
+    cFR: "Fermer la notification"
+    cEN: "Turn off notification"
 calibrateMat:
   FR: "Calibrer le tapis de pression"
   EN: "Calibrate the pressure mat"
+  cFR: "Calibrer le tapis de pression"
+  cEN: "Calibrate the pressure mat"
 calibrateIMU:
   FR: "Calibrer les accéléromètres"
   EN: "Calibrate the accelerometers"
+  cFR: "Calibrer les accéléromètres"
+  cEN: "Calibrate the accelerometers"
   title:
     FR: "Confirmation de la calibration"
     EN: "Confirmation of the calibration"
+    cFR: "Confirmation de la calibration"
+    cEN: "Confirmation of the calibration"
   confirmation:
-    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, autant que les accéléromètres, demeurent immobiles. À noter également que la calibration dure 2 minutes."
-    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Also, know that the calibration lasts 2 minutes."
+    FR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, est a la positions considérée comme le zéro du fauteuil"
+    EN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Place the seat in the upright position"
+    cFR: "Afin d'assurer le succès de la calibration, veuillez vous assurer que personne n'est assis sur le fauteuil et que le fauteuil, est a la positions considérée comme le zéro du fauteuil"
+    cEN: "In order to garantee the success of the calibration, make sure nobody is sitting on the wheelchair. Also, make sur the wheel chair and the sensors are not moving. Place the seat in the upright position"
 calibrating:
   FR: "En calibration"
   EN: "Calibrating"
+  cFR: "En calibration"
+  cEN: "Calibrating"
 
 settings:
   FR: "Paramètres"
   EN: "Settings"
+  cFR: "Paramètres"
+  cEN: "Settings"
   state:
     FR: "État des capteurs"
     EN: "Module status"
+    cFR: "État des capteurs"
+    cEN: "Module status"
     value:
       connected:
         FR: "Connecté"
         EN: "Connected"
+        cFR: "Connecté"
+        cEN: "Connected"
       disconnected:
         FR: "Déconnecté"
         EN: "Disconnected"
+        cFR: "Déconnecté"
+        cEN: "Disconnected"
       notificationModule:
         FR: "Module de notification"
         EN: "Notification module"
+        cFR: "Module de notification"
+        cEN: "Notification module"
       fixedAccelerometer:
         FR: "Accéléromètre fixe"
         EN: "Fixed accelerometer"
+        cFR: "Accéléromètre fixe"
+        cEN: "Fixed accelerometer"
       mobileAccelerometer:
         FR: "Accéléromètre mobile"
         EN: "Mobile accelerometer"
+        cFR: "Accéléromètre mobile"
+        cEN: "Mobile accelerometer"
       pressureMat:
         FR: "Tapis de pression"
         EN: "Pressure Mat"
+        cFR: "Tapis de pression"
+        cEN: "Pressure Mat"
+      flowSensor:
+        FR: "Capteur de flux"
+        EN: "Flow sensor"
+        cFR: "Capteur de flux"
+        cEN: "Flow sensor"
+      tofSensor:
+        FR: "Capteur de distance"
+        EN: "Distance sensor"
+        cFR: "Capteur de distance"
+        cEN: "Distance sensor"
   modules:
     FR: "Capteurs"
     EN: "Sensors"
+    cFR: "Capteurs"
+    cEN: "Sensors"
   wifi:
     FR: "Connexion au Wi-Fi"
     EN: "Wi-Fi connection"
+    cFR: "Connexion au Wi-Fi"
+    cEN: "Wi-Fi connection"
     name:
       FR: "Nom du Wi-Fi"
       EN: "Wi-Fi name"
+      cFR: "Nom du Wi-Fi"
+      cEN: "Wi-Fi name"
     connected:
       FR: "Vous êtes connecté au Wi-Fi."
       EN: "You are connected to the Wi-Fi."
+      cFR: "Vous êtes connecté au Wi-Fi."
+      cEN: "You are connected to the Wi-Fi."
     changeWifi:
       FR: "Changer de réseau"
       EN: "Change your network"
+      cFR: "Changer de réseau"
+      cEN: "Change your network"
   notification:
     FR: "Paramètres des notifications"
     EN: "Notifications settings"
+    cFR: "Paramètres des notifications"
+    cEN: "Notifications settings"
     enableLedBlinking:
       FR: "Clignoter la lumière"
       EN: "Blink the light"
+      cFR: "Clignoter la lumière"
+      cEN: "Blink the light"
     enableVibration:
       FR: "Vibrer"
       EN: "Vibrate"
+      cFR: "Vibrer"
+      cEN: "Vibrate"
     snoozeTime:
       FR: "Temps de snooze"
       EN: "Snooze time"
+      cFR: "Temps de snooze"
+      cEN: "Snooze time"
     snoozeTimeToolTip:
       FR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
       EN: "Time before receiving a reminder to perform a tilt (minutes)"
+      cFR: "Temps avant de reçevoir un rappel d'effectuer une bascule (minutes)"
+      cEN: "Time before receiving a reminder to perform a tilt (minutes)"
   system:
     FR: "Informations sur le système"
     EN: "System information"
+    cFR: "Informations sur le système"
+    cEN: "System information"
     memory:
       FR: "Utilisation de la mémoire"
       EN: "Memory usage"
+      cFR: "Utilisation de la mémoire"
+      cEN: "Memory usage"
     update:
       FR: "Mise à jour du système"
       EN: "System update"
+      cFR: "Mise à jour du système"
+      cEN: "System update"
       last:
         FR: "Dernière mise à jour"
         EN: "Last update"
+        cFR: "Dernière mise à jour"
+        cEN: "Last update"
       confirmation:
         FR: "En effectuant la mise à jour du système, l'application sera inaccessible pour environ 10 minutes. Voulez-vous effectuer la mise à jour maintenant?"
         EN: "By performing the system update, the application will be inaccessible for about 10 minutes. Do you want to do the update now?"
+        cFR: "En effectuant la mise à jour du système, l'application sera inaccessible pour environ 10 minutes. Voulez-vous effectuer la mise à jour maintenant?"
+        cEN: "By performing the system update, the application will be inaccessible for about 10 minutes. Do you want to do the update now?"
   permissions:
     FR: "Permissions"
     EN: "Permissions"
+    cFR: "Permissions"
+    cEN: "Permissions"
     dataAgreement:
       FR: "J’accepte que mes données d’utilisation soient transmises à mon établissement de santé"
       EN: "I allow my data usage to be sent to my healthcare facility"
+      cFR: "J’accepte que mes données d’utilisation soient transmises à mon établissement de santé"
+      cEN: "I allow my data usage to be sent to my healthcare facility"
     lightAgreement:
       FR: "Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer"
       EN: "I want the light on my chair to light up to remind me to tip"
+      cFR: "Je souhaite que la lumière sur mon fauteuil s'allume pour me rappeler de basculer"
+      cEN: "I want the light on my chair to light up to remind me to tip"
     notificationAgreement:
       FR: "Je souhaite recevoir une notification lorsqu’un rapport est disponible"
       EN: "I want to receive a notification when a report is available"
+      cFR: "Je souhaite recevoir une notification lorsqu’un rapport est disponible"
+      cEN: "I want to receive a notification when a report is available"
     doNotDisturb:
       FR: "Ne pas me le rappeler pour"
       EN: "Do not remind me for"
+      cFR: "Ne pas me le rappeler pour"
+      cEN: "Do not remind me for"
     doNotSend:
       FR: "Ne pas transmettre pendant"
       EN: "Do not send for"
+      cFR: "Ne pas transmettre pendant"
+      cEN: "Do not send for"
     doNotLightUp:
       FR: "Ne pas allumer pendant"
       EN: "Do not light up for"
+      cFR: "Ne pas allumer pendant"
+      cEN: "Do not light up for"
     doNotReceive:
       FR: "Ne pas recevoir pendant"
       EN: "Do not receive for"
+      cFR: "Ne pas recevoir pendant"
+      cEN: "Do not receive for"
   database:
     FR: "base de données"
     EN: "database"
+    cFR: "base de données"
+    cEN: "database"
     simulate:
       FR: "Simuler des données"
       EN: "Simulate data"
+      cFR: "Simuler des données"
+      cEN: "Simulate data"
     reset:
       FR: "Réinitialiser la base de données"
       EN: "Reset the database"
+      cFR: "Réinitialiser la base de données"
+      cEN: "Reset the database"
     warning:
       message:
         FR: "Cette action va supprimer les données de la base de données. Pour garder les données enregistrées, faites un import de la base de données."
         EN: "This action will delete all the data in the database. To keep the current data, import the database."
+        cFR: "Cette action va supprimer les données de la base de données. Pour garder les données enregistrées, faites un import de la base de données."
+        cEN: "This action will delete all the data in the database. To keep the current data, import the database."
       title:
         FR: "Changer la base de données"
         EN: "Change the database"
+        cFR: "Changer la base de données"
+        cEN: "Change the database"
 
 confirmation:
   cancel:
     FR: "Annuler"
     EN: "Cancel"
+    cFR: "Annuler"
+    cEN: "Cancel"
   confirm:
     FR: "Continuer"
     EN: "Continue"
+    cFR: "Continuer"
+    cEN: "Continue"
 
 demo:
   FR: "DÉMO"
   EN: "DEMO"
+  cFR: "DÉMO"
+  cEN: "DEMO"
   message:
     FR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
     EN: "All data is falsified and will not be saved"
+    cFR: "Tous les données sont falsifiées et ne seront pas sauvegardées"
+    cEN: "All data is falsified and will not be saved"
 
 error:
   FR: "Une erreur est survenue. Veuillez contacter votre administrateur."
   EN: "An error occured. Please contact your administrator."
+  cFR: "Une erreur est survenue. Veuillez contacter votre administrateur."
+  cEN: "An error occured. Please contact your administrator."
 noData:
   FR: "Il n'y a pas de données pour cette période."
   EN: "There is no data for this period."
+  cFR: "Il n'y a pas de données pour cette période."
+  cEN: "There is no data for this period."
 
 calibNotif:
   FR: "Calibration et notification"
   EN: "Calibration and notification"
+  cFR: "Calibration et notification"
+  cEN: "Calibration and notification"
 
 database:
   FR: "Base de données"
   EN: "Database"
+  cFR: "Base de données"
+  cEN: "Database"
 
 saveMessage:
   success:
     FR: "Sauvegarde réussie!"
     EN: "Saved successfully!"
+    cFR: "Sauvegarde réussie!"
+    cEN: "Saved successfully!"
   error:
     FR: "Erreur lors de la sauvegarde."
     EN: "An error occured while saving."
+    cFR: "Erreur lors de la sauvegarde."
+    cEN: "An error occured while saving."

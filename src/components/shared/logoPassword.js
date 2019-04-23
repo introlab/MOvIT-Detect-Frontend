@@ -31,7 +31,7 @@ export default class LogoPassword extends Component {
         <div className="col-1 d-inline-block text-right">
           <span style={style.icon}><i className={this.props.iconClass} /></span>
         </div>
-        <div className="col-10 col-lg-8 d-inline-block">
+        <div className="col-10 col-lg-8 d-inline-block pr-1">
           <input
             id="password"
             type="password"
@@ -40,6 +40,7 @@ export default class LogoPassword extends Component {
             onChange={event => this.props.onChange(event.target.value)}
             onKeyPress={event => this.props.onKeyPress(event)}
             value={this.props.value || ''}
+
           />
         </div>
       </div>

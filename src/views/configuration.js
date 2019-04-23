@@ -20,6 +20,7 @@ import LogoText from '../components/shared/logoText';
 import SubmitButtons from '../components/shared/submitButtons';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
+import LogoPassword from '../components/shared/logoPassword';
 
 class Configuration extends Component {
   static propTypes = {
@@ -30,7 +31,9 @@ class Configuration extends Component {
     userID: PropTypes.string.isRequired,
     changeUserID: PropTypes.func.isRequired,
     maxAngle: PropTypes.number,
+    minAngle: PropTypes.number,
     changeMaxAngle: PropTypes.func.isRequired,
+    changeMinAngle: PropTypes.func.isRequired,
     userWeight: PropTypes.number,
     changeUserWeight: PropTypes.func.isRequired,
   };
@@ -62,7 +65,11 @@ class Configuration extends Component {
         self.props.changeUserName(response.userName);
         self.props.changeUserID(response.userID);
         self.props.changeMaxAngle(response.maxAngle);
+        self.props.changeMinAngle(response.minAngle);
         self.props.changeUserWeight(response.userWeight);
+        self.props.changeTelaskHost(response.telaskHost);
+        self.props.changeTelaskKey(response.telaskKey);
+        self.props.changeTelaskUsername(response.telaskUsername);
         resolve();
       }),
     );
@@ -87,7 +94,11 @@ class Configuration extends Component {
       userName: this.props.userName,
       userID: this.props.userID,
       maxAngle: this.props.maxAngle,
+      minAngle: this.props.minAngle,
       userWeight: this.props.userWeight,
+      telaskKey: this.props.telaskKey,
+      telaskUsername: this.props.telaskUsername,
+      telaskHost: this.props.telaskHost,
     };
     try {
       await post(`${URL}configuration`, data);
@@ -125,16 +136,44 @@ class Configuration extends Component {
                   onChange={this.props.changeUserID}
                 />
                 <LogoNumber
-                  iconClass="fa fa-wheelchair"
+                  iconClass="fa fa-plus-circle"
                   placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
                   value={this.props.maxAngle}
+                  min="-90"
+                  max="90"
                   onChange={this.props.changeMaxAngle}
+                />
+                <LogoNumber
+                  iconClass="fa fa-minus-circle"
+                  placeHolder={T.translate(`configurations.minTilt.${this.props.language}`)}
+                  value={this.props.minAngle}
+                  min="-90"
+                  max="90"
+                  onChange={this.props.changeMinAngle}
                 />
                 <LogoNumber
                   iconClass="fa fa-balance-scale"
                   placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
                   value={this.props.userWeight}
                   onChange={this.props.changeUserWeight}
+                />
+                <LogoText
+                  iconClass="fa fa-server"
+                  placeHolder={T.translate(`configurations.telaskHost.${this.props.language}`)}
+                  value={this.props.telaskHost}
+                  onChange={this.props.changeTelaskHost}
+                />
+                <LogoText
+                  iconClass="fa fa-user-circle"
+                  placeHolder={T.translate(`configurations.telaskUsername.${this.props.language}`)}
+                  value={this.props.telaskUsername}
+                  onChange={this.props.changeTelaskUsername}
+                />
+                <LogoPassword
+                  iconClass="fa fa-key"
+                  placeHolder={T.translate(`configurations.telaskKey.${this.props.language}`)}
+                  value={this.props.telaskKey}
+                  onChange={this.props.changeTelaskKey}
                 />
                 <SubmitButtons
                   onSave={this.save.bind(this)}
@@ -155,7 +194,11 @@ function mapStateToProps(state) {
     userName: state.configurationReducer.userName,
     userID: state.configurationReducer.userID,
     userWeight: state.configurationReducer.userWeight,
+    telaskKey: state.configurationReducer.telaskKey,
+    telaskUsername: state.configurationReducer.telaskUsername,
+    telaskHost: state.configurationReducer.telaskHost,
     maxAngle: state.configurationReducer.maxAngle,
+    minAngle: state.configurationReducer.minAngle,
   };
 }
 
@@ -164,7 +207,11 @@ function mapDispatchToProps(dispatch) {
     changeUserName: ConfigurationActions.changeUserName,
     changeUserID: ConfigurationActions.changeUserID,
     changeUserWeight: ConfigurationActions.changeUserWeight,
+    changeTelaskKey: ConfigurationActions.changeTelaskKey,
+    changeTelaskHost: ConfigurationActions.changeTelaskHost,
+    changeTelaskUsername: ConfigurationActions.changeTelaskUsername,
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
+    changeMinAngle: ConfigurationActions.changeMinAngle,
   }, dispatch);
 }
 

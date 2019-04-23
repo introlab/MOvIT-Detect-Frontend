@@ -8,6 +8,10 @@ export const USER_NAME = 'USER_NAME';
 export const USER_ID = 'USER_ID';
 export const USER_WEIGHT = 'USER_WEIGHT';
 export const MAX_ANGLE = 'MAX_ANGLE';
+export const MIN_ANGLE = 'MIN_ANGLE';
+export const TELASK_KEY = 'TELASK_KEY';
+export const TELASK_USERNAME = 'TELASK_USERNAME';
+export const TELASK_HOST = 'TELASK_HOST';
 
 
 // ------------------------------------
@@ -20,6 +24,28 @@ function changeUserName(name) {
     userName: name,
   };
 }
+
+function changeTelaskKey(key) {
+  return {
+    type: TELASK_KEY,
+    telaskKey: key,
+  };
+}
+
+function changeTelaskUsername(username) {
+  return {
+    type: TELASK_USERNAME,
+    telaskUsername: username,
+  };
+}
+
+function changeTelaskHost(host) {
+  return {
+    type: TELASK_HOST,
+    telaskHost: host,
+  };
+}
+
 function changeUserID(id) {
   return {
     type: USER_ID,
@@ -38,11 +64,23 @@ function changeMaxAngle(angle) {
     maxAngle: angle,
   };
 }
+
+function changeMinAngle(angle) {
+  return {
+    type: MIN_ANGLE,
+    minAngle: angle,
+  };
+}
+
 export const ConfigurationActions = {
   changeUserName,
   changeUserID,
   changeUserWeight,
   changeMaxAngle,
+  changeMinAngle,
+  changeTelaskKey,
+  changeTelaskHost,
+  changeTelaskUsername,
 };
 
 const ACTION_HANDLERS = {
@@ -58,6 +96,18 @@ const ACTION_HANDLERS = {
   [MAX_ANGLE]: (state, action) => (
     { ...state, maxAngle: action.maxAngle }
   ),
+  [MIN_ANGLE]: (state, action) => (
+    { ...state, minAngle: action.minAngle }
+  ),
+  [TELASK_KEY]: (state, action) => (
+    { ...state, telaskKey: action.telaskKey }
+  ),
+  [TELASK_HOST]: (state, action) => (
+    { ...state, telaskHost: action.telaskHost }
+  ),
+  [TELASK_USERNAME]: (state, action) => (
+    { ...state, telaskUsername: action.telaskUsername }
+  ),
 };
 
 // ------------------------------------
@@ -69,6 +119,9 @@ export const initConfiguration = {
   userID: '',
   maxAngle: null,
   userWeight: null,
+  telaskKey: '',
+  telaskUsername: '',
+  telaskHost: '',
 };
 export default function applicationReducer(state = initConfiguration, action) {
   const handler = ACTION_HANDLERS[action.type];

@@ -20,6 +20,7 @@ class ResultsCalendar extends Component {
     onPeriodChange: PropTypes.func.isRequired,
     onDateChange: PropTypes.func.isRequired,
     onMonthChange: PropTypes.func.isRequired,
+    onYearChange: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -27,12 +28,14 @@ class ResultsCalendar extends Component {
     this.state = {
       date: null,
       month: null,
+      year: null,
       period: 'day',
     };
     this.setDefaultDate();
     this.onPeriodChange = this.onPeriodChange.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
+    this.onYearChange = this.onYearChange.bind(this);
   }
 
   onPeriodChange(e) {
@@ -41,8 +44,10 @@ class ResultsCalendar extends Component {
   }
 
   onDateChange(e) {
-    this.props.onDateChange(e.value);
-    this.setState({ date: new Date(e.value) });
+    const now = new Date(e.value);
+    now.setFullYear(parseInt(this.state.year));
+    this.setState({ date: now });
+    this.props.onDateChange(now);
   }
 
   onMonthChange(e) {
@@ -50,14 +55,29 @@ class ResultsCalendar extends Component {
     this.setState({ month: e.value });
   }
 
+  onYearChange(e) {
+    this.props.onYearChange(e.value);
+    this.setState({ year: e.value });
+
+    var copiedDate = new Date(this.state.date.getTime());
+    console.log(copiedDate)
+    copiedDate.setFullYear(e.value);
+    console.log(copiedDate)
+
+    this.state.date = copiedDate
+  }
+
   async setDefaultDate() {
     const response = await get(`${URL}lastDate?Offset=${OFFSET}`);
     const date = new Date(response.data);
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
     const month = date.getMonth();
+    const year = date.getFullYear();
     this.setState({ date, month });
+    this.setState({ year: year.toString() });
     this.props.onDateChange(date);
     this.props.onMonthChange(month);
+    this.props.onYearChange(year);
   }
 
   render() {
@@ -73,7 +93,26 @@ class ResultsCalendar extends Component {
       { label: T.translate(`graphics.month.${this.props.language}`), value: 'month' },
     ];
 
-    const months = this.props.language === 'FR' ? [
+    const year = [{ label: '2019', value: '2019' },
+    { label: '2020', value: '2020' },
+    { label: '2021', value: '2021' },
+    { label: '2022', value: '2022' },
+    { label: '2023', value: '2023' },
+    { label: '2024', value: '2024' },
+    { label: '2025', value: '2025' },
+    { label: '2026', value: '2026' },
+    { label: '2027', value: '2027' },
+    { label: '2028', value: '2028' },
+    { label: '2029', value: '2029' },
+    { label: '2030', value: '2030' },
+    { label: '2031', value: '2031' },
+    { label: '2032', value: '2032' },
+    { label: '2033', value: '2033' },
+    { label: '2034', value: '2034' },
+    { label: '2035', value: '2035' }];
+
+
+    const months = (this.props.language === 'FR' || this.props.language === 'cFR') ? [
       { label: 'Janvier', value: 0 },
       { label: 'Février', value: 1 },
       { label: 'Mars', value: 2 },
@@ -124,6 +163,25 @@ class ResultsCalendar extends Component {
           ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
         monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
       },
+      cFR: {
+        firstDayOfWeek: 1,
+        dayNames: ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'],
+        dayNamesShort: ['dim', 'lun', 'mar', 'mer', 'jeu', 'ven', 'sam'],
+        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+        monthNames:
+          ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'],
+        monthNamesShort:
+          ['jan', 'fév', 'mar', 'avr', 'mai', 'jui', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc'],
+      },
+      cEN: {
+        firstDayOfWeek: 1,
+        dayNames: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        dayNamesShort: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+        dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+        monthNames:
+          ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'],
+        monthNamesShort: ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'],
+      },
     };
 
     return (
@@ -131,6 +189,13 @@ class ResultsCalendar extends Component {
         <div style={style.content}>
           <h2 className="mb-4">{title}</h2>
           <span>Date: </span>
+          <Dropdown
+            value={this.state.period}
+            options={periods}
+            onChange={e => this.onPeriodChange(e)}
+            style={{ width: '150px', marginRight: '15px' }}
+            placeholder="Select a period"
+          />
           {
             this.state.period === 'day'
               ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} dateFormat="yy-mm-dd" />
@@ -145,11 +210,11 @@ class ResultsCalendar extends Component {
               )
           }
           <Dropdown
-            value={this.state.period}
-            options={periods}
-            onChange={e => this.onPeriodChange(e)}
+            value={this.state.year}
+            options={year}
+            onChange={e => this.onYearChange(e)}
             style={{ width: '150px', marginLeft: '15px' }}
-            placeholder="Select a period"
+            placeholder="Select a year"
           />
         </div>
       </div>

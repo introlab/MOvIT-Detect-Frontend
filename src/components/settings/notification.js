@@ -45,13 +45,14 @@ class Notification extends Component {
   async calibrate() {
     await get(`${URL}calibrate`);
     this.setState({ ...this.state, showCountdownMat: true });
+    console.log('Hello lol');
   }
 
   async calibrateIMU() {
     await get(`${URL}calibrateIMU`);
     this.setState({
       ...this.state,
-      showCountdownIMU: true,
+      showCountdownIMU: false,
       isPopupOpened: false,
     });
   }
@@ -76,15 +77,6 @@ class Notification extends Component {
     const buttons = (
       <div>
         <div className="row mb-3">
-          <div className="col-12 col-sm-6 col-md-4 mb-2">
-            <Button
-              id="calibrate-button"
-              type="button"
-              onClick={() => this.calibrate()}
-              className="p-button-secondary"
-              label={T.translate(`calibrateMat.${this.props.language}`)}
-            />
-          </div>
           <div className="col-12 col-sm-6 col-md-4 mb-2">
             <Button
               id="calibrateIMU-button"

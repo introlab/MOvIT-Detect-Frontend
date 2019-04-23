@@ -89,7 +89,7 @@ class PressureCenter extends Component {
           <VictoryChart
             standalone={false}
             theme={VictoryTheme.material}
-            domain={{ x: [-4, 4], y: [-4, 4] }}
+            domain={{ x: [-4.1, 4.1], y: [-4.1, 4.1] }}
           >
             <VictoryLegend
               x={50}

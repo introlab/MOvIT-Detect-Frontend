@@ -192,7 +192,7 @@ class Goal extends Component {
           <h2>
             {T.translate(`goals.${this.props.language}`)}
               &nbsp;
-            <i id="titleInfo" className="fa fa-info-circle" />
+            <h6 className="col-12 col-md-8 offset-md-2" style={{ justifyContent: 'center' }}>{T.translate(`toolTip.goals.${this.props.language}`)}</h6>
           </h2>
         </legend>
         {this.state.hasErrors
@@ -213,18 +213,14 @@ class Goal extends Component {
                         <i id="personalGoalInfo" className="fa fa-info-circle" />
                       </h3>
                       <PressureRecPanel />
-                      <h3 className="ml-2 text-md-left text-center">{T.translate(`goals.recommendedGoals.${this.props.language}`)}</h3>
-                      {this.props.reduceWeight
-                      && (
-                        <TiltLabels
-                          title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
-                          tiltFrequecy={this.props.tiltFrequencyWeight}
-                          tiltLength={this.props.tiltLengthWeight}
-                          tiltAngle={this.props.tiltAngleWeight}
-                        />
-                      )
-                      }
                       <div className="d-flex flex-wrap">
+                        <RecPanel
+                          id="reducePressureGoalClinician"
+                          condition={this.props.reduceSlidingMoving}
+                          title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
+                          value={`${T.translate(`recommendations.reduceWeight.textPart1.${this.props.language}`)}${this.props.tiltFrequencyWeight}${T.translate(`recommendations.reduceWeight.textPart2.${this.props.language}`)}${this.props.tiltLengthWeight}${T.translate(`recommendations.reduceWeight.textPart3.${this.props.language}`)}${this.props.tiltAngleWeight}${T.translate(`recommendations.reduceWeight.textPart4.${this.props.language}`)}`}
+                          tooltip={T.translate(`recommendations.reduceWeight.recPanel.tooltip.${this.props.language}`)}
+                        />
                         <RecPanel
                           id="slidingMovingRecPanel"
                           condition={this.props.reduceSlidingMoving}

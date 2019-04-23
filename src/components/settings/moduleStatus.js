@@ -20,28 +20,51 @@ class ModuleStatus extends Component {
     changeModulesStatus: PropTypes.func.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      socket: new WebSocket('ws://raspberrypi.local:1880/ws/rawData'),
+      tofConnected: false,
+      flowConnected: false,
+      alarmConnected: false,
+      pressureMatConnected: false,
+      mIMUConnected: false,
+      fIMUConnected: false,
+    };
+    const self = this;
+    this.state.socket.onmessage = function (evt) {
+      const receivedObj = JSON.parse(evt.data);
+      self.state.tofConnected = receivedObj.ToFSensor.connected;
+      self.state.flowConnected = receivedObj.flowSensor.connected;
+      self.state.alarmConnected = receivedObj.alarmSensor.connected;
+      self.state.pressureMatConnected = receivedObj.pressureMat.connected;
+      self.state.mIMUConnected = receivedObj.mIMU.connected;
+      self.state.fIMUConnected = receivedObj.fIMU.connected;
+      self.updateModulesStatus();
+    };
+  }
+
   componentDidMount() {
-    this.poll();
   }
 
   componentWillUnmount() {
-    window.clearInterval(this.timer);
   }
 
-  async getModulesStatus() {
-    const response = await get(`${URL}Debug`);
-    return response.data;
+  getModulesStatus() {
+    const a = {
+      notificationModule: this.state.alarmConnected,
+      fixedAccelerometer: this.state.fIMUConnected,
+      mobileAccelerometer: this.state.mIMUConnected,
+      pressureMat: this.state.pressureMatConnected,
+      flowSensor: this.state.flowConnected,
+      tofSensor: this.state.tofConnected,
+    };
+    return a;
   }
 
   async updateModulesStatus() {
-    const modulesStatus = await this.getModulesStatus();
+    const modulesStatus = this.getModulesStatus();
     this.props.changeModulesStatus(modulesStatus);
-  }
-
-  poll() {
-    this.timer = setInterval(async () => {
-      this.updateModulesStatus();
-    }, POLLING_INTERVAL);
   }
 
   render() {
@@ -51,13 +74,15 @@ class ModuleStatus extends Component {
       'fixedAccelerometer',
       'mobileAccelerometer',
       'pressureMat',
+      'flowSensor',
+      'tofSensor',
     ];
 
     for (const module in this.props.moduleStatus) {
       if (whiteList.includes(module)) {
         const moduleValue = this.props.moduleStatus[module];
         moduleList.push((
-          <li className="mb-1" key={module}>
+          <li className="mb-2" key={module}>
             {T.translate(`settings.state.value.${module}.${this.props.language}`)}: &nbsp;
             <span id={`sensor${module}`} className="floatRight" style={{ color: moduleValue ? 'green' : 'red' }}>
               {moduleValue

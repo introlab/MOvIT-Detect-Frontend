@@ -23,14 +23,11 @@ export default class MemoryUsage extends Component {
   }
 
   render() {
-    const style = {
-      maxWidth: '400px',
-    };
     return (
       <div>
         {this.props.hasErrors
           ? <ErrorMessage />
-          : <ProgressBar style={style} value={this.getUsedPercentage()} />
+          : <ProgressBar value={this.getUsedPercentage()} />
         }
       </div>
     );

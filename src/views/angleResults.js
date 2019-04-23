@@ -21,6 +21,7 @@ class AngleResults extends Component {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
     month: PropTypes.string,
+    year: PropTypes.string,
   }
 
   constructor(props) {
@@ -30,11 +31,13 @@ class AngleResults extends Component {
       width: window.innerWidth,
       date: props.date,
       month: props.month,
+      year: props.year,
     };
 
     this.changePeriod = this.changePeriod.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.changeMonth = this.changeMonth.bind(this);
+    this.changeYear = this.changeYear.bind(this);
   }
 
   changeMonth(newMonth) {
@@ -45,6 +48,13 @@ class AngleResults extends Component {
     this.setState({ date: newDate });
   }
 
+  changeYear(newDate) {
+    this.setState({ year: newDate });
+    const now = new Date(0);
+    console.log(now);
+    this.setState({ date: now });
+  }
+
   changePeriod(newPeriod) {
     this.setState({ period: newPeriod });
   }
@@ -52,7 +62,7 @@ class AngleResults extends Component {
   render() {
     return (
       <div className="mt-5">
-        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} />
+        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} onYearChange={this.changeYear} />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
         {this.state.period === 'day'

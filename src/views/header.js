@@ -39,6 +39,7 @@ class Header extends Component {
   logout() {
     this.props.changeProfile('');
     this.props.changeToken('');
+    this.props.updateLanguage();
     localStorage.setItem('token', '');
     localStorage.setItem('profile', '');
     $('.navbar-collapse').collapse('hide');
@@ -110,7 +111,7 @@ class Header extends Component {
             </ul>
 
             <li className="nav navbar-nav pl-1">
-              <a className="small-font navLink" onClick={this.props.changeLanguage}>{this.props.language === 'FR' ? 'EN' : 'FR'}</a>
+              <a className="small-font navLink" onClick={this.props.changeLanguage}>{(this.props.language === 'FR' || this.props.language === 'cFR') ? 'EN' : 'FR'}</a>
             </li>
 
             {this.props.profile && (
@@ -146,6 +147,7 @@ function mapDispatchToProps(dispatch) {
     changeLanguage: ApplicationActions.changeLanguage,
     changeProfile: ApplicationActions.changeProfile,
     changeToken: ApplicationActions.changeToken,
+    updateLanguage: ApplicationActions.updateLanguage,
   }, dispatch);
 }
 

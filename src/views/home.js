@@ -50,6 +50,7 @@ class Home extends Component {
     this.props.changeToken(token);
     localStorage.setItem('token', token);
     localStorage.setItem('profile', profileName);
+    this.props.updateLanguage();
     if (profileName === 'user') {
       this.props.history.push('/goals');
     } else {
@@ -187,6 +188,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     changeProfile: ApplicationActions.changeProfile,
     changeToken: ApplicationActions.changeToken,
+    updateLanguage: ApplicationActions.updateLanguage,
   }, dispatch);
 }
 

@@ -26,7 +26,7 @@ Finalement il faut télécharger et installer MOvIT-Detect-Frontend
 ```bash
 git clone https://github.com/introlab/MOvIT-Detect-Frontend.git
 cd ~/MOvIT-Detect-Frontend/
-git checkout develop
+git checkout (la branche désirée)
 ```
 On compile MOvIT-Detect-Frontend:
 ```bash

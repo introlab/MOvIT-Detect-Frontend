@@ -48,7 +48,10 @@ const webpack = require('webpack');
 const path = require('path');
 require('babel-polyfill');
 
-module.exports = {
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+module.exports = smp.wrap({
   mode: 'development',
   entry: [
     'babel-polyfill',
@@ -100,4 +103,4 @@ module.exports = {
     fs: 'empty',
     child_process: 'empty',
   },
-};
+});

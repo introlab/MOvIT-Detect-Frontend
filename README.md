@@ -17,10 +17,7 @@ sudo apt-get update -y && sudo apt-get install yarn -y
 Il faut ensuite installer la version nodeJS `9.10.0` ainsi que la vesrsion NPM `5.6.0` si ce n'est pas déja fait
 Voir la documentation de [MOvIT-Detect-Backend](https://github.com/introlab/MOvIT-Detect-Backend/blob/master/README.md)
 
-Si `git` n'est pas installé :
-```bash
-sudo apt-get install -y git
-```
+Si `git` n'est pas installé : `sudo apt-get install -y git`
 
 Finalement il faut télécharger et installer MOvIT-Detect-Frontend
 ```bash
@@ -37,6 +34,3 @@ On démarre le serveur en utilisant le commande suivante a partir du dossier rac
 npm start
 ```
 Le serveur prend un certain temps (~6 minutes) a démarrer sur un Raspberry Pi zero w. C'est dû à la compilation du projet avec WebPack a chaque démarrage. 
-
-
-

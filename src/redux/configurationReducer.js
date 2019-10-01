@@ -61,7 +61,7 @@ function changeUserWeight(weight) {
 function changeMaxAngle(angle) {
   return {
     type: MAX_ANGLE,
-    maxAngle: angle // Math.floor(Math.random() * 80), // To change for fetching the current seat angle as detected by the system
+    maxAngle: angle, // Math.floor(Math.random() * 80), // To change for fetching the current seat angle as detected by the system
   };
 }
 

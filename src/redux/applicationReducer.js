@@ -29,10 +29,10 @@ switch (process.env.NODE_ENV) {
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
     break;
   default:
-    url = 'https://private-f2484-movitplus.apiary-mock.com/';
+    url = `http://localhost:1880/`;
 }
 
-url = 'http://localhost:1880/';
+//url = `http://localhost:1880/`;
 //url = `http://${process.env.NODE_ENV}:1880/`;
 
 export const URL = url;

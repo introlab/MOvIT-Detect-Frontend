@@ -59,12 +59,12 @@ class ResultsCalendar extends Component {
     this.props.onYearChange(e.value);
     this.setState({ year: e.value });
 
-    var copiedDate = new Date(this.state.date.getTime());
-    console.log(copiedDate)
+    const copiedDate = new Date(this.state.date.getTime());
+    console.log(copiedDate);
     copiedDate.setFullYear(e.value);
-    console.log(copiedDate)
+    console.log(copiedDate);
 
-    this.state.date = copiedDate
+    this.state.date = copiedDate;
   }
 
   async setDefaultDate() {
@@ -94,22 +94,22 @@ class ResultsCalendar extends Component {
     ];
 
     const year = [{ label: '2019', value: '2019' },
-    { label: '2020', value: '2020' },
-    { label: '2021', value: '2021' },
-    { label: '2022', value: '2022' },
-    { label: '2023', value: '2023' },
-    { label: '2024', value: '2024' },
-    { label: '2025', value: '2025' },
-    { label: '2026', value: '2026' },
-    { label: '2027', value: '2027' },
-    { label: '2028', value: '2028' },
-    { label: '2029', value: '2029' },
-    { label: '2030', value: '2030' },
-    { label: '2031', value: '2031' },
-    { label: '2032', value: '2032' },
-    { label: '2033', value: '2033' },
-    { label: '2034', value: '2034' },
-    { label: '2035', value: '2035' }];
+      { label: '2020', value: '2020' },
+      { label: '2021', value: '2021' },
+      { label: '2022', value: '2022' },
+      { label: '2023', value: '2023' },
+      { label: '2024', value: '2024' },
+      { label: '2025', value: '2025' },
+      { label: '2026', value: '2026' },
+      { label: '2027', value: '2027' },
+      { label: '2028', value: '2028' },
+      { label: '2029', value: '2029' },
+      { label: '2030', value: '2030' },
+      { label: '2031', value: '2031' },
+      { label: '2032', value: '2032' },
+      { label: '2033', value: '2033' },
+      { label: '2034', value: '2034' },
+      { label: '2035', value: '2035' }];
 
 
     const months = (this.props.language === 'FR' || this.props.language === 'cFR') ? [
@@ -126,18 +126,18 @@ class ResultsCalendar extends Component {
       { label: 'Novembre', value: 10 },
       { label: 'Décembre', value: 11 },
     ] : [
-        { label: 'January', value: 0 },
-        { label: 'February', value: 1 },
-        { label: 'March', value: 2 },
-        { label: 'April', value: 3 },
-        { label: 'May', value: 4 },
-        { label: 'June', value: 5 },
-        { label: 'July', value: 6 },
-        { label: 'August', value: 7 },
-        { label: 'September', value: 8 },
-        { label: 'October', value: 9 },
-        { label: 'November', value: 10 },
-        { label: 'December', value: 11 }];
+      { label: 'January', value: 0 },
+      { label: 'February', value: 1 },
+      { label: 'March', value: 2 },
+      { label: 'April', value: 3 },
+      { label: 'May', value: 4 },
+      { label: 'June', value: 5 },
+      { label: 'July', value: 6 },
+      { label: 'August', value: 7 },
+      { label: 'September', value: 8 },
+      { label: 'October', value: 9 },
+      { label: 'November', value: 10 },
+      { label: 'December', value: 11 }];
 
     const title = this.state.period === 'day'
       ? T.translate(`dailyResults.${this.props.language}`)

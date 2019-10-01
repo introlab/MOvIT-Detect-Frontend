@@ -61,7 +61,7 @@ function changeUserWeight(weight) {
 function changeMaxAngle(angle) {
   return {
     type: MAX_ANGLE,
-    maxAngle: angle,
+    maxAngle: angle // Math.floor(Math.random() * 80), // To change for fetching the current seat angle as detected by the system
   };
 }
 
@@ -118,6 +118,7 @@ export const initConfiguration = {
   userName: '',
   userID: '',
   maxAngle: null,
+  minAngle: null, // was forgotten ?!
   userWeight: null,
   telaskKey: '',
   telaskUsername: '',

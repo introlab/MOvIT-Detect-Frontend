@@ -15,7 +15,7 @@ export default class LogoPassword extends Component {
     iconClass: PropTypes.string.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    onKeyPress: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func,
   }
 
   render() {

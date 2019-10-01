@@ -18,6 +18,7 @@ function logout() {
 }
 
 export async function get(url) {
+  console.log(getHeader());
   try {
     return await axios.get(url, getHeader());
   } catch (error) {
@@ -28,6 +29,7 @@ export async function get(url) {
 }
 
 export async function post(url, param) {
+  console.log(`posted object : ${param}`);
   try {
     return await axios.post(url, param, getHeader());
   } catch (error) {

@@ -13,6 +13,7 @@ import AngleResults from './views/angleResults';
 import Configuration from './views/configuration';
 import Goal from './views/goal';
 import Header from './views/header';
+// import Footer from './views/footer';
 import Home from './views/home';
 import { IS_DEMO } from './redux/applicationReducer';
 import PressureResults from './views/pressureResults';
@@ -51,6 +52,8 @@ export default class Layout extends Component {
               <Redirect to="/home" />
             </Switch>
           </div>
+          {// <Footer />
+          }
         </div>
       </Router>
     );

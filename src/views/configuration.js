@@ -15,9 +15,10 @@ import { get, post } from '../utilities/secureHTTP';
 import { ConfigurationActions } from '../redux/configurationReducer';
 import ErrorMessage from '../components/shared/errorMessage';
 import Loading from '../components/shared/loading';
-import LogoNumber from '../components/shared/logoNumber';
-import LogoText from '../components/shared/logoText';
-import SubmitButtons from '../components/shared/submitButtons';
+import LogoNumber from '../components/shared/logoNumber'; // For number field
+import LogoText from '../components/shared/logoText'; // For text field
+import LogoButton from '../components/shared/logoButton'; // For min and max angle
+import SubmitButtons from '../components/shared/submitButtons'; // For saving changes
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
 import LogoPassword from '../components/shared/logoPassword';
@@ -43,9 +44,17 @@ class Configuration extends Component {
     this.state = {
       isLoaded: false,
       hasErrors: false,
+      socket: new WebSocket('ws://localhost:1880/ws/chairState'), // websocket for reading current chair angle
+      seatAngle: 0,
     };
     this.load();
     this.save = this.save.bind(this);
+    // reading angle :
+    const self = this;
+    this.state.socket.onmessage = function (evt) {
+      const receivedObj = JSON.parse(evt.data);
+      self.state.seatAngle = receivedObj.Angle.seatAngle;
+    };
   }
 
   async load() {
@@ -64,7 +73,7 @@ class Configuration extends Component {
       ((resolve) => {
         self.props.changeUserName(response.userName);
         self.props.changeUserID(response.userID);
-        self.props.changeMaxAngle(response.maxAngle);
+        self.props.changeMaxAngle(response.maxAngle); // ??????????????
         self.props.changeMinAngle(response.minAngle);
         self.props.changeUserWeight(response.userWeight);
         self.props.changeTelaskHost(response.telaskHost);
@@ -110,10 +119,14 @@ class Configuration extends Component {
 
   cancel() { }
 
+  // consLog = () => console.log(`Mildly pointless button outrageously flattened`)
+
   render() {
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
+    console.log(`maxAngle returned by the configurationReducer : ${this.props.maxAngle}`);
+    console.log(`minAngle returned by the configurationReducer : ${this.props.minAngle}`);
     return (
       <div>
         <Growl ref={(growl) => { this.growl = growl; }} position="topright" />
@@ -135,22 +148,22 @@ class Configuration extends Component {
                   value={this.props.userID}
                   onChange={this.props.changeUserID}
                 />
-                <LogoNumber
+                {/* <LogoNumber
                   iconClass="fa fa-plus-circle"
                   placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
-                  value={this.props.maxAngle}
+                  value={this.props.maxAngle} //Displaying the value if it exists instead of the placeholder
                   min="-90"
                   max="90"
                   onChange={this.props.changeMaxAngle}
-                />
-                <LogoNumber
+                /> */}
+                {/* <LogoNumber
                   iconClass="fa fa-minus-circle"
                   placeHolder={T.translate(`configurations.minTilt.${this.props.language}`)}
                   value={this.props.minAngle}
                   min="-90"
                   max="90"
                   onChange={this.props.changeMinAngle}
-                />
+                /> */}
                 <LogoNumber
                   iconClass="fa fa-balance-scale"
                   placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
@@ -179,6 +192,18 @@ class Configuration extends Component {
                   onSave={this.save.bind(this)}
                   onCancel={this.cancel}
                 />
+                <LogoButton
+                  iconClass="fa fa-plus-circle"
+                  btnText={T.translate(`configurations.maxTilt.${this.props.language}`)}
+                  onClick={this.props.changeMaxAngle}
+                  tooltip={T.translate('You must be a remarkably curious creature! What now? Let me guess, you\'ll press the button?')}
+                />
+                <LogoButton
+                  iconClass="fa fa-minus-circle"
+                  btnText={T.translate(`configurations.minTilt.${this.props.language}`)}
+                  onClick={this.props.changeMinAngle}
+                  tooltip={T.translate('You must be a remarkably curious creature! What now? Let me guess, you\'ll press the button?')}
+                />
               </div>
             )
             }
@@ -197,7 +222,7 @@ function mapStateToProps(state) {
     telaskKey: state.configurationReducer.telaskKey,
     telaskUsername: state.configurationReducer.telaskUsername,
     telaskHost: state.configurationReducer.telaskHost,
-    maxAngle: state.configurationReducer.maxAngle,
+    maxAngle: state.configurationReducer.maxAngle, // maps the state coming form the configuration reducer to a props (this.props.maxAngle)
     minAngle: state.configurationReducer.minAngle,
   };
 }
@@ -210,7 +235,7 @@ function mapDispatchToProps(dispatch) {
     changeTelaskKey: ConfigurationActions.changeTelaskKey,
     changeTelaskHost: ConfigurationActions.changeTelaskHost,
     changeTelaskUsername: ConfigurationActions.changeTelaskUsername,
-    changeMaxAngle: ConfigurationActions.changeMaxAngle,
+    changeMaxAngle: ConfigurationActions.changeMaxAngle, // maps the function of the reducer to a prop function
     changeMinAngle: ConfigurationActions.changeMinAngle,
   }, dispatch);
 }

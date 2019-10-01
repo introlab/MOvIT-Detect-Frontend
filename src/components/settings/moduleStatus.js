@@ -23,7 +23,7 @@ class ModuleStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: new WebSocket('ws://raspberrypi.local:1880/ws/rawData'),
+      socket: new WebSocket('ws://localhost:1880/ws/rawData'),
       tofConnected: false,
       flowConnected: false,
       alarmConnected: false,

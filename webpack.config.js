@@ -55,7 +55,7 @@ module.exports = smp.wrap({
   mode: 'development',
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://192.168.10.1:3000',
     'webpack/hot/dev-server',
     './src/index',
   ],

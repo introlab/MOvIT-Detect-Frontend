@@ -124,7 +124,7 @@ export const initConfiguration = {
   telaskUsername: '',
   telaskHost: '',
 };
-export default function applicationReducer(state = initConfiguration, action) {
+export default function configurationReducer(state = initConfiguration, action) { // changed applicationReducer to configurationReducer
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

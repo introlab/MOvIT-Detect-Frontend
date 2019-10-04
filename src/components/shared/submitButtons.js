@@ -30,7 +30,7 @@ class SumbitButtons extends Component {
   render() {
     return (
       <div className="row">
-        <div className="text-right col-12 col-md-9 py-3 pr-0">
+        <div className="text-right col-12 col-lg-9 py-3 pr-0">
           {this.state.displayCancel
         && (
         <Button

@@ -19,7 +19,6 @@ export default class logoButton extends Component {
   }
 
 
-
   render() {
     const style = {
       icon: {
@@ -51,7 +50,7 @@ export default class logoButton extends Component {
             for={`#textRecInfo${this.props.id}`}
             title={this.props.tooltip}
           />
-        </div>          
+        </div>
         <div className="col-3 col-lg-2 d-inline-block pr-1">
           <input
             type="number"
@@ -64,7 +63,7 @@ export default class logoButton extends Component {
             value={this.props.value}
           />
         </div>
-      </div>      
+      </div>
     );
   }
 }

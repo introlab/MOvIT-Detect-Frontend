@@ -45,7 +45,7 @@ class Configuration extends Component {
     this.state = {
       isLoaded: false,
       hasErrors: false,
-      socket: new WebSocket('ws://localhost:1880/ws/chairState'), // websocket for reading current chair angle
+      socket: new WebSocket('ws://192.168.10.1:1880/ws/chairState'), // websocket for reading current chair angle
       seatAngle: 0, // websocket: init seatAngle
     };
     this.load();

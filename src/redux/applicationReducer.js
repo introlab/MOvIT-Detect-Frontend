@@ -14,7 +14,7 @@ const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
 const port = process.env.PORT || 1880;
 
-console.log(process.env.NODE_ENV);
+console.log(`process.env.NODE_ENV : ${process.env.NODE_ENV}`);
 
 switch (process.env.NODE_ENV) {
   case 'production':
@@ -29,9 +29,10 @@ switch (process.env.NODE_ENV) {
     url = 'https://private-f2484-movitplus.apiary-mock.com/';
     break;
   default:
-    url = 'http://localhost:1880/';
+    url = 'http://rpimovitplus.local:1880/';
 }
-
+url = 'http://192.168.10.1:1880/';
+console.log(`Current url used in applicationReducer.js : ${url}`)
 // url = `http://localhost:1880/`;
 // url = `http://${process.env.NODE_ENV}:1880/`;
 

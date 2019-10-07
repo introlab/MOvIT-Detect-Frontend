@@ -46,8 +46,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
-require('babel-polyfill');
-
+//require('babel-polyfill');
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
@@ -55,12 +54,12 @@ module.exports = smp.wrap({
   mode: 'development',
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:3000',
+    //'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
     './src/index',
   ],
   output: {
-    path: __dirname,
+    path: path.join(__dirname,'static'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },

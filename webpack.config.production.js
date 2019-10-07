@@ -46,17 +46,10 @@
 
 const webpack = require('webpack');
 const path = require('path');
-require('babel-polyfill');
+//require('babel-polyfill');
 
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
-
-/*var OnlyIfChangedPlugin = require('only-if-changed-webpack-plugin');
-var opts = {
-  rootDir: process.cwd(),
-
-  devBuild: process.env.NODE_ENV !== 'production',
-};*/
 
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin'); //Empêche le chargement de langues de traduction inutiles
 
@@ -74,7 +67,7 @@ module.exports = smp.wrap({
     './src/index',
   ],
   output: {
-    path: __dirname,
+    path: path.join(__dirname,'static'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
@@ -84,7 +77,7 @@ module.exports = smp.wrap({
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: 'production',
         PORT: JSON.stringify(process.env.PORT),
       },
     }),
@@ -115,20 +108,13 @@ module.exports = smp.wrap({
     ],
   },
   optimization: {
-    minimize: false
+    minimize: true
   },
 
   plugins: [
     //new BundleAnalyzerPlugin(),
     new MomentLocalesPlugin({
-      localesToKeep: ['fr-ca'] //garde uniquement l'anglais et le francçais comme langues de traduction
+      localesToKeep: ['fr-ca'] //garde uniquement l'anglais et le français comme langues de traduction
     }),
   ]
-  
-  /*plugins: [
-    new OnlyIfChangedPlugin({
-      cacheDirectory: path.join(opts.rootDir, 'tmp/cache'),
-      cacheIdentifier: opts, // all variable opts/environment should be used in cache key
-    })
-  ],*/
 });

@@ -37,7 +37,7 @@ class Configuration extends Component {
     changeMinAngle: PropTypes.func.isRequired,
     userWeight: PropTypes.number,
     changeUserWeight: PropTypes.func.isRequired,
-    overrideMin: PropTypes.bool
+    overrideMin: PropTypes.bool,
   };
 
   constructor(props) {
@@ -58,7 +58,7 @@ class Configuration extends Component {
     };
   }
 
-  //Initial fetch of the last value stored in the backend-connected database.
+  // Initial fetch of the last value stored in the backend-connected database.
   async load() {
     try {
       const response = await get(`${URL}configuration`);
@@ -118,6 +118,7 @@ class Configuration extends Component {
       this.showError();
     }
   }
+
   cancel() { }
 
   render() {
@@ -192,25 +193,29 @@ class Configuration extends Component {
                   iconClass="fa fa-plus-circle"
                   btnText={T.translate(`configurations.maxTilt.${this.props.language}`)}
                   onClick={() => {
-                    this.state.seatAngle === 0 ?
-                    this.growl.show({severity: 'warn', life: 6000, summary: `Les données des capteurs semblent indisponibles`, detail: `Veuillez entrer l'angle manuellement`}) :
-                    this.props.changeMaxAngle(this.state.seatAngle)
+                    this.state.seatAngle === 0
+                      ? this.growl.show({
+                        severity: 'warn', life: 6000, summary: 'Les données des capteurs semblent indisponibles', detail: 'Veuillez entrer l\'angle manuellement',
+                      })
+                      : this.props.changeMaxAngle(this.state.seatAngle);
                   }}
                   value={this.props.maxAngle}
                   onChange={this.props.changeMaxAngle}
-                  tooltip={`Placer le fauteuil en position considérée comme étant l'angle maximal puis appuyer sur ce bouton`}
+                  tooltip={'Placer le fauteuil en position considérée comme étant l\'angle maximal puis appuyer sur ce bouton'}
                 />
                 <LogoButton
                   iconClass="fa fa-minus-circle"
                   btnText={T.translate(`configurations.minTilt.${this.props.language}`)}
                   onClick={() => {
-                    this.state.seatAngle === 0 ?
-                    this.growl.show({severity: 'warn', life: 6000, summary: `Les données des capteurs semblent indisponibles`, detail: `Veuillez entrer l'angle manuellement`}) :
-                    this.props.changeMinAngle(this.state.seatAngle)
+                    this.state.seatAngle === 0
+                      ? this.growl.show({
+                        severity: 'warn', life: 6000, summary: 'Les données des capteurs semblent indisponibles', detail: 'Veuillez entrer l\'angle manuellement',
+                      })
+                      : this.props.changeMinAngle(this.state.seatAngle);
                   }}
                   value={this.props.minAngle}
                   onChange={this.props.changeMinAngle}
-                  tooltip={`Placer le fauteuil en position considérée comme étant l'angle minimal puis appuyer sur ce bouton`}
+                  tooltip={'Placer le fauteuil en position considérée comme étant l\'angle minimal puis appuyer sur ce bouton'}
                 />
                 <SubmitButtons
                   onSave={this.save.bind(this)}
@@ -236,7 +241,7 @@ function mapStateToProps(state) {
     telaskKey: state.configurationReducer.telaskKey,
     telaskUsername: state.configurationReducer.telaskUsername,
     telaskHost: state.configurationReducer.telaskHost,
-    maxAngle: state.configurationReducer.maxAngle, 
+    maxAngle: state.configurationReducer.maxAngle,
     minAngle: state.configurationReducer.minAngle,
   };
 }

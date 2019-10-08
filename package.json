@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
 
-    "build": "webpack -p --config webpack.config.production.js ",
+    "build": "webpack -p --env.HOST=192.168.10.1 --env.PORT=80 --config webpack.config.production.js ",
+    "start": "HOST=192.168.10.1 PORT=80 node server.production.js ",
 
-    "start": "node server.production.js ",
-
-    "dev": "node server.js",
+    "dev": "HOST=192.168.10.1 PORT=80 NODE_ENV=development node server.js",
+    "devlocal": "HOST=0.0.0.0 PORT=80 NODE_ENV=development node server.js",
 
 
     "1build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",

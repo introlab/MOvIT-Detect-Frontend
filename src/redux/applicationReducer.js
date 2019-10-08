@@ -12,11 +12,15 @@ let url;
 let isDemo = false;
 const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
-const port = process.env.PORT || 1880;
+const bport = process.env.BPORT || 1880; // Backend port
+const host = process.env.HOST || `0.0.0.0`; // Host address for both backend and frontend
 
 console.log(`process.env.NODE_ENV : ${process.env.NODE_ENV}`);
+url = `http://${host}:${bport}/`;
+console.log(`Current url used in applicationReducer.js to access the backend: ${url}`)
 
-switch (process.env.NODE_ENV) {
+
+/*switch (process.env.NODE_ENV) {
   case 'production':
   case 'pi':
     url = `http://192.168.4.1:${port}/`;
@@ -30,11 +34,7 @@ switch (process.env.NODE_ENV) {
     break;
   default:
     url = 'http://rpimovitplus.local:1880/';
-}
-url = 'http://192.168.10.1:1880/';
-console.log(`Current url used in applicationReducer.js : ${url}`)
-// url = `http://localhost:1880/`;
-// url = `http://${process.env.NODE_ENV}:1880/`;
+}*/
 
 export const URL = url;
 export const OFFSET = offset;

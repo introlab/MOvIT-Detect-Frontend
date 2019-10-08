@@ -54,7 +54,7 @@ module.exports = smp.wrap({
   mode: 'development',
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://192.168.10.1:3000',
+    'webpack-dev-server/client?http://192.168.10.1:80',
     'webpack/hot/dev-server',
     './src/index',
   ],
@@ -73,6 +73,8 @@ module.exports = smp.wrap({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         PORT: JSON.stringify(process.env.PORT),
+        HOST: JSON.stringify(process.env.HOST),
+        BPORT: JSON.stringify(process.env.BPORT)
       },
     }),
     new webpack.NoEmitOnErrorsPlugin(),

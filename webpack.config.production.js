@@ -79,6 +79,8 @@ module.exports = smp.wrap({
       'process.env': {
         NODE_ENV: 'production',
         PORT: JSON.stringify(process.env.PORT),
+        HOST: JSON.stringify(process.env.HOST),
+        BPORT: JSON.stringify(process.env.BPORT)
       },
     }),
     new webpack.NoEmitOnErrorsPlugin(),

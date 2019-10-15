@@ -5,24 +5,17 @@
   "main": "index.js",
   "scripts": {
 
-    "build": "webpack -p --env.HOST=192.168.10.1 --env.PORT=80 --config webpack.config.production.js ",
+    "build": "HOST=192.168.10.1 PORT=80 NODE_ENV=production webpack -p --config webpack.config.production.js ",
     "start": "HOST=192.168.10.1 PORT=80 node server.production.js ",
 
     "dev": "HOST=192.168.10.1 PORT=80 NODE_ENV=development node server.js",
-    "devlocal": "HOST=0.0.0.0 PORT=80 NODE_ENV=development node server.js",
+    "devlocal": "HOST=0.0.0.0 PORT=3000 NODE_ENV=development node server.js",
 
-
-    "1build": "yarn && cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.production.js",
-    "1lint-src": "eslint --fix --ext .js src/",
-    "1lint-test": "eslint --fix --ext .js tests/",
-    "1lint": "yarn lint-src && yarn lint-test",
-    "1test": "jest tests/* --coverage",
-    "1webpack": "webpack -p --config webpack.config.production.js",
-    "1prod": "node server.production.js",
-    "1pi": "yarn && NODE_ENV=pi node server.js",
-    "1local": "yarn && cross-env NODE_ENV=local node server.js",
-    "1prepush": "yarn lint && yarn test",
-    "1startDemo": "yarn && cross-env NODE_ENV=demos node server.js"
+    "lint-src": "eslint --fix --ext .js src/",
+    "lint-test": "eslint --fix --ext .js tests/",
+    "lint": "yarn lint-src && yarn lint-test",
+    "test": "jest tests/* --coverage",
+    "prepush": "yarn lint && yarn test"
   },
   "repository": {
     "type": "git",

@@ -45,7 +45,7 @@ class Configuration extends Component {
     this.state = {
       isLoaded: false,
       hasErrors: false,
-      socket: new WebSocket('ws://192.168.10.1:1880/ws/chairState'), // websocket for reading current chair angle
+      socket: new WebSocket(`ws://${URL}/ws/chairState`), // websocket for reading current chair angle
       seatAngle: 0, // websocket: init seatAngle
     };
     this.load();
@@ -149,22 +149,6 @@ class Configuration extends Component {
                   value={this.props.userID}
                   onChange={this.props.changeUserID}
                 />
-                {/* <LogoNumber
-                  iconClass="fa fa-plus-circle"
-                  placeHolder={T.translate(`configurations.maxTilt.${this.props.language}`)}
-                  value={this.props.maxAngle} //Displaying the value if it exists instead of the placeholder
-                  min="-90"
-                  max="90"
-                  onChange={this.props.changeMaxAngle}
-                /> */}
-                {/* <LogoNumber
-                  iconClass="fa fa-minus-circle"
-                  placeHolder={T.translate(`configurations.minTilt.${this.props.language}`)}
-                  value={this.props.minAngle}
-                  min="-90"
-                  max="90"
-                  onChange={this.props.changeMinAngle}
-                /> */}
                 <LogoNumber
                   iconClass="fa fa-balance-scale"
                   placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
@@ -189,6 +173,7 @@ class Configuration extends Component {
                   value={this.props.telaskKey}
                   onChange={this.props.changeTelaskKey}
                 />
+                {/*Will need translation for the part below*/}
                 <LogoButton
                   iconClass="fa fa-plus-circle"
                   btnText={T.translate(`configurations.maxTilt.${this.props.language}`)}

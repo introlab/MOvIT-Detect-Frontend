@@ -61,7 +61,7 @@ function changeUserWeight(weight) {
 function changeMaxAngle(angle) {
   return {
     type: MAX_ANGLE,
-    maxAngle: angle,
+    maxAngle: angle, // Math.floor(Math.random() * 80), // To change for fetching the current seat angle as detected by the system
   };
 }
 
@@ -118,12 +118,13 @@ export const initConfiguration = {
   userName: '',
   userID: '',
   maxAngle: null,
+  minAngle: null, // was forgotten ?!
   userWeight: null,
   telaskKey: '',
   telaskUsername: '',
   telaskHost: '',
 };
-export default function applicationReducer(state = initConfiguration, action) {
+export default function configurationReducer(state = initConfiguration, action) { // changed applicationReducer to configurationReducer
   const handler = ACTION_HANDLERS[action.type];
   return handler ? handler(state, action) : state;
 }

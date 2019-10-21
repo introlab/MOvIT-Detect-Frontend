@@ -10,8 +10,6 @@ import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
 import { get } from '../../utilities/secureHTTP';
 
-const POLLING_INTERVAL = 5000;
-
 class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
@@ -23,7 +21,7 @@ class ModuleStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: new WebSocket('ws://raspberrypi.local:1880/ws/rawData'),
+      socket: new WebSocket(`ws://${process.env.HOST}:${process.env.BPORT}/ws/rawData`),
       tofConnected: false,
       flowConnected: false,
       alarmConnected: false,

@@ -12,28 +12,12 @@ let url;
 let isDemo = false;
 const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
-const port = process.env.PORT || 1880;
+const bport = process.env.BPORT || 1880; // Backend port
+const host = process.env.HOST || `192.168.10.1`; // Host address for both backend and frontend
 
-console.log(process.env.NODE_ENV);
+url = `http://${host}:${bport}/`;
+ console.log(`Mode: ${process.env.NODE_ENV} Backend URL: ${url}`);
 
-switch (process.env.NODE_ENV) {
-  case 'production':
-  case 'pi':
-    url = `http://192.168.4.1:${port}/`;
-    break;
-  case 'local':
-    url = `http://localhost:${port}/`;
-    break;
-  case 'demos':
-    isDemo = true;
-    url = 'https://private-f2484-movitplus.apiary-mock.com/';
-    break;
-  default:
-    url = 'https://private-f2484-movitplus.apiary-mock.com/';
-}
-
-url = 'http://raspberrypi.local:1880/';
-// url = 'http://'+process.env.NODE_ENV+':1880/';
 
 export const URL = url;
 export const OFFSET = offset;

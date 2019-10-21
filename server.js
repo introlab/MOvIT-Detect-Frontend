@@ -1,9 +1,15 @@
+/**
+ * WEBPACK DEV SERVER config
+ * Uses Webpack to compile the code for developpement and launches it using a
+ * webpack dev server. Uses the "webpack.config.js" file.
+ */
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 
-const port = process.env.PORT || 3000;
-const host = process.env.host || process.env.NODE_ENV === 'demo' ? 'movit-plus.herokuapp.com' : '0.0.0.0';
+const port = process.env.PORT || 80;
+const host = process.env.HOST || `192.168.10.1`;
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -15,5 +21,5 @@ new WebpackDevServer(webpack(config), {
   if (err) {
     console.log(err);
   }
-  console.log(`Listening at localhost:${port}`);
+  console.log(`WebpackDevServer listening at ${host}:${port}`);
 });

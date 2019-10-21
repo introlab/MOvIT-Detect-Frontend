@@ -1,18 +1,25 @@
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config.production');
+/**
+ * EXPRESS PRODUCTION SERVER config
+ * Uses the previously compiled code to load and launch a server listening on the mentionned
+ * port and hosts
+ */
 
-const port = process.env.PORT || 3000;
+const path = require('path');
+const express = require('express');
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: false,
-  historyApiFallback: true,
-  compress: true,
-  disableHostCheck: true,
-}).listen(port, '0.0.0.0', (err) => {
-  if (err) {
-    console.log(err);
-  }
-  console.log(`Listening at localhost:${port}`);
-});
+const port = process.env.PORT || 80
+const host = process.env.HOST || '192.168.10.1'
+
+const app = express(),
+  STATIC_DIR = __dirname,
+  HTML_FILE = path.join(STATIC_DIR, 'index.html')
+
+app.use(express.static(STATIC_DIR))
+
+app.get('*', (req, res) => {
+    res.sendFile(HTML_FILE)
+})
+
+app.listen(port, host, () => {
+    console.log(`Express server listening at ${host}:${port}`);
+})

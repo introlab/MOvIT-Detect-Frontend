@@ -15,7 +15,7 @@ export default class LogoPassword extends Component {
     iconClass: PropTypes.string.isRequired,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
-    onKeyPress: PropTypes.func.isRequired,
+    onKeyPress: PropTypes.func,
   }
 
   render() {
@@ -31,7 +31,7 @@ export default class LogoPassword extends Component {
         <div className="col-1 d-inline-block text-right">
           <span style={style.icon}><i className={this.props.iconClass} /></span>
         </div>
-        <div className="col-10 col-lg-8 d-inline-block pr-1">
+        <div className="col-11 col-lg-8 d-inline-block pr-1">
           <input
             id="password"
             type="password"

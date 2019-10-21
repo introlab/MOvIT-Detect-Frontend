@@ -1,81 +1,88 @@
-/**
+/*
  * WEBPACK CONFIG
- *
- * Notes on config properties:
- *
- * 'entry'
- * Entry point for the bundle.
- *
- * 'output'
- * If you pass an array - the modules are loaded on startup. The last one is exported.
- *
- * 'resolve'
- * Array of file extensions used to resolve modules.
- *
- * devtool: 'eval-source-map'
- * http://www.cnblogs.com/Answer1215/p/4312265.html
- * The source map file will only be downloaded if you have source maps enabled
- * and your dev tools open.
- *
- * OccurrenceOrderPlugin
- * Assign the module and chunk ids by occurrence count. Ids that are used often
- * get lower (shorter) ids. This make ids predictable, reduces to total file size
- * and is recommended.
- *
- * UglifyJsPlugin
- * Minimize all JavaScript output of chunks. Loaders are switched into minimizing mode.
- *    - 'compress'
- *      Compressor is a tree transformer which reduces the code size by applying
- *      various optimizations on the AST.
- *
- * 'NODE_ENV'
- * React relies on process.env.NODE_ENV based optimizations.
- * If we force it to production, React will get in an optimized manner.
- * This will disable some checks (eg. property type checks) and give you a smaller
- *    build and improved performance.
- *
- *    Note: That JSON.stringify is needed as webpack will perform string replace
- *    "as is". In this case we'll want to end up with strings as that's what
- *    various comparisons expect, not just production. Latter would just cause
- *    an error.
- *
- * 'babel'
- * Babel enables the use of ES6 today by transpiling your ES6 JavaScript into
- * equivalent ES5 source that is actually delivered to the end user browser.
+ * Compiles the project in production mode thus maximizing performance when ran with
+ * an express server later on.
  */
 
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
-  entry: './src/index',
+// Plugin that keeps "moment.js" from loading useless translation languages
+// "moment.js" may not be necessary in the first place
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin'); 
+
+// Can help viualize what constitutes the "bundle.js" (helpful for optimisation)
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  // Uncomment "new BundleAnalyzerPlugin()" line in the plugins section too
+
+// Plugin used to get an idea of what part of the project took the most time to build
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+
+
+
+module.exports = smp.wrap({
+  mode: 'production',
+
+  // Set inputs and source files for webpack
+  entry: [
+    'babel-polyfill',
+    './src/index',
+  ],
+
+  // Sets how webpack will output the bundled file
   output: {
-    path: path.join(__dirname, 'static'),
+    path: path.join(__dirname,'static'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/static/',
   },
+
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['.js'],
   },
-  devtool: 'source-map',
+
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // "webpack.DefinePlugin" makes global variables available within the rest of the code
+    // This plugin works through a "search and replace" method, executed everytime the project is bundled
+    // These lines will forward environment variables made available for webpack to the project's code
+    // These environment variables are set through launch scripts in package.json when required 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production'),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'production',
+        PORT: JSON.stringify(process.env.PORT) || '80',
+        HOST: JSON.stringify(process.env.HOST) || '192.168.10.1',
+        BPORT: JSON.stringify(process.env.BPORT) || '1880'
       },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
+    
+    // Plugin that ensures webpack will not emit files when compilation fails
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    //new BundleAnalyzerPlugin(),
+    new MomentLocalesPlugin({
+      localesToKeep: ['fr-ca'] // Keeps only french and english as translation languages
     }),
   ],
+
+  // Node configuration
+  // All settings are set to their default values except "global" which was causing problem with "Webpack.DefinePlugin"
+  node: {
+    console: false,
+    global: false,
+    process: true,
+    __filename: 'mock',
+    __dirname: 'mock',
+    Buffer: true,
+    setImmediate: true
+  },
+  
+  // Defines how to read and bundle different files
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        loader: [ 'cache-loader','babel-loader'],
         include: path.join(__dirname, 'src'),
       },
       {
@@ -83,14 +90,18 @@ module.exports = {
         loader: 'json-loader!yaml-loader',
       },
       {
-        test: /\.(png|gif)$/,
-        loader: 'url?limit=25000',
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader',
       },
       {
         test: /\.(css|scss)$/,
-        exclude: [/node_modules/],
         loader: 'style-loader!css-loader',
       },
     ],
   },
-};
+
+  // Enables minification
+  optimization: {
+    minimize: true
+  },
+});

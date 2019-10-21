@@ -1,80 +1,95 @@
 /**
  * WEBPACK CONFIG
- *
- * Notes on config properties:
- *
- * 'entry'
- * Entry point for the bundle.
- *
- * 'output'
- * If you pass an array - the modules are loaded on startup. The last one is exported.
- *
- * 'resolve'
- * Array of file extensions used to resolve modules.
- *
- * 'webpack-dev-server'
- * Is a little node.js Express server, which uses the webpack-dev-middleware to
- * serve a webpack bundle. It also has a little runtime which is connected to
- * the server via Socket.IO.
- *
- * 'webpack/hot/dev-server'
- * By adding a script to your index.html file and a special entry point in your
- * configuration you will be able to get live reloads when doing changes to your
- * files.
- *
- * devtool: 'eval-source-map'
- * http://www.cnblogs.com/Answer1215/p/4312265.html
- * The source map file will only be downloaded if you have source maps enabled
- * and your dev tools open.
- *
- * HotModuleReplacementPlugin()
- * Hot Module Replacement (HMR) exchanges, adds or removes modules while an
- * application is running without page reload.
- *
- * NoErrorsPlugin()
- * Hot loader is better when used with NoErrorsPlugin and hot/only-dev-server
- * since it eliminates page reloads altogether and recovers after syntax errors.
- *
- * 'react-hot'
- * React Hot Loader is a plugin for Webpack that allows instantaneous live
- * refresh without losing state while editing React components.
- *
- * 'babel'
- * Babel enables the use of ES6 today by transpiling your ES6 JavaScript into equivalent ES5 source
- * that is actually delivered to the end user browser.
+ * Compiles the project and runs it with "hot-reload" enabled in order to make
+ * develppement faster. This code will load slower than the prodution version on
+ * the browser but will update the page whenever a new change is detected in the
+ * source files. Webpack-dev-server is used with this configuration instead of Express
  */
 
 const webpack = require('webpack');
 const path = require('path');
-require('babel-polyfill');
 
-module.exports = {
+// Plugin that keeps "moment.js" from loading useless translation languages
+// "moment.js" may not be necessary in the first place
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin'); 
+
+// Can help viualize what constitutes the "bundle.js" (helpful for optimisation)
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  // Uncomment "new BundleAnalyzerPlugin()" line in the plugins section too
+
+// Plugin used to get an idea of what part of the project took the most time to build
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+
+
+
+module.exports = smp.wrap({
   mode: 'development',
+
+  // Set inputs and source files for webpack
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-dev-server/client?http://192.168.10.1:80',
     'webpack/hot/dev-server',
     './src/index',
   ],
+
+  // Sets how webpack will output the bundled file
   output: {
-    path: __dirname,
+    path: path.join(__dirname,'static'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
+
   resolve: {
     extensions: ['.js'],
   },
+
+  // Allows easy mapping to source files and corresponding lines when detecting errors on the browser
   devtool: 'eval-source-map',
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    // "webpack.DefinePlugin" makes global variables available within the rest of the code
+    // This plugin works through a "search and replace" method, executed everytime the project is bundled
+    // These lines will forward environment variables made available for webpack to the project's code
+    // These environment variables are set through launch scripts in package.json when required 
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        PORT: JSON.stringify(process.env.PORT),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'development',
+        PORT: JSON.stringify(process.env.PORT) || '80',
+        HOST: JSON.stringify(process.env.HOST) || '0.0.0.0',
+        BPORT: JSON.stringify(process.env.BPORT) || '1880'
       },
     }),
-    new webpack.NoEmitOnErrorsPlugin(),
+
+    // Plugin that ensures webpack will not emit files when compilation fails
+        new webpack.NoEmitOnErrorsPlugin(),
+
+    //new BundleAnalyzerPlugin(),
+    new MomentLocalesPlugin({
+      localesToKeep: ['fr-ca'] // Keeps only french and english as translation languages
+    }),
+
+    // Provides hot-reload functionnalities 
+    new webpack.HotModuleReplacementPlugin(),
   ],
+
+  // Node configuration
+  // All settings are set to their default values except "global" which was causing problem with "Webpack.DefinePlugin"
+  node: {
+    console: false,
+    global: false,
+    process: true,
+    __filename: 'mock',
+    __dirname: 'mock',
+    Buffer: true,
+    setImmediate: true,
+    fs: 'empty',
+    child_process: 'empty'
+  },
+
+  // Defines how to read and bundle different files
   module: {
     rules: [
       {
@@ -96,8 +111,4 @@ module.exports = {
       },
     ],
   },
-  node: {
-    fs: 'empty',
-    child_process: 'empty',
-  },
-};
+});

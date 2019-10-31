@@ -27,6 +27,7 @@ class Notification extends Component {
     this.state = {
       showCountdownMat: false,
       showCountdownIMU: false,
+      isPopupOpened: false
     };
     this.matCalibrationCompleted = this.matCalibrationCompleted.bind(this);
     this.IMUCalibrationCompleted = this.IMUCalibrationCompleted.bind(this);
@@ -87,7 +88,7 @@ class Notification extends Component {
             />
           </div>
         </div>
-        <div className="row">
+        {/*<div className="row">
           <div className="col-12 col-sm-6 col-md-4 mb-2">
             <Button
               id="turn-on-button"
@@ -106,7 +107,7 @@ class Notification extends Component {
               label={T.translate(`alert.off.${this.props.language}`)}
             />
           </div>
-        </div>
+        </div>*/ } 
       </div>
     );
     const header = (

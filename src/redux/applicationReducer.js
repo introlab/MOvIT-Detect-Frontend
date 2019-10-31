@@ -16,7 +16,7 @@ const bport = process.env.BPORT || 1880; // Backend port
 const host = process.env.HOST || `192.168.10.1`; // Host address for both backend and frontend
 
 url = `http://${host}:${bport}/`;
- console.log(`Mode: ${process.env.NODE_ENV} Backend URL: ${url}`);
+ console.log(`Mode: ${process.env.NODE_ENV}, Backend URL: ${url}`);
 
 
 export const URL = url;

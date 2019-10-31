@@ -21,7 +21,7 @@ class ModuleStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: new WebSocket(`ws://${URL}/ws/rawData`),
+      socket: new WebSocket(`ws://${process.env.HOST}:${process.env.BPORT}/ws/rawData`),
       tofConnected: false,
       flowConnected: false,
       alarmConnected: false,

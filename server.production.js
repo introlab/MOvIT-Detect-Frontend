@@ -1,7 +1,11 @@
 /**
- * EXPRESS PRODUCTION SERVER config
- * Uses the previously compiled code to load and launch a server listening on the mentionned
- * port and hosts
+ * EXPRESS PRODUCTION SERVER CONFIG
+ * Uses the previously bundled code to load and launch a server listening on the mentionned
+ * port and hosts.
+ * 
+ * WARNING : Websocket's and backend's hosts (HOST/BHOST) and ports (PORT/BPORT) must
+ * be set beforehand when bundling with webpack. Bundle the server correctly before launching
+ * it with this file.
  */
 
 const path = require('path');

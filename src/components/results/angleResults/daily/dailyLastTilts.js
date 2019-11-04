@@ -3,7 +3,7 @@ import '../../../../styles/results.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { OFFSET, URL } from '../../../../redux/applicationReducer';
+import { OFFSET } from '../../../../redux/applicationReducer';
 
 import CustomCard from '../../../shared/card';
 import NoDataMessage from '../../../shared/noDataMessage';
@@ -41,7 +41,7 @@ class DailyLastTilts extends Component {
   async getData(date) {
     this.setState({ isLoaded: false, hasErrors: false });
     try {
-      const response = await get(`${URL}lastTilts?Day=${+date}&Offset=${OFFSET}&count=${TILT_COUNT}`);
+      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/lastTilts?Day=${+date}&Offset=${OFFSET}&count=${TILT_COUNT}`);
       this.setState({ data: response.data, isLoaded: true });
     } catch (error) {
       this.setState({ hasErrors: true });

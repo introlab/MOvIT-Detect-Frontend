@@ -14,7 +14,6 @@ import { GoalActions } from '../../redux/goalReducer';
 import { T } from '../../utilities/translator';
 import TiltLabels from './tiltLabels';
 import TiltSlidersCard from './tiltSlidersCard';
-import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 import { SEC_IN_MIN } from '../../utilities/constants';
 
@@ -52,7 +51,7 @@ class PressureRecPanel extends Component {
   }
 
   save() {
-    post(`${URL}goal`, {
+    post(`http://${process.env.BHOST}:${process.env.BPORT}/goal`, {
       tiltFrequency: this.props.tiltFrequencyGoal * SEC_IN_MIN,
       tiltLength: this.props.tiltLengthGoal * SEC_IN_MIN,
       tiltAngle: this.props.tiltAngleGoal,

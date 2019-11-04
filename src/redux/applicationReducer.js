@@ -13,11 +13,10 @@ let isDemo = false;
 const offset = Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
 const bport = process.env.BPORT || 1880; // Backend port
-const host = process.env.HOST || `192.168.10.1`; // Host address for both backend and frontend
+const bhost = process.env.BHOST || `192.168.10.1`; // Host address for the backend
 
-url = `http://${host}:${bport}/`;
+url = `http://${bhost}:${bport}/`; // URL for the backend, this URL is exported and used throughout the code
  console.log(`Mode: ${process.env.NODE_ENV}, Backend URL: ${url}`);
-
 
 export const URL = url;
 export const OFFSET = offset;

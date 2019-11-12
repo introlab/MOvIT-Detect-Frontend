@@ -12,7 +12,7 @@ const path = require('path');
 const express = require('express');
 
 const port = process.env.PORT || 80
-const host = process.env.HOST || '192.168.10.1'
+const host = process.env.HOST || '0.0.0.0'
 
 const app = express(),
   STATIC_DIR = __dirname,

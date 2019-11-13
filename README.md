@@ -82,6 +82,7 @@ Les scripts présentement disponibles sont les suivants :
 - **buildlocal** : Prépare le code pour à des fins de test sur une autre machine. <sub><sup>(Utilise le fichier webpack.config.production.js)</sup></sub>
 - **startlocal** : Lance le code préparé avec **_buildlocal_** <sub><sup>(Utilise le fichier server.production.js)</sup></sub>
 - Autres : D'autres scripts utiles à des fins de développement sont aussi disponibles.<sub><sup>(voir package.json)</sup></sub>
+
 > Le script `yarn start` est celui qui est appelé lors du démarrage des RaspberryPi configurés correctement.
 
 ##### Mode développement :

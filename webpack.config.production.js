@@ -1,5 +1,5 @@
 /*
- * WEBPACK CONFIG
+ * WEBPACK CONFIG FOR PRODUCTION MODE
  * Compiles the project in production mode thus maximizing performance when ran with
  * an express server later on.
  */
@@ -47,12 +47,14 @@ module.exports = smp.wrap({
     // This plugin works through a "search and replace" method, executed everytime the project is bundled
     // These lines will forward environment variables made available for webpack to the project's code
     // These environment variables are set through launch scripts in package.json when required 
+    //      BHOST will default to HOST's value when unspecified
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'production',
         PORT: JSON.stringify(process.env.PORT) || '80',
         HOST: JSON.stringify(process.env.HOST) || '192.168.10.1',
-        BPORT: JSON.stringify(process.env.BPORT) || '1880'
+        BPORT: JSON.stringify(process.env.BPORT) || '1880',
+        BHOST: JSON.stringify(process.env.BHOST) || JSON.stringify(process.env.HOST) || '192.168.10.1'
       },
     }),
     

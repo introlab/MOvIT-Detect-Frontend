@@ -38,7 +38,7 @@ export default class TiltSlidersCard extends Component {
       tiltAngle: this.props.tiltAngle,
     };
     try {
-      await post(`${URL}goal`, data);
+      await post(`http://${process.env.BHOST}:${process.env.BPORT}/goal`, data);
       console.log('succesfully updated');
     } catch (error) {
       console.log(error);

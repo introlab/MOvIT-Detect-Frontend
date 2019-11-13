@@ -79,7 +79,10 @@ Les scripts présentement disponibles sont les suivants :
 - **start** : Utilise les fichiers statiques disponibles pour lancer le serveur _Express_. <sub><sup>(Utilise le fichier server.production.js)</sup></sub>
 - **dev** : Démarre un serveur de développement après avoir préparer le code. <sub><sup>(Utilise le fichier node server.js)</sup></sub>
 - **devlocal** : Même chose que **_dev_** mais à des fins de test sur une autre machine. <sub><sup>(Utilise le fichier node server.js)</sup></sub>
-  Autres : D'autres scripts utiles à des fins de développement sont aussi disponibles.<sub><sup>(voir package.json)</sup></sub>
+- **buildlocal** : Prépare le code pour à des fins de test sur une autre machine. <sub><sup>(Utilise le fichier webpack.config.production.js)</sup></sub>
+- **startlocal** : Lance le code préparé avec **_buildlocal_** <sub><sup>(Utilise le fichier server.production.js)</sup></sub>
+- Autres : D'autres scripts utiles à des fins de développement sont aussi disponibles.<sub><sup>(voir package.json)</sup></sub>
+
 > Le script `yarn start` est celui qui est appelé lors du démarrage des RaspberryPi configurés correctement.
 
 ##### Mode développement :

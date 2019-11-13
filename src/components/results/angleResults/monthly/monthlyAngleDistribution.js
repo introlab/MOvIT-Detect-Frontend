@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { OFFSET, URL } from '../../../../redux/applicationReducer';
+import { OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -53,7 +53,7 @@ class MonthlyAngleDistribution extends Component {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const date = new Date(new Date().getFullYear(), month, 1);
-      const response = await get(`${URL}oneMonth?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/oneMonth?Day=${+date}&Offset=${OFFSET}`);
       this.formatAngleChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

@@ -14,7 +14,7 @@ import GoalChart from './goalChart';
 import MonthlyAngleDistribution from './monthlyAngleDistribution';
 import MonthlySuccessTilt from './monthlySuccessTilt';
 import { T } from '../../../../utilities/translator';
-import { IS_TABLET, OFFSET, URL } from '../../../../redux/applicationReducer';
+import { IS_TABLET, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 
 
@@ -50,7 +50,7 @@ class MonthlyAngleResults extends Component {
     const date = new Date(new Date().getFullYear(), month, 1);
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}monthlySlideProgress?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/monthlySlideProgress?Day=${+date}&Offset=${OFFSET}`);
       this.loadMonthlySlidingData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

@@ -27,6 +27,7 @@ class Notification extends Component {
     this.state = {
       showCountdownMat: false,
       showCountdownIMU: false,
+      isPopupOpened: false
     };
     this.matCalibrationCompleted = this.matCalibrationCompleted.bind(this);
     this.IMUCalibrationCompleted = this.IMUCalibrationCompleted.bind(this);

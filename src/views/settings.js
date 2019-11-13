@@ -23,7 +23,7 @@ import { SEC_IN_MIN } from '../utilities/constants';
 import { SettingsActions } from '../redux/settingsReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-import UpdatesManager from '../components/settings/updatesManager';
+//import UpdatesManager from '../components/settings/updatesManager';
 import Wifi from '../components/settings/wifi';
 import { get } from '../utilities/secureHTTP';
 
@@ -67,7 +67,7 @@ class Settings extends Component {
 
   async load() {
     const promises = Promise.all([
-      this.loadUpdateInfo(),
+      //this.loadUpdateInfo(),
       this.loadModulesStatus(),
       this.loadMemoryUsage(),
       this.loadNotificationSettings(),
@@ -88,7 +88,7 @@ class Settings extends Component {
     }
   }
 
-  async loadUpdateInfo() {
+  async loadUpdateInfo() { // unimplemented update mechanism
     try {
       const response = await get(`${URL}updates`);
       this.props.changeIsUpdateAvailable(response.data.isAvailable);
@@ -123,7 +123,7 @@ class Settings extends Component {
       this.props.changeIsVibrationEnabled(response.data.isVibrationEnabled);
       this.props.changeSnoozeTime(response.data.snoozeTime / SEC_IN_MIN);
     } catch (error) {
-      this.setState({ hasNotificationSettingsErrors: true });
+      this.setState({ hasNotificationSettingsErrors: false }); // Temporarily set to false
     }
   }
 
@@ -132,7 +132,7 @@ class Settings extends Component {
       const response = await get(`${URL}dataAgreement`);
       this.props.changeDataAgreement(response.data.dataAgreement);
     } catch (error) {
-      this.setState({ hasPermissionsErrors: true });
+      this.setState({ hasPermissionsErrors: false }); // Temporarily set to false
     }
   }
 
@@ -164,9 +164,9 @@ class Settings extends Component {
               {
                 this.props.profile !== 'user' && <Notification />
               }
-              {
+              {/*{
                 this.props.profile !== 'user' && <DbActions />
-              }
+              }*/}
               {
                 this.props.profile !== 'user' && (
                   <CustomCard
@@ -181,7 +181,7 @@ class Settings extends Component {
                   />
                 )
               }
-              <CustomCard
+              {/*<CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
                 element={(
                   <NotificationSettings
@@ -196,7 +196,7 @@ class Settings extends Component {
                     showError={this.showSuccess.bind(this)}
                   />
                 )}
-              />
+              />*/}
               {
                 this.props.profile !== 'user' && (
                   <CustomCard
@@ -234,19 +234,21 @@ class Settings extends Component {
                         used={this.props.usedMemory}
                         hasErrors={this.state.hasMemoryUsageErrors}
                       />
-                      <br />
+                      {/*<br />
                       <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
-                      <UpdatesManager
+                      <UpdatesManager                                            /Completely broken and useless card
                         isUpdateAvailable={this.props.isUpdateAvailable}
                         changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
                         hasErrors={this.state.hasUpdateInfoErrors}
-                      />
+                      />*/}
+                      <br />
                     </div>
                   )}
                 />
               )}
             </div>
           </div>
+          <br />
         </div>
       </div>
     );

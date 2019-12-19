@@ -86,10 +86,14 @@ Les scripts présentement disponibles sont les suivants :
 > Le script `yarn start` est celui qui est appelé lors du démarrage des RaspberryPi configurés correctement.
 
 ##### Mode développement :
->Le mode développement (**dev**) pour le RaspberryPi prend environ 8 minutes à lancer, mais celui-ci propose notamment un serveur avec une fonction de "hot-reload" permettant de compiler uniquement les parties changées dans le code. Le mode développement **devlocal** utilise _localhost_ afin de l'utiliser sur une autre machine. Voir les scripts dans package.json et les fichiers correspondants pour plus de détails.
+Le mode développement (**dev**) pour le RaspberryPi prend environ 8 minutes à lancer, mais celui-ci propose notamment un serveur avec une fonction de "hot-reload" permettant de compiler uniquement les parties changées dans le code. Le mode développement **devlocal** utilise _localhost_ afin de l'utiliser sur une autre machine. Voir les scripts dans package.json et les fichiers correspondants pour plus de détails.
+
+> Le lancement du frontend en mode dévelopmment nécessite l'installation des modules avec Yarn sans l'argument `--production`. Dans les images préconfigurés, il faudra donc relancer l'installation avec `yarn install --ignore-optional --network-timeout 1000000`
 
 ##### Mode production :
->La préparation en mode production (**build** -> très lent sur une RaspberryPi, ~20 minutes) permet de créer le fichier bundle.js et les images nécessaires au lancement du serveur Express (**start**). Voir les scripts dans package.json et les fichiers correspondants pour plus de détails.
+La préparation en mode production (**build**) permet de créer le fichier bundle.js et les images nécessaires au lancement du serveur Express (**start**). Voir les scripts dans package.json et les fichiers correspondants pour plus de détails.
+
+> La préparation de bundle.js est très lente sur un RaspberryPi, soit environ 20 minutes. Cette préparation peut être faite sur un autre ordinateur plus rapide.
 
 
 ### 2.2. Démarrage du frontend

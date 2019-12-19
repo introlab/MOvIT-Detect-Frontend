@@ -285,6 +285,7 @@ class Goal extends Component {
                           tooltip={T.translate(`recommendations.comfort.recPanel.tooltip.${this.props.language}`)}
                         />
                         <RecPanel
+                          id="otherRec"
                           condition={this.props.other}
                           title={this.props.otherRecommendationsTitle === undefined
                             ? T.translate(`recommendations.otherTitle.${this.props.language}`)

@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 export default class LogoText extends Component {
   static propTypes = {
+    id: PropTypes.string,
     placeHolder: PropTypes.string.isRequired,
     iconClass: PropTypes.string.isRequired,
     value: PropTypes.string,
@@ -36,7 +37,7 @@ export default class LogoText extends Component {
             type="text"
             placeholder={this.props.placeHolder}
             className="form-control"
-            id="logoText"
+            id={this.props.id === undefined ? "logoText" : this.props.id}
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value || ''}
           />

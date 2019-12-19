@@ -19,6 +19,7 @@ import ModuleStatus from '../components/settings/moduleStatus';
 import Notification from '../components/settings/notification';
 import NotificationSettings from '../components/settings/notificationSettings';
 import Permissions from '../components/settings/permissions';
+import SysControl from '../components/settings/sysControl';
 import { SEC_IN_MIN } from '../utilities/constants';
 import { SettingsActions } from '../redux/settingsReducer';
 import { T } from '../utilities/translator';
@@ -34,6 +35,7 @@ class Settings extends Component {
     totalMemory: PropTypes.number.isRequired,
     usedMemory: PropTypes.number.isRequired,
     snoozeTime: PropTypes.number.isRequired,
+    enabled: PropTypes.bool.isRequired,
     isLedBlinkingEnabled: PropTypes.bool.isRequired,
     isVibrationEnabled: PropTypes.bool.isRequired,
     modulesStatus: PropTypes.object.isRequired,
@@ -43,6 +45,7 @@ class Settings extends Component {
     changeTotalMemory: PropTypes.func.isRequired,
     changeUsedMemory: PropTypes.func.isRequired,
     changeSnoozeTime: PropTypes.func.isRequired,
+    changeAreNotificationsEnabled : PropTypes.func.isRequired,
     changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
     changeIsVibrationEnabled: PropTypes.func.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
@@ -61,6 +64,8 @@ class Settings extends Component {
       hasNotificationSettingsErrors: false,
       hasPermissionsErrors: false,
       hasWifiConnectionErrors: false,
+      showShutdownConfirmation: false,
+      showRebootConfirmation: false,
     };
     this.load();
   }
@@ -122,8 +127,9 @@ class Settings extends Component {
       this.props.changeIsLedBlinkingEnabled(response.data.isLedBlinkingEnabled);
       this.props.changeIsVibrationEnabled(response.data.isVibrationEnabled);
       this.props.changeSnoozeTime(response.data.snoozeTime / SEC_IN_MIN);
+      this.props.changeAreNotificationsEnabled(response.data.enabled);
     } catch (error) {
-      this.setState({ hasNotificationSettingsErrors: false }); // Temporarily set to false
+      this.setState({ hasNotificationSettingsErrors: true });
     }
   }
 
@@ -132,7 +138,7 @@ class Settings extends Component {
       const response = await get(`${URL}dataAgreement`);
       this.props.changeDataAgreement(response.data.dataAgreement);
     } catch (error) {
-      this.setState({ hasPermissionsErrors: false }); // Temporarily set to false
+      this.setState({ hasPermissionsErrors: true });
     }
   }
 
@@ -150,6 +156,40 @@ class Settings extends Component {
     });
   }
 
+  confirmShutdown() {
+    this.setState({ showShutdownConfirmation: true });
+  }
+
+  confirmReboot() {
+    this.setState({ showRebootConfirmation: true });
+  }
+
+  cancelShutdown() {
+    this.setState({ showShutdownConfirmation: false });
+  }
+
+  cancelReboot() {
+    this.setState({ showRebootConfirmation: false });
+  }
+
+  async shutdown() {
+    this.setState({ showShutdownConfirmation: false });
+    try {
+      const response = await get(`${URL}shutdown`);
+    } catch (error) {
+      console.log("Detected error when trying to shutdown")
+    };
+  }
+
+  async reboot() {
+    this.setState({ showShutdownConfirmation: false });
+    try {
+      const response = await get(`${URL}reboot`);
+    } catch (error) {
+      console.log("Detected error when trying to reboot")
+    };
+  }
+
   render() {
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
@@ -161,10 +201,10 @@ class Settings extends Component {
           <h2 className="header text-center">{T.translate(`settings.${this.props.language}`)}</h2>
           <div className="row">
             <div className="col-12 col-md-8 offset-md-2">
-              {
+              {/*
                 this.props.profile !== 'user' && <Notification />
               }
-              {/*{
+              {{
                 this.props.profile !== 'user' && <DbActions />
               }*/}
               {
@@ -181,14 +221,16 @@ class Settings extends Component {
                   />
                 )
               }
-              {/*<CustomCard
+              {<CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
                 element={(
                   <NotificationSettings
                     snoozeTime={this.props.snoozeTime}
+                    enabled={this.props.enabled}
                     isLedBlinkingEnabled={this.props.isLedBlinkingEnabled}
                     isVibrationEnabled={this.props.isVibrationEnabled}
                     changeSnoozeTime={this.props.changeSnoozeTime}
+                    changeAreNotificationsEnabled={this.props.changeAreNotificationsEnabled}
                     changeIsLedBlinkingEnabled={this.props.changeIsLedBlinkingEnabled}
                     changeIsVibrationEnabled={this.props.changeIsVibrationEnabled}
                     hasErrors={this.state.hasNotificationSettingsErrors}
@@ -196,7 +238,7 @@ class Settings extends Component {
                     showError={this.showSuccess.bind(this)}
                   />
                 )}
-              />*/}
+              />}
               {
                 this.props.profile !== 'user' && (
                   <CustomCard
@@ -233,7 +275,15 @@ class Settings extends Component {
                         total={this.props.totalMemory}
                         used={this.props.usedMemory}
                         hasErrors={this.state.hasMemoryUsageErrors}
-                      />
+                      />{/* TODO (finish and solve errors to add shutdown and reboot button...)
+                      &nbsp;
+                      <h6>{T.translate(`settings.system.control.${this.props.language}`)}</h6>
+                      <SysControl
+                        onClickShutdown={this.props.confirmShutdown.bind(this)}
+                        onClickReboot={this.props.confirmReboot.bind(this)}
+                        btnTextShutdown={T.translate(`settings.system.control.btnShutdown.${this.props.language}`)}
+                        btnTextReboot={T.translate(`settings.system.control.btnReboot.${this.props.language}`)}
+                      />*/}
                       {/*<br />
                       <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
                       <UpdatesManager                                            /Completely broken and useless card
@@ -248,8 +298,21 @@ class Settings extends Component {
               )}
             </div>
           </div>
-          <br />
-        </div>
+        </div>{/*
+        <ConfirmationPopup
+          title={T.translate(`settings.system.control.${this.props.language}`)}
+          body={T.translate(`settings.system.control.confirmationReboot.${this.props.language}`)}
+          show={this.state.showRebootConfirmation}
+          onConfirm={this.reboot.bind(this)}
+          onClose={this.cancelReboot.bind(this)}
+        />
+        <ConfirmationPopup
+          title={T.translate(`settings.system.control.${this.props.language}`)}
+          body={T.translate(`settings.system.control.confirmationShutdown.${this.props.language}`)}
+          show={this.state.showShutdownConfirmation}
+          onConfirm={this.shutdown.bind(this)}
+          onClose={this.cancelShutdown.bind(this)}
+        />*/}
       </div>
     );
   }
@@ -263,6 +326,7 @@ function mapStateToProps(state) {
     totalMemory: state.settingsReducer.totalMemory,
     usedMemory: state.settingsReducer.usedMemory,
     snoozeTime: state.settingsReducer.snoozeTime,
+    enabled: state.settingsReducer.enabled,
     isLedBlinkingEnabled: state.settingsReducer.isLedBlinkingEnabled,
     isVibrationEnabled: state.settingsReducer.isVibrationEnabled,
     modulesStatus: state.settingsReducer.modulesStatus,
@@ -276,6 +340,7 @@ function mapDispatchToProps(dispatch) {
     changeDataAgreement: SettingsActions.changeDataAgreement,
     changeTotalMemory: SettingsActions.changeTotalMemory,
     changeUsedMemory: SettingsActions.changeUsedMemory,
+    changeAreNotificationsEnabled: SettingsActions.changeAreNotificationsEnabled,
     changeIsLedBlinkingEnabled: SettingsActions.changeIsLedBlinkingEnabled,
     changeIsVibrationEnabled: SettingsActions.changeIsVibrationEnabled,
     changeSnoozeTime: SettingsActions.changeSnoozeTime,

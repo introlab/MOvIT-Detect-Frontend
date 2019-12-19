@@ -26,14 +26,27 @@ class NotificationSettings extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     snoozeTime: PropTypes.number.isRequired,
+    enabled: PropTypes.bool.isRequired,
     isLedBlinkingEnabled: PropTypes.bool.isRequired,
     isVibrationEnabled: PropTypes.bool.isRequired,
     changeSnoozeTime: PropTypes.func.isRequired,
+    changeAreNotificationsEnabled: PropTypes.func.isRequired,
     changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
     changeIsVibrationEnabled: PropTypes.func.isRequired,
     hasErrors: PropTypes.bool.isRequired,
     showSuccess: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
+  }
+
+  async enableNotifications() {
+    const enabled = !this.props.enabled;
+    this.props.changeAreNotificationsEnabled(enabled);
+    try {
+      await post(`${URL}notificationSettings`, { enabled });
+      this.props.showSuccess();
+    } catch {
+      this.props.showError();
+    }
   }
 
   async enableLedBlinking() {
@@ -80,6 +93,16 @@ class NotificationSettings extends Component {
       <div>
         <div>
           <Checkbox
+            id="enableNotifications"
+            onChange={() => this.enableNotifications()}
+            checked={this.props.enabled}
+          />
+          <label htmlFor="enableNotifications">
+            {T.translate(`settings.notification.enableNotifications.${this.props.language}`)}
+          </label>
+        </div>
+        <div>
+          <Checkbox
             id="enableLedBlinking"
             onChange={() => this.enableLedBlinking()}
             checked={this.props.isLedBlinkingEnabled}
@@ -100,15 +123,8 @@ class NotificationSettings extends Component {
         </div>
         <div>
           <span>
-            <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
-            &nbsp;
             {T.translate(`settings.notification.snoozeTime.${this.props.language}`)}
-            :&nbsp;&nbsp;
-          </span>
-          <Tooltip
-            for="#snoozeTimeToolTip"
-            title={T.translate(`settings.notification.snoozeTimeToolTip.${this.props.language}`)}
-          />
+            :&nbsp;
           <Spinner
             id="value"
             type="number"
@@ -119,9 +135,14 @@ class NotificationSettings extends Component {
             maxlength={2}
             size="3"
           />
-          <span>
-            &nbsp;&nbsp;
+            &nbsp;
             {T.translate(`time.min.${this.props.language}`)}
+            &nbsp;
+            <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
+            <Tooltip
+            for="#snoozeTimeToolTip"
+            title={T.translate(`settings.notification.snoozeTimeToolTip.${this.props.language}`)}
+            />
           </span>
         </div>
       </div>

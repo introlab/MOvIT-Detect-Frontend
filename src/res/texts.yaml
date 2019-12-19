@@ -361,11 +361,21 @@ configurations:
     EN: "Maximum tilt angle"
     cFR: "Angle maximal de bascule"
     cEN: "Maximum tilt angle"
+  maxTiltTooltip:
+    FR: "Placer le fauteuil en position considérée comme étant l'angle maximal puis appuyer sur ce bouton"
+    EN: "Place the chair in the position considered as the maximum angle and press this button"
+    cFR: "Placer le fauteuil en position considérée comme étant l'angle maximal puis appuyer sur ce bouton"
+    cEN: "Place the chair in the position considered as the maximum angle and press this button"
   minTilt:
     FR: "Angle minimal de bascule"
     EN: "Minimum tilt angle"
-    cFR: "Angle minimale de bascule"
+    cFR: "Angle minimal de bascule"
     cEN: "Minimum tilt angle"
+  minTiltTooltip:
+    FR: "Placer le fauteuil en position considérée comme étant l'angle minimal puis appuyer sur ce bouton"
+    EN: "Place the chair in the position considered as the minimum angle and press this button"
+    cFR: "Placer le fauteuil en position considérée comme étant l'angle minimal puis appuyer sur ce bouton"
+    cEN: "Place the chair in the position considered as the minimum angle and press this button"
   weight:
     FR: "Poids de l'usager (kg)"
     EN: "User's weight (kg)"
@@ -386,6 +396,16 @@ configurations:
     EN: "TelAsk SFTP username"
     cFR: "Nom d'utilisateur SFTP TelAsk"
     cEN: "TelAsk SFTP username"
+  calibCardTitle:
+    FR: "Calibration de l'angle du fauteuil"
+    EN: "Calibration of the seat angle"
+    cFR: "Calibration de l'angle du fauteuil"
+    cEN: "Calibration of the seat angle"
+  calibCardTooltip:
+    FR: "Utiliser le bouton de calibration pour initier une calibration des capteurs. L'angle de l'image représente l'angle du fauteuil perçu par le système."
+    EN: "Use the button to initiate sensor calibration. The angle of the image represents the current angle as perceived by the system."
+    cFR: "Utiliser le bouton de calibration pour initier une calibration des capteurs. L'angle de l'image représente l'angle du fauteuil perçu par le système."
+    cEN: "Use the button to initiate sensor calibration. The angle of the image represents the current angle as perceived by the system."
 
 save:
   FR: "Sauvegarder"
@@ -934,16 +954,21 @@ settings:
     EN: "Notifications settings"
     cFR: "Paramètres des notifications"
     cEN: "Notifications settings"
+    enableNotifications:
+      FR: "Notifications et enregistrements des bascules"
+      EN: "Notifications and tilt recordings"
+      cFR: "Notifications et enregistrements des bascules"
+      cEN: "Notifications and tilt recordings"
     enableLedBlinking:
-      FR: "Clignoter la lumière"
-      EN: "Blink the light"
-      cFR: "Clignoter la lumière"
-      cEN: "Blink the light"
+      FR: "Clignoter la lumière lors d'une notification"
+      EN: "Blink lights with notifications"
+      cFR: "Clignoter la lumière lors d'une notification"
+      cEN: "Blink lights with notifications"
     enableVibration:
-      FR: "Vibrer"
-      EN: "Vibrate"
-      cFR: "Vibrer"
-      cEN: "Vibrate"
+      FR: "Vibrer lors d'une notification"
+      EN: "Vibrate with notifications"
+      cFR: "Vibrer lors d'une notification"
+      cEN: "Vibrate with notifications"
     snoozeTime:
       FR: "Temps de snooze"
       EN: "Snooze time"
@@ -964,6 +989,31 @@ settings:
       EN: "Memory usage"
       cFR: "Utilisation de la mémoire"
       cEN: "Memory usage"
+    control:
+      FR: "Contrôle du système"
+      EN: "System control"
+      cFR: "Contrôle du système"
+      cEN: "System control"
+      btnShutdown: 
+        FR: "Arrêter le système"
+        EN: "Shutdown system"
+        cFR: "Arrêter le système"
+        cEN: "Shutdown system"
+      btnReboot:
+        FR: "Redémarrage le système"
+        EN: "Reboot system"
+        cFR: "Redémarrage le système"
+        cEN: "Reboot system"
+      confirmationReboot:
+        FR: "Voulez-vous vraiment redémarrer le système?"
+        EN: "Do you want to reboot the system now?"
+        cFR: "Voulez-vous vraiment redémarrer le système?"
+        cEN: "Do you want to reboot the system now?"
+      confirmationShutdown:
+        FR: "Voulez-vous vraiment arrêter le système?"
+        EN: "Do you want to shutdown the system now?"
+        cFR: "Voulez-vous vraiment arrêter le système?"
+        cEN: "Do you want to shutdown the system now?"
     update:
       FR: "Mise à jour du système"
       EN: "System update"
@@ -1103,3 +1153,14 @@ saveMessage:
     EN: "An error occured while saving."
     cFR: "Erreur lors de la sauvegarde."
     cEN: "An error occured while saving."
+  warnUnavailable:
+    summary:
+      FR: "Les données des capteurs semblent indisponibles"
+      EN: "Sensor data seems unavailable"
+      cFR: "Les données des capteurs semblent indisponibles"
+      cEN: "Sensor data seems unavailable"
+    detail:
+      FR: "Veuillez entrer l'angle manuellement"
+      EN: "Please input angle manually"
+      cFR: "Veuillez entrer l'angle manuellement"
+      cEN: "Please input angle manually"

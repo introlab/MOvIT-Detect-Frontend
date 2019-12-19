@@ -9,6 +9,7 @@ import '../styles/components/moduleStatus.css';
 
 export const DATA_AGREEMENT = 'DATA_AGREEMENT';
 export const SNOOZE_TIME = 'SNOOZE_TIME';
+export const ENABLED = 'ENABLED';
 export const IS_LED_BLINKING_ENABLED = 'IS_LED_BLINKING_ENABLED';
 export const IS_VIBRATION_ENABLED = 'IS_VIBRATION_ENABLED';
 export const TOTAL_MEMORY = 'TOTAL_MEMORY';
@@ -19,6 +20,13 @@ export const LAST_UPDATE_DATE = 'LAST_UPDATE_DATE';
 export const WIFI_CONNECTION = 'WIFI_CONNECTION';
 
 // -------------- NOTIFICATION SETTINGS --------------
+function changeAreNotificationsEnabled(isEnabled) {
+  return {
+    type: ENABLED,
+    enabled: isEnabled,
+  };
+}
+
 function changeIsLedBlinkingEnabled(isEnabled) {
   return {
     type: IS_LED_BLINKING_ENABLED,
@@ -87,6 +95,7 @@ function changeIsWifiConnected(isConnected) {
 }
 
 export const SettingsActions = {
+  changeAreNotificationsEnabled,
   changeIsLedBlinkingEnabled,
   changeIsVibrationEnabled,
   changeSnoozeTime,
@@ -101,6 +110,9 @@ export const SettingsActions = {
 const ACTION_HANDLERS = {
   [DATA_AGREEMENT]: (state, action) => (
     { ...state, dataAgreement: action.dataAgreement }
+  ),
+  [ENABLED]: (state, action) => (
+    { ...state, enabled: action.enabled }
   ),
   [IS_LED_BLINKING_ENABLED]: (state, action) => (
     { ...state, isLedBlinkingEnabled: action.isLedBlinkingEnabled }
@@ -130,6 +142,7 @@ const ACTION_HANDLERS = {
 
 export const initParameter = {
   dataAgreement: true,
+  enabled: true,
   isLedBlinkingEnabled: true,
   isVibrationEnabled: true,
   isUpdateAvailable: false,

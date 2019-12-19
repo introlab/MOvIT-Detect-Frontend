@@ -11,6 +11,7 @@ import { T } from '../../utilities/translator';
 
 export default class logoButton extends Component {
   static propTypes = {
+    id: PropTypes.string,
     btnText: PropTypes.string.isRequired,
     iconClass: PropTypes.string.isRequired,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -37,7 +38,7 @@ export default class logoButton extends Component {
         <div className="col-8 col-lg-6 d-inline-block pr-1">
           <Button
             onClick={this.props.onClick}
-            id="btn"
+            id={this.props.id === undefined ? "btn" : this.props.id}
             type="button"
             className="p-button-secondary mb-2 mb-sm-0"
             label={this.props.btnText}

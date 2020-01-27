@@ -26,12 +26,12 @@ class DailySuccessTilt extends Component {
       hasErrors: false,
     };
 
-    console.log("DailySuccessTilt trying to get date:", this.state.date);
+    console.log('DailySuccessTilt trying to get date:', this.state.date);
     this.getData(this.state.date);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("DailySuccessTilt componentWillReceiveProps");
+    console.log('DailySuccessTilt componentWillReceiveProps');
     if (nextProps.date !== this.state.date) {
       this.setState({ date: nextProps.date });
       this.getData(nextProps.date);

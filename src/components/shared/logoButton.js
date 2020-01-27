@@ -38,7 +38,7 @@ export default class logoButton extends Component {
         <div className="col-8 col-lg-6 d-inline-block pr-1">
           <Button
             onClick={this.props.onClick}
-            id={this.props.id === undefined ? "btn" : this.props.id}
+            id={this.props.id === undefined ? 'btn' : this.props.id}
             type="button"
             className="p-button-secondary mb-2 mb-sm-0"
             label={this.props.btnText}

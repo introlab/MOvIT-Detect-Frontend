@@ -37,7 +37,7 @@ export default class LogoText extends Component {
             type="text"
             placeholder={this.props.placeHolder}
             className="form-control"
-            id={this.props.id === undefined ? "logoText" : this.props.id}
+            id={this.props.id === undefined ? 'logoText' : this.props.id}
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value || ''}
           />

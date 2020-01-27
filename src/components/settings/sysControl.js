@@ -18,22 +18,22 @@ export default class SysControl extends Component {
   render() {
     return (
       <div>
-          <div className="row">
-            <Button
-                onClick={this.props.onClickShutdown()}
-                id="btnShutdown"
-                type="button"
-                className="p-button-secondary mb-2 mb-sm-0"
-                label={this.props.btnTextShutdown}
-            />
-            <Button
-                onClick={this.props.onClickReboot()}
-                id="btnReboot"
-                type="button"
-                className="p-button-secondary mb-2 mb-sm-0"
-                label={this.props.btnTextReboot}
-            />
-          </div>
+        <div className="row">
+          <Button
+            onClick={this.props.onClickShutdown()}
+            id="btnShutdown"
+            type="button"
+            className="p-button-secondary mb-2 mb-sm-0"
+            label={this.props.btnTextShutdown}
+          />
+          <Button
+            onClick={this.props.onClickReboot()}
+            id="btnReboot"
+            type="button"
+            className="p-button-secondary mb-2 mb-sm-0"
+            label={this.props.btnTextReboot}
+          />
+        </div>
       </div>
     );
   }

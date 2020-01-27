@@ -24,7 +24,7 @@ import { SEC_IN_MIN } from '../utilities/constants';
 import { SettingsActions } from '../redux/settingsReducer';
 import { T } from '../utilities/translator';
 import { URL } from '../redux/applicationReducer';
-//import UpdatesManager from '../components/settings/updatesManager';
+// import UpdatesManager from '../components/settings/updatesManager';
 import Wifi from '../components/settings/wifi';
 import { get } from '../utilities/secureHTTP';
 
@@ -45,7 +45,7 @@ class Settings extends Component {
     changeTotalMemory: PropTypes.func.isRequired,
     changeUsedMemory: PropTypes.func.isRequired,
     changeSnoozeTime: PropTypes.func.isRequired,
-    changeAreNotificationsEnabled : PropTypes.func.isRequired,
+    changeAreNotificationsEnabled: PropTypes.func.isRequired,
     changeIsLedBlinkingEnabled: PropTypes.func.isRequired,
     changeIsVibrationEnabled: PropTypes.func.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
@@ -72,7 +72,7 @@ class Settings extends Component {
 
   async load() {
     const promises = Promise.all([
-      //this.loadUpdateInfo(),
+      // this.loadUpdateInfo(),
       this.loadModulesStatus(),
       this.loadMemoryUsage(),
       this.loadNotificationSettings(),
@@ -177,8 +177,8 @@ class Settings extends Component {
     try {
       const response = await get(`${URL}shutdown`);
     } catch (error) {
-      console.log("Detected error when trying to shutdown")
-    };
+      console.log('Detected error when trying to shutdown');
+    }
   }
 
   async reboot() {
@@ -186,8 +186,8 @@ class Settings extends Component {
     try {
       const response = await get(`${URL}reboot`);
     } catch (error) {
-      console.log("Detected error when trying to reboot")
-    };
+      console.log('Detected error when trying to reboot');
+    }
   }
 
   render() {
@@ -206,7 +206,7 @@ class Settings extends Component {
               }
               {{
                 this.props.profile !== 'user' && <DbActions />
-              }*/}
+              } */}
               {
                 this.props.profile !== 'user' && (
                   <CustomCard
@@ -283,14 +283,14 @@ class Settings extends Component {
                         onClickReboot={this.props.confirmReboot.bind(this)}
                         btnTextShutdown={T.translate(`settings.system.control.btnShutdown.${this.props.language}`)}
                         btnTextReboot={T.translate(`settings.system.control.btnReboot.${this.props.language}`)}
-                      />*/}
-                      {/*<br />
+                      /> */}
+                      {/* <br />
                       <h6>{T.translate(`settings.system.update.${this.props.language}`)}</h6>
                       <UpdatesManager                                            /Completely broken and useless card
                         isUpdateAvailable={this.props.isUpdateAvailable}
                         changeIsUpdateAvailable={this.props.changeIsUpdateAvailable}
                         hasErrors={this.state.hasUpdateInfoErrors}
-                      />*/}
+                      /> */}
                       <br />
                     </div>
                   )}
@@ -312,7 +312,7 @@ class Settings extends Component {
           show={this.state.showShutdownConfirmation}
           onConfirm={this.shutdown.bind(this)}
           onClose={this.cancelShutdown.bind(this)}
-        />*/}
+        /> */}
       </div>
     );
   }

@@ -55,9 +55,9 @@ class Configuration extends Component {
     const self = this;
     this.state.socket.onmessage = function (evt) {
       const receivedObj = JSON.parse(evt.data);
-      let seatAngle = receivedObj.Angle.seatAngle;
-      self.setState({seatAngle})
-      //console.log(`on Message print, seatAngle : ${self.state.seatAngle} `);
+      const seatAngle = receivedObj.Angle.seatAngle;
+      self.setState({ seatAngle });
+      // console.log(`on Message print, seatAngle : ${self.state.seatAngle} `);
     };
   }
 
@@ -126,12 +126,12 @@ class Configuration extends Component {
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
-    //console.log(`Current seatAngle : ${this.state.seatAngle}`);
+    // console.log(`Current seatAngle : ${this.state.seatAngle}`);
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
-    //console.log(`maxAngle returned by the configurationReducer : ${this.props.maxAngle}`);
-    //console.log(`minAngle returned by the configurationReducer : ${this.props.minAngle}`);
+    // console.log(`maxAngle returned by the configurationReducer : ${this.props.maxAngle}`);
+    // console.log(`minAngle returned by the configurationReducer : ${this.props.minAngle}`);
 
     return (
       <div>
@@ -195,7 +195,9 @@ class Configuration extends Component {
                   onClick={() => {
                     this.state.seatAngle === 0
                       ? this.growl.show({
-                        severity: 'warn', life: 6000, summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
+                        severity: 'warn',
+                        life: 6000,
+                        summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
                         detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`),
                       })
                       : this.props.changeMaxAngle(this.state.seatAngle);
@@ -211,8 +213,10 @@ class Configuration extends Component {
                   onClick={() => {
                     this.state.seatAngle === 0
                       ? this.growl.show({
-                        severity: 'warn', life: 6000, summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
-                        detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`) ,
+                        severity: 'warn',
+                        life: 6000,
+                        summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
+                        detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`),
                       })
                       : this.props.changeMinAngle(this.state.seatAngle);
                   }}

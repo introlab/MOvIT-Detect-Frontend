@@ -47,7 +47,7 @@ class Configuration extends Component {
       isLoaded: false,
       hasErrors: false,
       seatAngle: 0, // websocket: init seatAngle
-      socket: new WebSocket(`ws://${process.env.HOST}:${process.env.BPORT}/ws/chairState`), // websocket for reading current chair angle
+      socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/chairState`), // websocket for reading current chair angle
     };
     this.load();
     this.save = this.save.bind(this);

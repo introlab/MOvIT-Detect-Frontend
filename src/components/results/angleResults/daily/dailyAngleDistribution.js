@@ -32,6 +32,11 @@ class DailyAngleDistribution extends Component {
       isLoaded: false,
       hasErrors: false,
     };
+
+    
+
+    console.log("DailyAngleDistribution ctor with date", this.state.date);
+
     this.getDayData(this.state.date);
   }
 
@@ -45,6 +50,7 @@ class DailyAngleDistribution extends Component {
   async getDayData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
+      console.log("Requesting oneDay: ", `http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`)
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`);
       this.state.dayData = response.data.map(v => v / 60000);
       this.setState({ isLoaded: true });

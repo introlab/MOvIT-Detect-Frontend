@@ -8,8 +8,8 @@
     "build": "HOST=192.168.10.1 PORT=80 BHOST=192.168.10.1 BPORT=1880 NODE_ENV=production webpack -p --config webpack.config.production.js ",
     "start": "HOST=0.0.0.0 PORT=80 node server.production.js ",
 
-    "dev": "HOST=192.168.10.1 PORT=80 BHOST=192.168.10.1 BPORT=1880 NODE_ENV=development node server.js",
-    "devlocal": "HOST=0.0.0.0 PORT=3000 BHOST=0.0.0.0 BPORT=1880 NODE_ENV=development node server.js",
+    "dev": "HOST=192.168.10.1 PORT=80 BHOST=10.0.1.5 BPORT=1880 NODE_ENV=development node server.js",
+    "devlocal": "HOST=0.0.0.0 PORT=3000 BHOST=10.0.1.5 BPORT=1880 NODE_ENV=development node server.js",
 
     "buildlocal": "HOST=0.0.0.0 PORT=3000 BHOST=0.0.0.0 BPORT=1880 NODE_ENV=production webpack -p --config webpack.config.production.js ",
     "startlocal": "HOST=0.0.0.0 PORT=3000 node server.production.js ",

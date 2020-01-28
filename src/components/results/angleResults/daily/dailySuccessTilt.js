@@ -27,9 +27,18 @@ class DailySuccessTilt extends Component {
     };
 
     console.log('DailySuccessTilt trying to get date:', this.state.date);
-    this.getData(this.state.date);
+    //this.getData(this.state.date);
   }
 
+  componentDidMount()
+  {
+    //This is called only when component is instanciated
+    console.log("DailySuccessTilt - componentDidMount")
+
+    //This should load data async 
+    this.getData(this.state.date);
+  }
+/*
   componentWillReceiveProps(nextProps) {
     console.log('DailySuccessTilt componentWillReceiveProps');
     if (nextProps.date !== this.state.date) {
@@ -37,7 +46,7 @@ class DailySuccessTilt extends Component {
       this.getData(nextProps.date);
     }
   }
-
+*/
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {

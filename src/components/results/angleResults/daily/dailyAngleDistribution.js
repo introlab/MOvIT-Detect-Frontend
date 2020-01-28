@@ -33,17 +33,43 @@ class DailyAngleDistribution extends Component {
       hasErrors: false,
     };
 
-
     console.log('DailyAngleDistribution ctor with date', this.state.date);
-
-    this.getDayData(this.state.date);
+    
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.state.date = nextProps.date;
-      this.getDayData(nextProps.date);
+  componentDidUpdate(prevProps, prevState) {
+    console.log("DailyAngleDistribution - ComponentDidUpdate", prevProps, prevState, this.state);
+    
+    if (prevState.date !== this.state.date)
+    {
+      //This should load data async
+      this.getDayData(this.state.date); 
     }
+    
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    
+    //WARNING - this does not exist in this static function
+    console.log("DailyAngleDistribution - getDerivedStateFromProps", nextProps, prevState);
+
+    if (nextProps.date !== prevState.date)
+    {
+        console.log("Date updated!")
+
+        //Return new state
+        return {date: nextProps.date, isLoaded: false, hasErrors:false};
+    }
+    else return null;
+  }
+
+  componentDidMount()
+  {
+    //This is called only when component is instanciated
+    console.log("DailyAngleDistribution - componentDidMount")
+
+    //This should load data async
+    this.getDayData(this.state.date);
   }
 
   async getDayData(date) {
@@ -105,6 +131,9 @@ class DailyAngleDistribution extends Component {
   }
 
   render() {
+
+    console.log("DailyAngleDistribution - render()");
+
     const minOptions = {
       tooltips: {
         callbacks: {

@@ -35,11 +35,6 @@ class AngleResults extends Component {
     };
 
     console.log('initialized AngleResults with date:', this.state.date);
-
-    // this.changePeriod = this.changePeriod.bind(this);
-    // this.changeDate = this.changeDate.bind(this);
-    // this.changeMonth = this.changeMonth.bind(this);
-    // this.changeYear = this.changeYear.bind(this);
   }
 
   changeMonth(newMonth) {
@@ -52,13 +47,12 @@ class AngleResults extends Component {
     this.setState({ date: newDate });
   }
 
-  changeYear(newDate) {
-    console.log('AngleResults.changeYear', newDate);
-    console.log('Done');
-    this.setState({ year: newDate });
-    const now = new Date(0);
+  changeYear(newYear) {
+    console.log('AngleResults.changeYear', newYear);
+    this.setState({ year: newYear });
+    //const now = new Date(0);
     // console.log(now);
-    this.setState({ date: now });
+    //this.setState({ date: now });
   }
 
   changePeriod(newPeriod) {
@@ -68,6 +62,8 @@ class AngleResults extends Component {
   }
 
   render() {
+
+    console.log("AngleResults - render()");
     return (
       <div className="mt-5">
         <ResultsCalendar
@@ -78,10 +74,10 @@ class AngleResults extends Component {
         />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
-
-        {this.state.period === 'day'
-          // ? <DailyAngleResults date={this.state.date} />
-          // : <MonthlyAngleResults month={this.state.month} />
+        {
+          this.state.period === 'day'
+            ? <DailyAngleResults date={this.state.date} />
+            : <MonthlyAngleResults month={this.state.month} />
         }
 
       </div>

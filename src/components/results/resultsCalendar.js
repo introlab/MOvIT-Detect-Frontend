@@ -32,39 +32,45 @@ class ResultsCalendar extends Component {
       period: 'day',
     };
     this.setDefaultDate();
-    this.onPeriodChange = this.onPeriodChange.bind(this);
-    this.onDateChange = this.onDateChange.bind(this);
-    this.onMonthChange = this.onMonthChange.bind(this);
-    this.onYearChange = this.onYearChange.bind(this);
   }
 
   onPeriodChange(e) {
-    this.props.onPeriodChange(e.value);
     this.setState({ period: e.value });
+    console.log("onPeriodChange :", e.value);
+    //Do not use this.state, updated async
+    this.props.onPeriodChange(e.value);
   }
 
   onDateChange(e) {
+    
     const now = new Date(e.value);
     now.setFullYear(parseInt(this.state.year));
     this.setState({ date: now });
+    console.log("onDateChange :", now);
+    //Do not use this.state, updated async
     this.props.onDateChange(now);
   }
 
   onMonthChange(e) {
-    this.props.onMonthChange(e.value);
     this.setState({ month: e.value });
+    const copiedDate = new Date(this.state.date.getTime());
+    copiedDate.setMonth(e.value)
+    this.setState({date: copiedDate});
+    console.log("onMonthChange:", e.value);
+    //Do not use this.state, updated async
+    this.props.onMonthChange(e.value);
+    this.props.onDateChange(copiedDate);
   }
 
   onYearChange(e) {
-    this.props.onYearChange(e.value);
     this.setState({ year: e.value });
-
     const copiedDate = new Date(this.state.date.getTime());
-    console.log(copiedDate);
     copiedDate.setFullYear(e.value);
-    console.log(copiedDate);
-
-    this.state.date = copiedDate;
+    this.setState({date: copiedDate});
+    console.log("onYearChange :",e.value);
+     //Do not use this.state, updated async
+    this.props.onYearChange(e.value);
+    this.props.onDateChange(copiedDate);
   }
 
   async setDefaultDate() {
@@ -73,11 +79,15 @@ class ResultsCalendar extends Component {
     date.setUTCHours(0, date.getTimezoneOffset(), 0, 0);
     const month = date.getMonth();
     const year = date.getFullYear();
-    this.setState({ date, month });
-    this.setState({ year: year.toString() });
-    this.props.onDateChange(date);
-    this.props.onMonthChange(month);
-    this.props.onYearChange(year);
+    this.setState({date, date });
+    this.setState({month: month});
+    this.setState({year: year.toString() });
+    
+    console.log("setDefaultDate state:", this.state)
+    this.props.onDateChange(this.state.date)
+    //this.props.onDateChange(date);
+    //this.props.onMonthChange(month);
+    //this.props.onYearChange(year);
   }
 
   render() {
@@ -192,30 +202,30 @@ class ResultsCalendar extends Component {
           <Dropdown
             value={this.state.period}
             options={periods}
-            onChange={e => this.onPeriodChange(e)}
+            onChange={this.onPeriodChange.bind(this)}
             style={{ width: '150px', marginRight: '15px' }}
             placeholder="Select a period"
           />
           {
             this.state.period === 'day'
-              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={e => this.onDateChange(e)} dateFormat="yy-mm-dd" />
-              : (
+              ? <Calendar locale={locale[this.props.language]} value={this.state.date} onChange={this.onDateChange.bind(this)} dateFormat="yy-mm-dd" />
+              : <div>
                 <Dropdown
                   value={this.state.month}
                   options={months}
-                  onChange={e => this.onMonthChange(e)}
+                  onChange={this.onMonthChange.bind(this)}
                   style={{ width: '150px', marginLeft: '15px' }}
                   placeholder="Select a month"
                 />
-              )
+                <Dropdown
+                value={this.state.year}
+                options={year}
+                onChange={this.onYearChange.bind(this)}
+                style={{ width: '150px', marginLeft: '15px' }}
+                placeholder="Select a year"
+                />
+              </div>
           }
-          <Dropdown
-            value={this.state.year}
-            options={year}
-            onChange={e => this.onYearChange(e)}
-            style={{ width: '150px', marginLeft: '15px' }}
-            placeholder="Select a year"
-          />
         </div>
       </div>
     );

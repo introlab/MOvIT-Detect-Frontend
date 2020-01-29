@@ -38,15 +38,29 @@ class DailySuccessTilt extends Component {
     this.getData(this.state.date);
   }
 
-  /*
-  componentWillReceiveProps(nextProps) {
-    console.log('DailySuccessTilt componentWillReceiveProps');
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getData(nextProps.date);
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('DailySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.date !== this.state.date) {
+      // This should load data async
+      this.getData(this.state.date);
     }
   }
-*/
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    console.log('DailySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.date !== prevState.date) {
+      console.log('Date updated!');
+
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
+    }
+    return null;
+  }
+  
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {

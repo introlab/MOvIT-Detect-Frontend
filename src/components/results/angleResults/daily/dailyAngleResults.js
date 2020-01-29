@@ -121,7 +121,7 @@ class DailyAngleResults extends Component {
                 && (
                   <div>
                     <DailyAngleDistribution date={this.state.date} />
-                    {/* <DailySuccessTilt date={this.state.date} /> */}
+                    <DailySuccessTilt date={this.state.date} /> 
                     {/*
                     <div id="reduceSlidingMoving">
                       <GoalProgress

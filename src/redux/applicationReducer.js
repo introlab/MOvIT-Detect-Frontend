@@ -10,7 +10,7 @@
 
 let url;
 const isDemo = false;
-const offset = 0;//Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
+const offset = 0;// Math.ceil(new Date().getTimezoneOffset() / 60) * -1;
 
 const bport = process.env.BPORT || 1880; // Backend port
 const bhost = process.env.BHOST || '192.168.10.1'; // Host address for the backend

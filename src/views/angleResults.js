@@ -50,9 +50,9 @@ class AngleResults extends Component {
   changeYear(newYear) {
     console.log('AngleResults.changeYear', newYear);
     this.setState({ year: newYear });
-    //const now = new Date(0);
+    // const now = new Date(0);
     // console.log(now);
-    //this.setState({ date: now });
+    // this.setState({ date: now });
   }
 
   changePeriod(newPeriod) {
@@ -62,8 +62,7 @@ class AngleResults extends Component {
   }
 
   render() {
-
-    console.log("AngleResults - render()");
+    console.log('AngleResults - render()');
     return (
       <div className="mt-5">
         <ResultsCalendar

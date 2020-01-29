@@ -34,41 +34,35 @@ class DailyAngleDistribution extends Component {
     };
 
     console.log('DailyAngleDistribution ctor with date', this.state.date);
-    
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log("DailyAngleDistribution - ComponentDidUpdate", prevProps, prevState, this.state);
-    
-    if (prevState.date !== this.state.date)
-    {
-      //This should load data async
-      this.getDayData(this.state.date); 
+    console.log('DailyAngleDistribution - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.date !== this.state.date) {
+      // This should load data async
+      this.getDayData(this.state.date);
     }
-    
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    
-    //WARNING - this does not exist in this static function
-    console.log("DailyAngleDistribution - getDerivedStateFromProps", nextProps, prevState);
+    // WARNING - this does not exist in this static function
+    console.log('DailyAngleDistribution - getDerivedStateFromProps', nextProps, prevState);
 
-    if (nextProps.date !== prevState.date)
-    {
-        console.log("Date updated!")
+    if (nextProps.date !== prevState.date) {
+      console.log('Date updated!');
 
-        //Return new state
-        return {date: nextProps.date, isLoaded: false, hasErrors:false};
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
     }
-    else return null;
+    return null;
   }
 
-  componentDidMount()
-  {
-    //This is called only when component is instanciated
-    console.log("DailyAngleDistribution - componentDidMount")
+  componentDidMount() {
+    // This is called only when component is instanciated
+    console.log('DailyAngleDistribution - componentDidMount');
 
-    //This should load data async
+    // This should load data async
     this.getDayData(this.state.date);
   }
 
@@ -131,8 +125,7 @@ class DailyAngleDistribution extends Component {
   }
 
   render() {
-
-    console.log("DailyAngleDistribution - render()");
+    console.log('DailyAngleDistribution - render()');
 
     const minOptions = {
       tooltips: {

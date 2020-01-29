@@ -54,7 +54,7 @@ class MonthlySittingTime extends Component {
       console.log('MonthlySittingTime - Month/Year updated!');
 
       // Return new state
-      return { date: nextProps.date, isLoaded: false, hasErrors: false };
+      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
     }
     return null;
   }
@@ -136,7 +136,7 @@ class MonthlySittingTime extends Component {
     return (
       <div className="container" id="monthlySitting">
         <CustomCard
-          header={<h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)} {this.state.month + 1}/{this.state.year}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

@@ -61,7 +61,7 @@ class PressureCenter extends Component {
 
     if (prevState.date !== this.state.date) {
       // This should load data async
-      this.getDayData(this.state.date);
+      this.initialize(this.state.date);
     }
   }
 

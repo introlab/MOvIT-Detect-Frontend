@@ -32,38 +32,46 @@ class PressureResults extends Component {
       month: props.month,
       year: props.year,
     };
-
-    this.changePeriod = this.changePeriod.bind(this);
-    this.changeDate = this.changeDate.bind(this);
-    this.changeMonth = this.changeMonth.bind(this);
-    this.changeYear = this.changeYear.bind(this);
   }
 
   changeMonth(newMonth) {
+    console.log("PressureResults- changeMonth: ", newMonth);
     this.setState({ month: newMonth });
   }
 
   changeDate(newDate) {
+    console.log("PressureResults- changeDate: ", newDate, newDate.getMonth(), newDate.getFullYear());
+
+    //We make sure we update all state
     this.setState({ date: newDate });
+    this.setState({ month: newDate.getMonth()})
+    this.setState({ year: newDate.getFullYear()})
   }
 
   changePeriod(newPeriod) {
+    console.log("PressureResults- changePeriod: ", newPeriod);
     this.setState({ period: newPeriod });
   }
 
-  changeYear(newPeriod) {
-    this.setState({ year: newPeriod });
+  changeYear(newYear) {
+    console.log("PressureResults- changeYear: ", newYear);
+    this.setState({ year: newYear });
   }
 
   render() {
     return (
       <div>
-        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} onYearChange={this.changeYear} />
+        <ResultsCalendar 
+          onPeriodChange={this.changePeriod.bind(this)} 
+          onDateChange={this.changeDate.bind(this)} 
+          onMonthChange={this.changeMonth.bind(this)} 
+          onYearChange={this.changeYear.bind(this)} />
+
         <h2 className="center">{T.translate(`results.categories.pressure.${this.props.language}`)}</h2>
         <hr />
         {this.state.period === 'day'
           ? <DailyPressureResults date={this.state.date} />
-          : <MonthlyPressureResults month={this.state.month} />
+          : <MonthlyPressureResults month={this.state.month} year={this.state.year}/>
         }
       </div>
     );

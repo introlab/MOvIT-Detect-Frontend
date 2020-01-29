@@ -35,10 +35,26 @@ class DailyPressureResults extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('DailyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.date !== this.state.date) {
+
     }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    console.log('DailyPressureResults - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.date !== prevState.date) {
+      console.log('DailyPressureResults - Date updated!');
+
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
+    }
+    return null;
   }
 
   render() {

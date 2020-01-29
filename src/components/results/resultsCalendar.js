@@ -83,10 +83,12 @@ class ResultsCalendar extends Component {
     this.setState({ year: year.toString() });
 
     console.log('setDefaultDate state:', this.state);
+
+    //Make sure we update all fields
     this.props.onDateChange(this.state.date);
-    // this.props.onDateChange(date);
-    // this.props.onMonthChange(month);
-    // this.props.onYearChange(year);
+    this.props.onMonthChange(month);
+    this.props.onYearChange(year);
+
   }
 
   render() {

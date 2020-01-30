@@ -20,8 +20,8 @@ class PressureResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    month: PropTypes.string,
-    year: PropTypes.string,
+    month: PropTypes.number,
+    year: PropTypes.number,
   }
 
   constructor(props) {

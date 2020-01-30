@@ -36,7 +36,7 @@ class ResultsCalendar extends Component {
 
   onPeriodChange(e) {
     this.setState({ period: e.value });
-    console.log('onPeriodChange :', e.value);
+    //console.log('onPeriodChange :', e.value);
     // Do not use this.state, updated async
     this.props.onPeriodChange(e.value);
   }
@@ -45,7 +45,7 @@ class ResultsCalendar extends Component {
     const now = new Date(e.value);
     now.setFullYear(parseInt(this.state.year));
     this.setState({ date: now });
-    console.log('onDateChange :', now);
+    //console.log('onDateChange :', now);
     // Do not use this.state, updated async
     this.props.onDateChange(now);
   }
@@ -55,7 +55,7 @@ class ResultsCalendar extends Component {
     const copiedDate = new Date(this.state.date.getTime());
     copiedDate.setMonth(e.value);
     this.setState({ date: copiedDate });
-    console.log('onMonthChange:', e.value);
+    //console.log('onMonthChange:', e.value);
     // Do not use this.state, updated async
     this.props.onMonthChange(e.value);
     this.props.onDateChange(copiedDate);
@@ -66,7 +66,7 @@ class ResultsCalendar extends Component {
     const copiedDate = new Date(this.state.date.getTime());
     copiedDate.setFullYear(e.value);
     this.setState({ date: copiedDate });
-    console.log('onYearChange :', e.value);
+    //console.log('onYearChange :', e.value);
     // Do not use this.state, updated async
     this.props.onYearChange(e.value);
     this.props.onDateChange(copiedDate);
@@ -80,9 +80,9 @@ class ResultsCalendar extends Component {
     const year = date.getFullYear();
     this.setState({ date, date });
     this.setState({ month });
-    this.setState({ year: year.toString() });
+    this.setState({ year: year});
 
-    console.log('setDefaultDate state:', this.state);
+    console.log('ResultsCalendar - setDefaultDate state:', this.state.date);
 
     //Make sure we update all fields
     this.props.onDateChange(this.state.date);
@@ -104,23 +104,23 @@ class ResultsCalendar extends Component {
       { label: T.translate(`graphics.month.${this.props.language}`), value: 'month' },
     ];
 
-    const year = [{ label: '2019', value: '2019' },
-      { label: '2020', value: '2020' },
-      { label: '2021', value: '2021' },
-      { label: '2022', value: '2022' },
-      { label: '2023', value: '2023' },
-      { label: '2024', value: '2024' },
-      { label: '2025', value: '2025' },
-      { label: '2026', value: '2026' },
-      { label: '2027', value: '2027' },
-      { label: '2028', value: '2028' },
-      { label: '2029', value: '2029' },
-      { label: '2030', value: '2030' },
-      { label: '2031', value: '2031' },
-      { label: '2032', value: '2032' },
-      { label: '2033', value: '2033' },
-      { label: '2034', value: '2034' },
-      { label: '2035', value: '2035' }];
+    const year = [{ label: '2019', value: 2019 },
+      { label: '2020', value: 2020 },
+      { label: '2021', value: 2021 },
+      { label: '2022', value: 2022 },
+      { label: '2023', value: 2023 },
+      { label: '2024', value: 2024 },
+      { label: '2025', value: 2025 },
+      { label: '2026', value: 2026 },
+      { label: '2027', value: 2027 },
+      { label: '2028', value: 2028 },
+      { label: '2029', value: 2029 },
+      { label: '2030', value: 2030 },
+      { label: '2031', value: 2031 },
+      { label: '2032', value: 2032 },
+      { label: '2033', value: 2033 },
+      { label: '2034', value: 2034 },
+      { label: '2035', value: 2035 }];
 
 
     const months = (this.props.language === 'FR' || this.props.language === 'cFR') ? [

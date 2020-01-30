@@ -33,11 +33,11 @@ class DailyAngleDistribution extends Component {
       hasErrors: false,
     };
 
-    console.log('DailyAngleDistribution ctor with date', this.state.date);
+    //console.log('DailyAngleDistribution ctor with date', this.state.date);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('DailyAngleDistribution - ComponentDidUpdate', prevProps, prevState, this.state);
+    //console.log('DailyAngleDistribution - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.date !== this.state.date) {
       // This should load data async
@@ -47,10 +47,10 @@ class DailyAngleDistribution extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    console.log('DailyAngleDistribution - getDerivedStateFromProps', nextProps, prevState);
+    //console.log('DailyAngleDistribution - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.date !== prevState.date) {
-      console.log('Date updated!');
+      //console.log('Date updated!');
 
       // Return new state
       return { date: nextProps.date, isLoaded: false, hasErrors: false };
@@ -60,7 +60,7 @@ class DailyAngleDistribution extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('DailyAngleDistribution - componentDidMount');
+    //console.log('DailyAngleDistribution - componentDidMount');
 
     // This should load data async
     this.getDayData(this.state.date);
@@ -68,8 +68,8 @@ class DailyAngleDistribution extends Component {
 
   async getDayData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
+    console.log('DailyAngleDistribution - getDayData() date:', this.state.date);
     try {
-      console.log('Requesting oneDay: ', `http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`);
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`);
       this.state.dayData = response.data.map(v => v / 60000);
       this.setState({ isLoaded: true });
@@ -125,7 +125,7 @@ class DailyAngleDistribution extends Component {
   }
 
   render() {
-    console.log('DailyAngleDistribution - render()');
+    console.log('DailyAngleDistribution - render() date:', this.state.date);
 
     const minOptions = {
       tooltips: {
@@ -147,7 +147,7 @@ class DailyAngleDistribution extends Component {
     return (
       <div className="container graphic" id="dailyAngle">
         <CustomCard
-          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)} </h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

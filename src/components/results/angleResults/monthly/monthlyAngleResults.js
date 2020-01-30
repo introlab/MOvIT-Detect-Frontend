@@ -21,7 +21,8 @@ import { get } from '../../../../utilities/secureHTTP';
 class MonthlyAngleResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    month: PropTypes.string,
+    month: PropTypes.number,
+    year: PropTypes.number,
     reduceSlidingMoving: PropTypes.bool,
     reduceSlidingRest: PropTypes.bool,
   }
@@ -31,23 +32,47 @@ class MonthlyAngleResults extends Component {
     this.state = {
       width: window.innerWidth,
       month: props.month,
+      year: props.year,
       monthSildeRest: [],
       monthSildeMoving: [],
       monthSlideLabels: [],
+      hasErrors: false, 
+      isLoaded: false 
     };
-
-    this.getMonthlySlidingProgress(props.month);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.month !== this.state.month) {
-      this.setState({ month: nextProps.month });
-      this.getMonthlySlidingProgress(nextProps.month);
+  componentDidUpdate(prevProps, prevState) {
+    //console.log('MonthlyAngleResults - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
+      // This should load data async
+      this.getMonthlySlidingProgress(this.state.month, this.state.year);
     }
   }
 
-  async getMonthlySlidingProgress(month) {
-    const date = new Date(new Date().getFullYear(), month, 1);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    //console.log('MonthlyAngleResults - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
+      //console.log('MonthlyAngleResults - Month/Year updated!');
+
+      // Return new state
+      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    //console.log('MonthlyAngleResults - componentDidMount');
+
+    // This should load data async
+    this.getMonthlySlidingProgress(this.state.month, this.state.year);
+  }
+
+  async getMonthlySlidingProgress(month, year) {
+    const date = new Date(year, month, 1);
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/monthlySlideProgress?Day=${+date}&Offset=${OFFSET}`);
@@ -157,11 +182,11 @@ class MonthlyAngleResults extends Component {
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 offset-lg-2">
             <div>
-              {(this.state.month >= 0 && this.state.month <= 11)
+              {(this.state.month >= 0 && this.state.month <= 11 && this.state.year)
               && (
               <div>
-                <MonthlyAngleDistribution month={this.state.month} />
-                <MonthlySuccessTilt month={this.state.month} />
+                <MonthlyAngleDistribution month={this.state.month} year={this.state.year} />
+                <MonthlySuccessTilt month={this.state.month} year={this.state.year}/>
                 <div>
                   <div id="reduceSlidingMoving">
                     <GoalChart

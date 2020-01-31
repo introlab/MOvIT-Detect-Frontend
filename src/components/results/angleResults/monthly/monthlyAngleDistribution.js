@@ -21,7 +21,7 @@ class MonthlyAngleDistribution extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     month: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -41,9 +41,9 @@ class MonthlyAngleDistribution extends Component {
       hasErrors: false,
     };
   }
-  
+
   componentDidUpdate(prevProps, prevState) {
-    //console.log('MonthlyAngleDistribution - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('MonthlyAngleDistribution - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
       // This should load data async
@@ -53,20 +53,22 @@ class MonthlyAngleDistribution extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    //console.log('MonthlyAngleDistribution - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('MonthlyAngleDistribution - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      //console.log('MonthlyAngleDistribution - Month/Year updated!');
+      // console.log('MonthlyAngleDistribution - Month/Year updated!');
 
       // Return new state
-      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
     }
     return null;
   }
 
   componentDidMount() {
     // This is called only when component is instanciated
-    //console.log('MonthlyAngleDistribution - componentDidMount');
+    // console.log('MonthlyAngleDistribution - componentDidMount');
 
     // This should load data async
     this.getAngleMonthData(this.state.month, this.state.year);

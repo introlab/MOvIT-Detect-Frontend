@@ -36,30 +36,30 @@ class DailyAngleResults extends Component {
       date: props.date,
       daySildeRest: 0,
       daySildeMoving: 0,
-      hasErrors: false, 
-      isLoaded: false 
+      hasErrors: false,
+      isLoaded: false,
     };
   }
 
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    //console.log('DailyAngleResults - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('DailyAngleResults - getDerivedStateFromProps', nextProps, prevState);
     if (nextProps.date !== undefined) {
       // Updating state with date
-      //console.log('DailyAngleResults - getDerivedStateFromProps - updating date');
+      // console.log('DailyAngleResults - getDerivedStateFromProps - updating date');
       return { date: nextProps.date };
     }
     return null;
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //console.log('componentDidUpdate', prevProps, prevState);
+    // console.log('componentDidUpdate', prevProps, prevState);
     // this.getDailySlidingProgress();
     return null;
   }
 
   async getDailySlidingProgress(date) {
-    //console.log('DailyAngleResults - getDailySlidingProgress', date);
+    // console.log('DailyAngleResults - getDailySlidingProgress', date);
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/dailySlideProgress?Day=${+date}&Offset=${OFFSET}`);
@@ -79,7 +79,7 @@ class DailyAngleResults extends Component {
   }
 
   render() {
-    //console.log('DailyAngleResults - render()');
+    // console.log('DailyAngleResults - render()');
     return (
       <div>
         {!IS_TABLET
@@ -112,7 +112,7 @@ class DailyAngleResults extends Component {
                 && (
                   <div>
                     <DailyAngleDistribution date={this.state.date} />
-                    <DailySuccessTilt date={this.state.date} /> 
+                    <DailySuccessTilt date={this.state.date} />
                     {/*
                     <div id="reduceSlidingMoving">
                       <GoalProgress

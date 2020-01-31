@@ -36,7 +36,7 @@ class ResultsCalendar extends Component {
 
   onPeriodChange(e) {
     this.setState({ period: e.value });
-    //console.log('onPeriodChange :', e.value);
+    // console.log('onPeriodChange :', e.value);
     // Do not use this.state, updated async
     this.props.onPeriodChange(e.value);
   }
@@ -45,7 +45,7 @@ class ResultsCalendar extends Component {
     const now = new Date(e.value);
     now.setFullYear(parseInt(this.state.year));
     this.setState({ date: now });
-    //console.log('onDateChange :', now);
+    // console.log('onDateChange :', now);
     // Do not use this.state, updated async
     this.props.onDateChange(now);
   }
@@ -55,7 +55,7 @@ class ResultsCalendar extends Component {
     const copiedDate = new Date(this.state.date.getTime());
     copiedDate.setMonth(e.value);
     this.setState({ date: copiedDate });
-    //console.log('onMonthChange:', e.value);
+    // console.log('onMonthChange:', e.value);
     // Do not use this.state, updated async
     this.props.onMonthChange(e.value);
     this.props.onDateChange(copiedDate);
@@ -66,7 +66,7 @@ class ResultsCalendar extends Component {
     const copiedDate = new Date(this.state.date.getTime());
     copiedDate.setFullYear(e.value);
     this.setState({ date: copiedDate });
-    //console.log('onYearChange :', e.value);
+    // console.log('onYearChange :', e.value);
     // Do not use this.state, updated async
     this.props.onYearChange(e.value);
     this.props.onDateChange(copiedDate);
@@ -80,15 +80,14 @@ class ResultsCalendar extends Component {
     const year = date.getFullYear();
     this.setState({ date, date });
     this.setState({ month });
-    this.setState({ year: year});
+    this.setState({ year });
 
     console.log('ResultsCalendar - setDefaultDate state:', this.state.date);
 
-    //Make sure we update all fields
+    // Make sure we update all fields
     this.props.onDateChange(this.state.date);
     this.props.onMonthChange(month);
     this.props.onYearChange(year);
-
   }
 
   render() {

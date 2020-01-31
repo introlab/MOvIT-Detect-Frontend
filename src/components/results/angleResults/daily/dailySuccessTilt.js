@@ -29,7 +29,7 @@ class DailySuccessTilt extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    //console.log('DailySuccessTilt - componentDidMount');
+    // console.log('DailySuccessTilt - componentDidMount');
 
     // This should load data async
     this.getData(this.state.date);
@@ -37,7 +37,7 @@ class DailySuccessTilt extends Component {
 
 
   componentDidUpdate(prevProps, prevState) {
-    //console.log('DailySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('DailySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.date !== this.state.date) {
       // This should load data async
@@ -47,17 +47,17 @@ class DailySuccessTilt extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    //console.log('DailySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('DailySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.date !== prevState.date) {
-      //console.log('DailySuccessTilt - Date updated!');
+      // console.log('DailySuccessTilt - Date updated!');
 
       // Return new state
       return { date: nextProps.date, isLoaded: false, hasErrors: false };
     }
     return null;
   }
-  
+
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {

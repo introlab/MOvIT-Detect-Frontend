@@ -13,7 +13,7 @@ class MonthlySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     month: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -31,12 +31,11 @@ class MonthlySuccessTilt extends Component {
       isLoaded: false,
       hasErrors: false,
     };
-   
   }
 
-  
+
   componentDidUpdate(prevProps, prevState) {
-    //console.log('MonthlySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('MonthlySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
       // This should load data async
@@ -46,13 +45,15 @@ class MonthlySuccessTilt extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    //console.log('MonthlySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('MonthlySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      //console.log('MonthlySuccessTilt - Month/Year updated!');
+      // console.log('MonthlySuccessTilt - Month/Year updated!');
 
       // Return new state
-      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
     }
     return null;
   }

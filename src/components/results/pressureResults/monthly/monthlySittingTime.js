@@ -19,7 +19,7 @@ class MonthlySittingTime extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     month: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired
+    year: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -29,12 +29,12 @@ class MonthlySittingTime extends Component {
       sitMonthLabels: [],
       sitChartData: null,
       month: props.month,
-      year: props.year, 
+      year: props.year,
       isLoaded: false,
       hasErrors: false,
     };
 
-    //this.getSitMonthData(props.month, props.year);
+    // this.getSitMonthData(props.month, props.year);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -54,7 +54,9 @@ class MonthlySittingTime extends Component {
       console.log('MonthlySittingTime - Month/Year updated!');
 
       // Return new state
-      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
     }
     return null;
   }
@@ -64,12 +66,12 @@ class MonthlySittingTime extends Component {
     console.log('MonthlySittingTime - componentDidMount');
 
     // This should load data async
-    this.getSitMonthData(this.state.month ,this.state.year);
+    this.getSitMonthData(this.state.month, this.state.year);
   }
 
   async getSitMonthData(month, year) {
     const date = new Date(year, month, 1);
-    console.log("MonthlySittingTime - getSitMonthData with date:",date);
+    console.log('MonthlySittingTime - getSitMonthData with date:', date);
     this.setState({ isLoaded: false });
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/sittingTime?Day=${+date}&Offset=${OFFSET}`);

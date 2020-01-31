@@ -38,17 +38,17 @@ class AngleResults extends Component {
   }
 
   changeMonth(newMonth) {
-    //console.log('AngleResults.changeMonth', newMonth);
+    // console.log('AngleResults.changeMonth', newMonth);
     this.setState({ month: newMonth });
   }
 
   changeDate(newDate) {
-    //console.log('AngleResults.changeDate', newDate);
+    // console.log('AngleResults.changeDate', newDate);
     this.setState({ date: newDate });
   }
 
   changeYear(newYear) {
-    //console.log('AngleResults.changeYear', newYear);
+    // console.log('AngleResults.changeYear', newYear);
     this.setState({ year: newYear });
     // const now = new Date(0);
     // console.log(now);
@@ -62,7 +62,7 @@ class AngleResults extends Component {
   }
 
   render() {
-    //console.log('AngleResults - render()');
+    // console.log('AngleResults - render()');
     return (
       <div className="mt-5">
         <ResultsCalendar
@@ -76,7 +76,7 @@ class AngleResults extends Component {
         {
           this.state.period === 'day'
             ? <DailyAngleResults date={this.state.date} />
-            : <MonthlyAngleResults month={this.state.month} year={this.state.year}/>
+            : <MonthlyAngleResults month={this.state.month} year={this.state.year} />
         }
 
       </div>

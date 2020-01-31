@@ -36,13 +36,13 @@ class MonthlyAngleResults extends Component {
       monthSildeRest: [],
       monthSildeMoving: [],
       monthSlideLabels: [],
-      hasErrors: false, 
-      isLoaded: false 
+      hasErrors: false,
+      isLoaded: false,
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //console.log('MonthlyAngleResults - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('MonthlyAngleResults - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
       // This should load data async
@@ -52,20 +52,22 @@ class MonthlyAngleResults extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    //console.log('MonthlyAngleResults - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('MonthlyAngleResults - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      //console.log('MonthlyAngleResults - Month/Year updated!');
+      // console.log('MonthlyAngleResults - Month/Year updated!');
 
       // Return new state
-      return { month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false };
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
     }
     return null;
   }
 
   componentDidMount() {
     // This is called only when component is instanciated
-    //console.log('MonthlyAngleResults - componentDidMount');
+    // console.log('MonthlyAngleResults - componentDidMount');
 
     // This should load data async
     this.getMonthlySlidingProgress(this.state.month, this.state.year);
@@ -186,7 +188,7 @@ class MonthlyAngleResults extends Component {
               && (
               <div>
                 <MonthlyAngleDistribution month={this.state.month} year={this.state.year} />
-                <MonthlySuccessTilt month={this.state.month} year={this.state.year}/>
+                <MonthlySuccessTilt month={this.state.month} year={this.state.year} />
                 <div>
                   <div id="reduceSlidingMoving">
                     <GoalChart

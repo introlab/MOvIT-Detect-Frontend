@@ -50,7 +50,9 @@ class MonthlyPressureResults extends Component {
       console.log('MonthlyPressureResults - Month/Year updated!');
 
       // Return new state
-      return { month: nextProps.month, year: nextProps.year,  isLoaded: false, hasErrors: false };
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
     }
     return null;
   }
@@ -120,7 +122,7 @@ class MonthlyPressureResults extends Component {
           <div className="col-lg-8 graphic" style={{ margin: 'auto' }}>
             <div>
               {(this.state.month >= 0 && this.state.month <= 11 && this.state.year)
-                && (<MonthlySittingTime month={this.state.month} year={this.state.year}/>)
+                && (<MonthlySittingTime month={this.state.month} year={this.state.year} />)
               }
               {/*
               <div id="reduceWeight">

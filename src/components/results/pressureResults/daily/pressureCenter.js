@@ -52,7 +52,7 @@ class PressureCenter extends Component {
       isLoaded: false,
       hasErrors: false,
     };
-    //Component will update when mounted
+    // Component will update when mounted
   }
 
 

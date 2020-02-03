@@ -59,7 +59,6 @@ class Settings extends Component {
     this.state = {
       isLoaded: false,
       hasUpdateInfoErrors: false,
-      hasModulesStatusErrors: false,
       hasMemoryUsageErrors: false,
       hasNotificationSettingsErrors: false,
       hasPermissionsErrors: false,
@@ -67,13 +66,24 @@ class Settings extends Component {
       showShutdownConfirmation: false,
       showRebootConfirmation: false,
     };
+
+
+    //console.log("Settings initial props", this.props.modulesStatus)
+
+    
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    console.log('Settings - componentDidMount');
+
+    // This should load data async
     this.load();
   }
 
   async load() {
     const promises = Promise.all([
       // this.loadUpdateInfo(),
-      this.loadModulesStatus(),
       this.loadMemoryUsage(),
       this.loadNotificationSettings(),
       this.loadPermissions(),
@@ -99,15 +109,6 @@ class Settings extends Component {
       this.props.changeIsUpdateAvailable(response.data.isAvailable);
     } catch (error) {
       this.setState({ hasUpdateInfoErrors: true });
-    }
-  }
-
-  async loadModulesStatus() {
-    try {
-      const response = await get(`${URL}Debug`);
-      this.props.changeModulesStatus(response.data);
-    } catch (error) {
-      this.setState({ hasModulesStatusErrors: true });
     }
   }
 
@@ -214,7 +215,6 @@ class Settings extends Component {
                     element={(
                       <ModuleStatus
                         moduleStatus={this.props.modulesStatus}
-                        hasErrors={this.state.hasModulesStatusErrors}
                         changeModulesStatus={this.props.changeModulesStatus}
                       />
                     )}
@@ -319,6 +319,9 @@ class Settings extends Component {
 }
 
 function mapStateToProps(state) {
+
+  //console.log("mapStateToProps state", state);
+
   return {
     profile: state.applicationReducer.profile,
     language: state.applicationReducer.language,
@@ -336,6 +339,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+
+  //console.log("mapDispatchToProps");
+
   return bindActionCreators({
     changeDataAgreement: SettingsActions.changeDataAgreement,
     changeTotalMemory: SettingsActions.changeTotalMemory,

@@ -14,7 +14,6 @@ class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     moduleStatus: PropTypes.object.isRequired,
-    hasErrors: PropTypes.bool.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
   }
 
@@ -28,21 +27,32 @@ class ModuleStatus extends Component {
       pressureMatConnected: false,
       mIMUConnected: false,
       fIMUConnected: false,
-    };
-    const self = this;
-    this.state.socket.onmessage = function (evt) {
-      const receivedObj = JSON.parse(evt.data);
-      self.state.tofConnected = receivedObj.ToFSensor.connected;
-      self.state.flowConnected = receivedObj.flowSensor.connected;
-      self.state.alarmConnected = receivedObj.alarmSensor.connected;
-      self.state.pressureMatConnected = receivedObj.pressureMat.connected;
-      self.state.mIMUConnected = receivedObj.mIMU.connected;
-      self.state.fIMUConnected = receivedObj.fIMU.connected;
-      self.updateModulesStatus();
+      hasErrors: false,
     };
   }
 
+  onWebSocketMessage(evt)
+  {
+    const receivedObj = JSON.parse(evt.data);
+    this.setState({tofConnected:  receivedObj.ToFSensor.connected});
+    this.setState({flowConnected :receivedObj.flowSensor.connected});
+    this.setState({alarmConnected: receivedObj.alarmSensor.connected});
+    this.setState({pressureMatConnected:  receivedObj.pressureMat.connected});
+    this.setState({mIMUConnected: receivedObj.mIMU.connected});
+    this.setState({fIMUConnected: receivedObj.fIMU.connected});
+    this.updateModulesStatus();
+    this.setState({hasErrors: false});
+    
+  }
+
+  onWebSocketError(evt)
+  {
+    this.setState({hasErrors: true});
+  }
+
   componentDidMount() {
+    this.state.socket.onmessage = this.onWebSocketMessage.bind(this);
+    this.state.socket.onerror = this.onWebSocketError.bind(this);
   }
 
   componentWillUnmount() {
@@ -99,7 +109,7 @@ class ModuleStatus extends Component {
 
     return (
       <div>
-        {this.props.hasErrors
+        {this.state.hasErrors
           ? <ErrorMessage />
           : (
             <div className="row">
@@ -115,8 +125,10 @@ class ModuleStatus extends Component {
 }
 
 function mapStateToProps(state) {
+  //console.log("mapStateToProps", state);
   return {
     language: state.applicationReducer.language,
+    modulesStatus: state.settingsReducer.modulesStatus
   };
 }
 

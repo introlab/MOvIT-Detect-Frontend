@@ -20,8 +20,7 @@ class ForgotPassword extends Component {
       secret: '',
       password: '',
     };
-    this.changeSecret = this.changeSecret.bind(this);
-    this.changePassword = this.changePassword.bind(this);
+   
   }
 
   changeSecret(secretString) {
@@ -59,13 +58,13 @@ class ForgotPassword extends Component {
                 iconClass="fa fa-puzzle-piece"
                 placeHolder={T.translate(`login.forgotPassword.secret.${this.props.language}`)}
                 value={this.state.secret}
-                onChange={this.changeSecret}
+                onChange={this.changeSecret.bind(this)}
               />
               <LogoText
                 iconClass="fa fa-key"
                 placeHolder={T.translate(`login.newPassword.${this.props.language}`)}
                 value={this.state.password}
-                onChange={this.changePassword}
+                onChange={this.changePassword.bind(this)}
               />
             </div>
             <SubmitButtons

@@ -57,7 +57,7 @@ class PressureCenter extends Component {
 
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('PressureCenter - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('PressureCenter - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.date !== this.state.date) {
       // This should load data async
@@ -67,11 +67,10 @@ class PressureCenter extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    console.log('PressureCenter - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('PressureCenter - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.date !== prevState.date) {
-      console.log('PressureCenter - Date updated!');
-
+      // console.log('PressureCenter - Date updated!');
       // Return new state
       return { date: nextProps.date, isLoaded: false, hasErrors: false };
     }
@@ -80,7 +79,7 @@ class PressureCenter extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('PressureCenter - componentDidMount');
+    // 0console.log('PressureCenter - componentDidMount');
 
     // This should load data async
     this.initialize(this.state.date);

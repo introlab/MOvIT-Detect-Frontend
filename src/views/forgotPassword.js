@@ -20,7 +20,6 @@ class ForgotPassword extends Component {
       secret: '',
       password: '',
     };
-   
   }
 
   changeSecret(secretString) {

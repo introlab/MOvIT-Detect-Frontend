@@ -36,7 +36,7 @@ class MonthlyPressureResults extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('MonthlyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('MonthlyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
     if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
 
     }
@@ -44,10 +44,10 @@ class MonthlyPressureResults extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    console.log('MonthlyPressureResults - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('MonthlyPressureResults - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      console.log('MonthlyPressureResults - Month/Year updated!');
+      // console.log('MonthlyPressureResults - Month/Year updated!');
 
       // Return new state
       return {

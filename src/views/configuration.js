@@ -46,46 +46,56 @@ class Configuration extends Component {
     this.state = {
       isLoaded: false,
       hasErrors: false,
-      seatAngle: 0, // websocket: init seatAngle
-      socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/chairState`), // websocket for reading current chair angle
-    };
-
+      seatAngle: 0,
+      socket: null};
   }
 
   componentDidUpdate(prevProps, prevState) {
-    //console.log('Configuration - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('Configuration - ComponentDidUpdate', prevProps, prevState, this.state);
 
-   
+
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    //console.log('Configuration - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('Configuration - getDerivedStateFromProps', nextProps, prevState);
 
-   
+
     return null;
   }
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('Configuration - componentDidMount');
+    //console.log('Configuration - componentDidMount');
 
     // This should load data async
     this.load();
 
     // Handle websocket info
-    this.state.socket.onmessage = this.websocketOnMessage.bind(this);
+    const socket = new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/chairState`); // websocket for reading current chair angle
 
+    this.setState({socket: socket});
+    socket.onmessage = this.websocketOnMessage.bind(this);
   }
 
-  websocketOnMessage(evt)
+  componentWillUnmount()
   {
-      const receivedObj = JSON.parse(evt.data);
-      const seatAngle = receivedObj.Angle.seatAngle;
-      this.setState({ seatAngle });
-      // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
+    //console.log("Configuration - componentWillUnmount");
+    if (this.state.socket)
+    {
+      this.state.socket.close();
+      delete this.state.socket
+    }
   }
 
+
+  websocketOnMessage(evt) {
+    // console.log("websocketOnMessage");
+    const receivedObj = JSON.parse(evt.data);
+    const seatAngle = receivedObj.Angle.seatAngle;
+    this.setState({ seatAngle });
+    // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
+  }
 
 
   // Initial fetch of the last value stored in the backend-connected database.
@@ -100,7 +110,6 @@ class Configuration extends Component {
   }
 
   mapData(response) {
-
     return new Promise(
       ((resolve) => {
         this.props.changeUserName(response.userName);
@@ -131,7 +140,7 @@ class Configuration extends Component {
   }
 
   async save() {
-    console.log("Configuration.save");
+    // console.log('Configuration.save');
 
     const data = {
       userName: this.props.userName,
@@ -152,9 +161,8 @@ class Configuration extends Component {
   }
 
   cancel() {
-    console.log("Configuration.cancel");
-
-   }
+    console.log('Configuration not saved.');
+  }
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');

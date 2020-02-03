@@ -38,7 +38,7 @@ class MonthlySittingTime extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('MonthlySittingTime - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('MonthlySittingTime - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
       // This should load data async
@@ -48,10 +48,10 @@ class MonthlySittingTime extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    console.log('MonthlySittingTime - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('MonthlySittingTime - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      console.log('MonthlySittingTime - Month/Year updated!');
+      // console.log('MonthlySittingTime - Month/Year updated!');
 
       // Return new state
       return {
@@ -63,7 +63,7 @@ class MonthlySittingTime extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('MonthlySittingTime - componentDidMount');
+    // 0console.log('MonthlySittingTime - componentDidMount');
 
     // This should load data async
     this.getSitMonthData(this.state.month, this.state.year);
@@ -71,7 +71,7 @@ class MonthlySittingTime extends Component {
 
   async getSitMonthData(month, year) {
     const date = new Date(year, month, 1);
-    console.log('MonthlySittingTime - getSitMonthData with date:', date);
+    // console.log('MonthlySittingTime - getSitMonthData with date:', date);
     this.setState({ isLoaded: false });
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/sittingTime?Day=${+date}&Offset=${OFFSET}`);

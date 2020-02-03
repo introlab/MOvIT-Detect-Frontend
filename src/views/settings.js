@@ -68,14 +68,12 @@ class Settings extends Component {
     };
 
 
-    //console.log("Settings initial props", this.props.modulesStatus)
-
-    
+    // console.log("Settings initial props", this.props.modulesStatus)
   }
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('Settings - componentDidMount');
+    // console.log('Settings - componentDidMount');
 
     // This should load data async
     this.load();
@@ -319,8 +317,7 @@ class Settings extends Component {
 }
 
 function mapStateToProps(state) {
-
-  //console.log("mapStateToProps state", state);
+  // console.log("mapStateToProps state", state);
 
   return {
     profile: state.applicationReducer.profile,
@@ -339,8 +336,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
-  //console.log("mapDispatchToProps");
+  // console.log("mapDispatchToProps");
 
   return bindActionCreators({
     changeDataAgreement: SettingsActions.changeDataAgreement,

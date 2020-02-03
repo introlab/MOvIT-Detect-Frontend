@@ -90,7 +90,7 @@ class Recommendation extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    console.log('Recommendation - componentDidMount');
+    // console.log('Recommendation - componentDidMount');
 
     // This should load data async
     this.load();
@@ -111,9 +111,7 @@ class Recommendation extends Component {
     const self = this;
     return new Promise(
       ((resolve) => {
-
-
-        console.log('mapData', response);
+        // console.log('mapData', response);
         if (response.reduceWeight) {
           self.props.changeReduceWeight(true);
           self.props.changeTiltFrequencyWeight(response.reduceWeight.tiltFrequency / SEC_IN_MIN);
@@ -210,7 +208,7 @@ class Recommendation extends Component {
       };
     }
 
-    console.log("Saving data", data);
+    // console.log('Saving data', data);
 
     try {
       await post(`${URL}goal`, data.reduceWeight);

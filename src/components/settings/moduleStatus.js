@@ -31,23 +31,22 @@ class ModuleStatus extends Component {
     };
   }
 
-  onWebSocketMessage(evt)
-  {
+  onWebSocketMessage(evt) {
     const receivedObj = JSON.parse(evt.data);
-    this.setState({tofConnected:  receivedObj.ToFSensor.connected});
-    this.setState({flowConnected :receivedObj.flowSensor.connected});
-    this.setState({alarmConnected: receivedObj.alarmSensor.connected});
-    this.setState({pressureMatConnected:  receivedObj.pressureMat.connected});
-    this.setState({mIMUConnected: receivedObj.mIMU.connected});
-    this.setState({fIMUConnected: receivedObj.fIMU.connected});
+    //All at once
+    this.setState({ tofConnected: receivedObj.ToFSensor.connected ,
+        flowConnected: receivedObj.flowSensor.connected,
+        alarmConnected: receivedObj.alarmSensor.connected ,
+        pressureMatConnected: receivedObj.pressureMat.connected, 
+        mIMUConnected: receivedObj.mIMU.connected ,
+        fIMUConnected: receivedObj.fIMU.connected, 
+        hasErrors: false });
+
     this.updateModulesStatus();
-    this.setState({hasErrors: false});
-    
   }
 
-  onWebSocketError(evt)
-  {
-    this.setState({hasErrors: true});
+  onWebSocketError(evt) {
+    this.setState({ hasErrors: true });
   }
 
   componentDidMount() {
@@ -56,6 +55,13 @@ class ModuleStatus extends Component {
   }
 
   componentWillUnmount() {
+
+    //Make sure websocket is closed
+    if (this.state.socket)
+    {
+      this.state.socket.close();
+      delete this.state.socket;
+    }
   }
 
   getModulesStatus() {
@@ -125,10 +131,10 @@ class ModuleStatus extends Component {
 }
 
 function mapStateToProps(state) {
-  //console.log("mapStateToProps", state);
+  // console.log("mapStateToProps", state);
   return {
     language: state.applicationReducer.language,
-    modulesStatus: state.settingsReducer.modulesStatus
+    modulesStatus: state.settingsReducer.modulesStatus,
   };
 }
 

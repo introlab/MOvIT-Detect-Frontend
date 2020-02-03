@@ -37,7 +37,7 @@ class DailyPressureResults extends Component {
 
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('DailyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('DailyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.date !== this.state.date) {
 
@@ -46,10 +46,10 @@ class DailyPressureResults extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    console.log('DailyPressureResults - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('DailyPressureResults - getDerivedStateFromProps', nextProps, prevState);
 
     if (nextProps.date !== prevState.date) {
-      console.log('DailyPressureResults - Date updated!');
+      // console.log('DailyPressureResults - Date updated!');
 
       // Return new state
       return { date: nextProps.date, isLoaded: false, hasErrors: false };

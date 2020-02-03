@@ -68,7 +68,7 @@ class DailyAngleDistribution extends Component {
 
   async getDayData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
-    console.log('DailyAngleDistribution - getDayData() date:', this.state.date);
+    // console.log('DailyAngleDistribution - getDayData() date:', this.state.date);
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`);
       this.state.dayData = response.data.map(v => v / 60000);
@@ -125,7 +125,7 @@ class DailyAngleDistribution extends Component {
   }
 
   render() {
-    console.log('DailyAngleDistribution - render() date:', this.state.date);
+    // console.log('DailyAngleDistribution - render() date:', this.state.date);
 
     const minOptions = {
       tooltips: {

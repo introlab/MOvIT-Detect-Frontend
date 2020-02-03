@@ -35,12 +35,12 @@ class PressureResults extends Component {
   }
 
   changeMonth(newMonth) {
-    console.log('PressureResults- changeMonth: ', newMonth);
+    // console.log('PressureResults- changeMonth: ', newMonth);
     this.setState({ month: newMonth });
   }
 
   changeDate(newDate) {
-    console.log('PressureResults- changeDate: ', newDate, newDate.getMonth(), newDate.getFullYear());
+    // console.log('PressureResults- changeDate: ', newDate, newDate.getMonth(), newDate.getFullYear());
 
     // We make sure we update all state
     this.setState({ date: newDate });
@@ -49,12 +49,12 @@ class PressureResults extends Component {
   }
 
   changePeriod(newPeriod) {
-    console.log('PressureResults- changePeriod: ', newPeriod);
+    // console.log('PressureResults- changePeriod: ', newPeriod);
     this.setState({ period: newPeriod });
   }
 
   changeYear(newYear) {
-    console.log('PressureResults- changeYear: ', newYear);
+    // console.log('PressureResults- changeYear: ', newYear);
     this.setState({ year: newYear });
   }
 

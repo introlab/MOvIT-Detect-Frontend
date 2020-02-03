@@ -34,7 +34,7 @@ class AngleResults extends Component {
       year: props.year,
     };
 
-    console.log('AngleResults initialized with date:', this.state.date);
+    // console.log('AngleResults initialized with date:', this.state.date);
   }
 
   changeMonth(newMonth) {

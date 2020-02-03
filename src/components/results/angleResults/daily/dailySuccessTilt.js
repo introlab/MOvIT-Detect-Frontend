@@ -166,7 +166,8 @@ class DailySuccessTilt extends Component {
     return (
       <div className="container graphic" id="dailyTilt">
         <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`) + 
+          ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

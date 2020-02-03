@@ -182,7 +182,10 @@ class MonthlyAngleDistribution extends Component {
     return (
       <div className="container graphic" id="monthlyAngle">
         <CustomCard
-          header={<h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)
+          + ` (${this.state.year}/${this.state.month +1})`
+          
+          }</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

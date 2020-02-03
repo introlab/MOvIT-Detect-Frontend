@@ -147,7 +147,8 @@ class DailyAngleDistribution extends Component {
     return (
       <div className="container graphic" id="dailyAngle">
         <CustomCard
-          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`)} </h4>}
+          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`) 
+          + ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() +1}/${this.state.date.getDate()})`} </h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

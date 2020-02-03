@@ -228,7 +228,8 @@ class PressureCenter extends Component {
     return (
       <div className="container" style={style} id="dailyPressureCenter">
         <CustomCard
-          header={<h4>{this.props.title}</h4>}
+          header={<h4>{this.props.title
+          + ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() +1}/${this.state.date.getDate()})`}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, this.getChart())}
         />
       </div>

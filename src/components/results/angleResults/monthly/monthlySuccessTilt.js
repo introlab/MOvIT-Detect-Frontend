@@ -12,7 +12,8 @@ import { getElement } from '../../../../utilities/loader';
 class MonthlySuccessTilt extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    month: PropTypes.number,
+    month: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -26,23 +27,49 @@ class MonthlySuccessTilt extends Component {
       },
       labels: [],
       month: props.month,
+      year: props.year,
       isLoaded: false,
       hasErrors: false,
     };
-    this.getMonthData(props.month);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.month !== this.state.month) {
-      this.setState({ month: nextProps.month });
-      this.getMonthData(nextProps.month);
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('MonthlySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
+      // This should load data async
+      this.getMonthData(this.state.month, this.state.year);
     }
   }
 
-  async getMonthData(month) {
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('MonthlySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
+      // console.log('MonthlySuccessTilt - Month/Year updated!');
+
+      // Return new state
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    console.log('MonthlySuccessTilt - componentDidMount');
+
+    // This should load data async
+    this.getMonthData(this.state.month, this.state.year);
+  }
+
+  async getMonthData(month, year) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const date = new Date(new Date().getFullYear(), month, 1);
+      const date = new Date(year, month, 1);
       const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
       this.formatChartData(response.data);
       this.setState({ isLoaded: true });
@@ -139,7 +166,9 @@ class MonthlySuccessTilt extends Component {
     return (
       <div classame="container" id="monthlyTilt">
         <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
+          + ` (${this.state.year}/${this.state.month +1})`
+          }</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

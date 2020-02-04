@@ -14,38 +14,54 @@ class ModuleStatus extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     moduleStatus: PropTypes.object.isRequired,
-    hasErrors: PropTypes.bool.isRequired,
     changeModulesStatus: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      socket: new WebSocket(`ws://${process.env.HOST}:${process.env.BPORT}/ws/rawData`),
+      socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/rawData`),
       tofConnected: false,
       flowConnected: false,
       alarmConnected: false,
       pressureMatConnected: false,
       mIMUConnected: false,
       fIMUConnected: false,
+      hasErrors: false,
     };
-    const self = this;
-    this.state.socket.onmessage = function (evt) {
-      const receivedObj = JSON.parse(evt.data);
-      self.state.tofConnected = receivedObj.ToFSensor.connected;
-      self.state.flowConnected = receivedObj.flowSensor.connected;
-      self.state.alarmConnected = receivedObj.alarmSensor.connected;
-      self.state.pressureMatConnected = receivedObj.pressureMat.connected;
-      self.state.mIMUConnected = receivedObj.mIMU.connected;
-      self.state.fIMUConnected = receivedObj.fIMU.connected;
-      self.updateModulesStatus();
-    };
+  }
+
+  onWebSocketMessage(evt) {
+    const receivedObj = JSON.parse(evt.data);
+    //All at once
+    this.setState({ tofConnected: receivedObj.ToFSensor.connected ,
+        flowConnected: receivedObj.flowSensor.connected,
+        alarmConnected: receivedObj.alarmSensor.connected ,
+        pressureMatConnected: receivedObj.pressureMat.connected, 
+        mIMUConnected: receivedObj.mIMU.connected ,
+        fIMUConnected: receivedObj.fIMU.connected, 
+        hasErrors: false });
+
+    this.updateModulesStatus();
+  }
+
+  onWebSocketError(evt) {
+    this.setState({ hasErrors: true });
   }
 
   componentDidMount() {
+    this.state.socket.onmessage = this.onWebSocketMessage.bind(this);
+    this.state.socket.onerror = this.onWebSocketError.bind(this);
   }
 
   componentWillUnmount() {
+
+    //Make sure websocket is closed
+    if (this.state.socket)
+    {
+      this.state.socket.close();
+      delete this.state.socket;
+    }
   }
 
   getModulesStatus() {
@@ -99,7 +115,7 @@ class ModuleStatus extends Component {
 
     return (
       <div>
-        {this.props.hasErrors
+        {this.state.hasErrors
           ? <ErrorMessage />
           : (
             <div className="row">
@@ -115,8 +131,10 @@ class ModuleStatus extends Component {
 }
 
 function mapStateToProps(state) {
+  // console.log("mapStateToProps", state);
   return {
     language: state.applicationReducer.language,
+    modulesStatus: state.settingsReducer.modulesStatus,
   };
 }
 

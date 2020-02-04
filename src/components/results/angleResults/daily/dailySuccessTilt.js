@@ -25,14 +25,37 @@ class DailySuccessTilt extends Component {
       isLoaded: false,
       hasErrors: false,
     };
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // console.log('DailySuccessTilt - componentDidMount');
+
+    // This should load data async
     this.getData(this.state.date);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getData(nextProps.date);
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('DailySuccessTilt - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.date !== this.state.date) {
+      // This should load data async
+      this.getData(this.state.date);
     }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('DailySuccessTilt - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.date !== prevState.date) {
+      // console.log('DailySuccessTilt - Date updated!');
+
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
+    }
+    return null;
   }
 
   async getData(date) {
@@ -143,7 +166,8 @@ class DailySuccessTilt extends Component {
     return (
       <div className="container graphic" id="dailyTilt">
         <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`) + 
+          ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

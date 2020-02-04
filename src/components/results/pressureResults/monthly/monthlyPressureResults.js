@@ -35,10 +35,26 @@ class MonthlyPressureResults extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.month !== this.state.month) {
-      this.setState({ month: nextProps.month });
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('MonthlyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
+    if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
+
     }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('MonthlyPressureResults - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
+      // console.log('MonthlyPressureResults - Month/Year updated!');
+
+      // Return new state
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
+    }
+    return null;
   }
 
   render() {
@@ -105,8 +121,8 @@ class MonthlyPressureResults extends Component {
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 graphic" style={{ margin: 'auto' }}>
             <div>
-              {(this.state.month >= 0 && this.state.month <= 11)
-                && (<MonthlySittingTime month={this.state.month} />)
+              {(this.state.month >= 0 && this.state.month <= 11 && this.state.year)
+                && (<MonthlySittingTime month={this.state.month} year={this.state.year} />)
               }
               {/*
               <div id="reduceWeight">

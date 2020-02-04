@@ -52,20 +52,43 @@ class PressureCenter extends Component {
       isLoaded: false,
       hasErrors: false,
     };
-    this.initialize(this.state.date);
+    // Component will update when mounted
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.initialize(nextProps.date);
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('PressureCenter - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.date !== this.state.date) {
+      // This should load data async
+      this.initialize(this.state.date);
     }
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('PressureCenter - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.date !== prevState.date) {
+      // console.log('PressureCenter - Date updated!');
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // 0console.log('PressureCenter - componentDidMount');
+
+    // This should load data async
+    this.initialize(this.state.date);
   }
 
   async getPressureData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}gravityCenter?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/gravityCenter?Day=${+date}&Offset=${OFFSET}`);
       return response.data;
     } catch (error) {
       this.setState({ hasErrors: true });
@@ -205,7 +228,8 @@ class PressureCenter extends Component {
     return (
       <div className="container" style={style} id="dailyPressureCenter">
         <CustomCard
-          header={<h4>{this.props.title}</h4>}
+          header={<h4>{this.props.title
+          + ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() +1}/${this.state.date.getDate()})`}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, this.getChart())}
         />
       </div>

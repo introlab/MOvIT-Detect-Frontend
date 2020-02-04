@@ -18,7 +18,8 @@ import { getElement } from '../../../../utilities/loader';
 class MonthlySittingTime extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    month: PropTypes.number,
+    month: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
   }
 
   constructor(props) {
@@ -28,25 +29,52 @@ class MonthlySittingTime extends Component {
       sitMonthLabels: [],
       sitChartData: null,
       month: props.month,
+      year: props.year,
       isLoaded: false,
       hasErrors: false,
     };
 
-    this.getSitMonthData(props.month);
+    // this.getSitMonthData(props.month, props.year);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.month !== this.state.month) {
-      this.setState({ month: nextProps.month });
-      this.getSitMonthData(nextProps.month);
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('MonthlySittingTime - ComponentDidUpdate', prevProps, prevState, this.state);
+
+    if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
+      // This should load data async
+      this.getSitMonthData(this.state.month, this.state.year);
     }
   }
 
-  async getSitMonthData(month) {
-    const date = new Date(new Date().getFullYear(), month, 1);
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('MonthlySittingTime - getDerivedStateFromProps', nextProps, prevState);
+
+    if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
+      // console.log('MonthlySittingTime - Month/Year updated!');
+
+      // Return new state
+      return {
+        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
+      };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // 0console.log('MonthlySittingTime - componentDidMount');
+
+    // This should load data async
+    this.getSitMonthData(this.state.month, this.state.year);
+  }
+
+  async getSitMonthData(month, year) {
+    const date = new Date(year, month, 1);
+    // console.log('MonthlySittingTime - getSitMonthData with date:', date);
     this.setState({ isLoaded: false });
     try {
-      const response = await get(`${URL}sittingTime?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/sittingTime?Day=${+date}&Offset=${OFFSET}`);
       this.formatSitChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -110,7 +138,7 @@ class MonthlySittingTime extends Component {
     return (
       <div className="container" id="monthlySitting">
         <CustomCard
-          header={<h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)}</h4>}
+          header={<h4>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)} {this.state.month + 1}/{this.state.year}</h4>}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

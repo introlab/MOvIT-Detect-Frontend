@@ -20,8 +20,8 @@ class AngleResults extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    month: PropTypes.string,
-    year: PropTypes.string,
+    month: PropTypes.number,
+    year: PropTypes.number,
   }
 
   constructor(props) {
@@ -34,41 +34,51 @@ class AngleResults extends Component {
       year: props.year,
     };
 
-    this.changePeriod = this.changePeriod.bind(this);
-    this.changeDate = this.changeDate.bind(this);
-    this.changeMonth = this.changeMonth.bind(this);
-    this.changeYear = this.changeYear.bind(this);
+    // console.log('AngleResults initialized with date:', this.state.date);
   }
 
   changeMonth(newMonth) {
+    // console.log('AngleResults.changeMonth', newMonth);
     this.setState({ month: newMonth });
   }
 
   changeDate(newDate) {
+    // console.log('AngleResults.changeDate', newDate);
     this.setState({ date: newDate });
   }
 
-  changeYear(newDate) {
-    this.setState({ year: newDate });
-    const now = new Date(0);
-    console.log(now);
-    this.setState({ date: now });
+  changeYear(newYear) {
+    // console.log('AngleResults.changeYear', newYear);
+    this.setState({ year: newYear });
+    // const now = new Date(0);
+    // console.log(now);
+    // this.setState({ date: now });
   }
 
   changePeriod(newPeriod) {
+    // This changes month/day
+    // console.log('AngleResults.changePeriod', newPeriod);
     this.setState({ period: newPeriod });
   }
 
   render() {
+    // console.log('AngleResults - render()');
     return (
       <div className="mt-5">
-        <ResultsCalendar onPeriodChange={this.changePeriod} onDateChange={this.changeDate} onMonthChange={this.changeMonth} onYearChange={this.changeYear} />
+        <ResultsCalendar
+          onPeriodChange={this.changePeriod.bind(this)}
+          onDateChange={this.changeDate.bind(this)}
+          onMonthChange={this.changeMonth.bind(this)}
+          onYearChange={this.changeYear.bind(this)}
+        />
         <h2 className="center">{T.translate(`results.categories.angle.${this.props.language}`)}</h2>
         <hr />
-        {this.state.period === 'day'
-          ? <DailyAngleResults date={this.state.date} />
-          : <MonthlyAngleResults month={this.state.month} />
+        {
+          this.state.period === 'day'
+            ? <DailyAngleResults date={this.state.date} />
+            : <MonthlyAngleResults month={this.state.month} year={this.state.year} />
         }
+
       </div>
     );
   }

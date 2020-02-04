@@ -46,20 +46,57 @@ class Configuration extends Component {
     this.state = {
       isLoaded: false,
       hasErrors: false,
-      seatAngle: 0, // websocket: init seatAngle
-      socket: new WebSocket(`ws://${process.env.HOST}:${process.env.BPORT}/ws/chairState`), // websocket for reading current chair angle
-    };
-    this.load();
-    this.save = this.save.bind(this);
-    // websocket: reading angle :
-    const self = this;
-    this.state.socket.onmessage = function (evt) {
-      const receivedObj = JSON.parse(evt.data);
-      let seatAngle = receivedObj.Angle.seatAngle;
-      self.setState({seatAngle})
-      //console.log(`on Message print, seatAngle : ${self.state.seatAngle} `);
-    };
+      seatAngle: 0,
+      socket: null};
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('Configuration - ComponentDidUpdate', prevProps, prevState, this.state);
+
+
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // WARNING - this does not exist in this static function
+    // console.log('Configuration - getDerivedStateFromProps', nextProps, prevState);
+
+
+    return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    //console.log('Configuration - componentDidMount');
+
+    // This should load data async
+    this.load();
+
+    // Handle websocket info
+    const socket = new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/chairState`); // websocket for reading current chair angle
+
+    this.setState({socket: socket});
+    socket.onmessage = this.websocketOnMessage.bind(this);
+  }
+
+  componentWillUnmount()
+  {
+    //console.log("Configuration - componentWillUnmount");
+    if (this.state.socket)
+    {
+      this.state.socket.close();
+      delete this.state.socket
+    }
+  }
+
+
+  websocketOnMessage(evt) {
+    // console.log("websocketOnMessage");
+    const receivedObj = JSON.parse(evt.data);
+    const seatAngle = receivedObj.Angle.seatAngle;
+    this.setState({ seatAngle });
+    // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
+  }
+
 
   // Initial fetch of the last value stored in the backend-connected database.
   async load() {
@@ -73,17 +110,16 @@ class Configuration extends Component {
   }
 
   mapData(response) {
-    const self = this;
     return new Promise(
       ((resolve) => {
-        self.props.changeUserName(response.userName);
-        self.props.changeUserID(response.userID);
-        self.props.changeMaxAngle(response.maxAngle);
-        self.props.changeMinAngle(response.minAngle);
-        self.props.changeUserWeight(response.userWeight);
-        self.props.changeTelaskHost(response.telaskHost);
-        self.props.changeTelaskKey(response.telaskKey);
-        self.props.changeTelaskUsername(response.telaskUsername);
+        this.props.changeUserName(response.userName);
+        this.props.changeUserID(response.userID);
+        this.props.changeMaxAngle(response.maxAngle);
+        this.props.changeMinAngle(response.minAngle);
+        this.props.changeUserWeight(response.userWeight);
+        this.props.changeTelaskHost(response.telaskHost);
+        this.props.changeTelaskKey(response.telaskKey);
+        this.props.changeTelaskUsername(response.telaskUsername);
         resolve();
       }),
     );
@@ -104,6 +140,8 @@ class Configuration extends Component {
   }
 
   async save() {
+    // console.log('Configuration.save');
+
     const data = {
       userName: this.props.userName,
       userID: this.props.userID,
@@ -122,16 +160,18 @@ class Configuration extends Component {
     }
   }
 
-  cancel() { }
+  cancel() {
+    console.log('Configuration not saved.');
+  }
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
-    //console.log(`Current seatAngle : ${this.state.seatAngle}`);
+    // console.log(`Current seatAngle : ${this.state.seatAngle}`);
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
-    //console.log(`maxAngle returned by the configurationReducer : ${this.props.maxAngle}`);
-    //console.log(`minAngle returned by the configurationReducer : ${this.props.minAngle}`);
+    // console.log(`maxAngle returned by the configurationReducer : ${this.props.maxAngle}`);
+    // console.log(`minAngle returned by the configurationReducer : ${this.props.minAngle}`);
 
     return (
       <div>
@@ -195,7 +235,9 @@ class Configuration extends Component {
                   onClick={() => {
                     this.state.seatAngle === 0
                       ? this.growl.show({
-                        severity: 'warn', life: 6000, summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
+                        severity: 'warn',
+                        life: 6000,
+                        summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
                         detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`),
                       })
                       : this.props.changeMaxAngle(this.state.seatAngle);
@@ -211,8 +253,10 @@ class Configuration extends Component {
                   onClick={() => {
                     this.state.seatAngle === 0
                       ? this.growl.show({
-                        severity: 'warn', life: 6000, summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
-                        detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`) ,
+                        severity: 'warn',
+                        life: 6000,
+                        summary: T.translate(`saveMessage.warnUnavailable.summary.${this.props.language}`),
+                        detail: T.translate(`saveMessage.warnUnavailable.detail.${this.props.language}`),
                       })
                       : this.props.changeMinAngle(this.state.seatAngle);
                   }}
@@ -222,7 +266,7 @@ class Configuration extends Component {
                 />
                 <SubmitButtons
                   onSave={this.save.bind(this)}
-                  onCancel={this.cancel}
+                  onCancel={this.cancel.bind(this)}
                 />
               </div>
             )

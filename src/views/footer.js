@@ -24,7 +24,7 @@ export default class Footer extends Component {
         <div className="mx-auto">
 
 
-          © 2015 Copyright:
+          © 2020 Copyright:
           <a href="http://agewell-nce.ca/" style={style}> AgeWell </a>
         </div>
       </div>

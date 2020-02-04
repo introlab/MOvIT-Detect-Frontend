@@ -125,23 +125,23 @@ class NotificationSettings extends Component {
           <span>
             {T.translate(`settings.notification.snoozeTime.${this.props.language}`)}
             :&nbsp;
-          <Spinner
-            id="value"
-            type="number"
-            onChange={event => this.changeSnoozeTime(event.value)}
-            value={this.props.snoozeTime}
-            min={MINIMUM_SNOOZE_TIME}
-            max={MAXIMUM_SNOOZE_TIME}
-            maxlength={2}
-            size="3"
-          />
+            <Spinner
+              id="value"
+              type="number"
+              onChange={event => this.changeSnoozeTime(event.value)}
+              value={this.props.snoozeTime}
+              min={MINIMUM_SNOOZE_TIME}
+              max={MAXIMUM_SNOOZE_TIME}
+              maxlength={2}
+              size="3"
+            />
             &nbsp;
             {T.translate(`time.min.${this.props.language}`)}
             &nbsp;
             <i id="snoozeTimeToolTip" className="fa fa-info-circle" />
             <Tooltip
-            for="#snoozeTimeToolTip"
-            title={T.translate(`settings.notification.snoozeTimeToolTip.${this.props.language}`)}
+              for="#snoozeTimeToolTip"
+              title={T.translate(`settings.notification.snoozeTimeToolTip.${this.props.language}`)}
             />
           </span>
         </div>

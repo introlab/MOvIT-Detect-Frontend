@@ -21,7 +21,8 @@ const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
-
+const port = process.env.PORT || 80
+const host = process.env.HOST || '0.0.0.0'
 
 
 module.exports = smp.wrap({
@@ -30,7 +31,7 @@ module.exports = smp.wrap({
   // Set inputs and source files for webpack
   entry: [
     'babel-polyfill',
-    'webpack-dev-server/client?http://192.168.10.1:80',
+    'webpack-dev-server/client?http://' + host + ':' + port,
     'webpack/hot/dev-server',
     './src/index',
   ],

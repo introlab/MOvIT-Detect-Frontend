@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 import DailyAngleDistribution from './dailyAngleDistribution';
 import DailySuccessTilt from './dailySuccessTilt';
 import GoalProgress from './goalProgress';
-// import DailyLastTilts from './dailyLastTilts';
+import DailyLastTilts from './dailyLastTilts';
 
 import { T } from '../../../../utilities/translator';
 import { IS_TABLET, OFFSET } from '../../../../redux/applicationReducer';
@@ -30,22 +30,36 @@ class DailyAngleResults extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       width: window.innerWidth,
       date: props.date,
       daySildeRest: 0,
       daySildeMoving: 0,
+      hasErrors: false,
+      isLoaded: false,
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.date !== this.state.date) {
-      this.setState({ date: nextProps.date });
-      this.getDailySlidingProgress(nextProps.date);
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    // console.log('DailyAngleResults - getDerivedStateFromProps', nextProps, prevState);
+    if (nextProps.date !== undefined) {
+      // Updating state with date
+      // console.log('DailyAngleResults - getDerivedStateFromProps - updating date');
+      return { date: nextProps.date };
     }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('componentDidUpdate', prevProps, prevState);
+    // this.getDailySlidingProgress();
+    return null;
   }
 
   async getDailySlidingProgress(date) {
+    // console.log('DailyAngleResults - getDailySlidingProgress', date);
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/dailySlideProgress?Day=${+date}&Offset=${OFFSET}`);
@@ -65,6 +79,7 @@ class DailyAngleResults extends Component {
   }
 
   render() {
+    // console.log('DailyAngleResults - render()');
     return (
       <div>
         {!IS_TABLET
@@ -98,6 +113,7 @@ class DailyAngleResults extends Component {
                   <div>
                     <DailyAngleDistribution date={this.state.date} />
                     <DailySuccessTilt date={this.state.date} />
+                    {/*
                     <div id="reduceSlidingMoving">
                       <GoalProgress
                         condition={this.props.reduceSlidingMoving}
@@ -116,10 +132,13 @@ class DailyAngleResults extends Component {
                         hasErrors={this.state.hasErrors}
                       />
                     </div>
-                    {/*
-                      Graphic which shows the last 5 tilts. Very useful when testing
-                      <DailyLastTilts date={this.state.date} />
-                    */}
+                      <div>
+                      {//Graphic which shows the last 5 tilts. Very useful when testing
+                      //<DailyLastTilts date={this.state.date} />
+                      }
+                      </div>
+                  */
+                    }
                   </div>
                 )
               }

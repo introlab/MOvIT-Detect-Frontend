@@ -39,10 +39,8 @@ class Header extends Component {
 
   changeLanguage()
   {
-
-    localStorage.setItem('language', this.props.language);
     this.props.changeLanguage(); 
-
+    localStorage.setItem('language', this.props.language);
   }
 
   logout() {

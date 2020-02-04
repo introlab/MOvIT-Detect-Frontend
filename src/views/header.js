@@ -34,6 +34,15 @@ class Header extends Component {
     super(props);
     this.props.changeProfile(localStorage.getItem('profile'));
     this.props.changeToken(localStorage.getItem('token'));
+    this.props.updateLanguage();//localStorage.getItem('language'));
+  }
+
+  changeLanguage()
+  {
+
+    localStorage.setItem('language', this.props.language);
+    this.props.changeLanguage(); 
+
   }
 
   logout() {
@@ -111,7 +120,7 @@ class Header extends Component {
             </ul>
 
             <li className="nav navbar-nav pl-1">
-              <a className="small-font navLink" onClick={this.props.changeLanguage}>{(this.props.language === 'FR' || this.props.language === 'cFR') ? 'EN' : 'FR'}</a>
+              <a className="small-font navLink" onClick={this.changeLanguage.bind(this)}>{(this.props.language === 'FR' || this.props.language === 'cFR') ? 'EN' : 'FR'}</a>
             </li>
 
             {this.props.profile && (
@@ -136,6 +145,8 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('mapStateToProps', state);
+
   return {
     language: state.applicationReducer.language,
     profile: state.applicationReducer.profile,

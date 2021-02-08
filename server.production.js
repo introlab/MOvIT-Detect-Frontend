@@ -10,6 +10,7 @@
 
 const path = require('path');
 const express = require('express');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const port = process.env.PORT || 80
 const host = process.env.HOST || '0.0.0.0'
@@ -19,6 +20,16 @@ const app = express(),
   HTML_FILE = path.join(STATIC_DIR, 'index.html')
 
 app.use(express.static(STATIC_DIR))
+
+//Proxy /api calls to node-red backend
+app.use('/api', createProxyMiddleware({
+	target: 'http://localhost:1880',
+	changeOrigin: true,
+	pathRewrite: {
+		'/api': '/',
+	},
+	}));
+
 
 app.get('*', (req, res) => {
     res.sendFile(HTML_FILE)

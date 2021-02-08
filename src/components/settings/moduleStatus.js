@@ -19,11 +19,11 @@ class ModuleStatus extends Component {
 
   constructor(props) {
     super(props);
-    
-    var l = window.location;
+
+    const l = window.location;
 
     this.state = {
-      //socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/rawData`),
+      // socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/rawData`),
       socket: new WebSocket(`ws://${l.host}/ws/rawData`),
       tofConnected: false,
       flowConnected: false,

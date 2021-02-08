@@ -72,7 +72,7 @@ class Configuration extends Component {
     // This should load data async
     this.load();
 
-    var l = window.location;
+    const l = window.location;
 
     // Handle websocket info
     const socket = new WebSocket(`ws://${l.host}/ws/chairState`); // websocket for reading current chair angle

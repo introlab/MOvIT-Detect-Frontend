@@ -74,7 +74,7 @@ class MonthlySittingTime extends Component {
     // console.log('MonthlySittingTime - getSitMonthData with date:', date);
     this.setState({ isLoaded: false });
     try {
-      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/sittingTime?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/sittingTime?Day=${+date}&Offset=${OFFSET}`);
       this.formatSitChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

@@ -19,8 +19,12 @@ class ModuleStatus extends Component {
 
   constructor(props) {
     super(props);
+    
+    var l = window.location;
+
     this.state = {
-      socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/rawData`),
+      //socket: new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/rawData`),
+      socket: new WebSocket(`ws://${l.host}/ws/rawData`),
       tofConnected: false,
       flowConnected: false,
       alarmConnected: false,
@@ -33,14 +37,16 @@ class ModuleStatus extends Component {
 
   onWebSocketMessage(evt) {
     const receivedObj = JSON.parse(evt.data);
-    //All at once
-    this.setState({ tofConnected: receivedObj.ToFSensor.connected ,
-        flowConnected: receivedObj.flowSensor.connected,
-        alarmConnected: receivedObj.alarmSensor.connected ,
-        pressureMatConnected: receivedObj.pressureMat.connected, 
-        mIMUConnected: receivedObj.mIMU.connected ,
-        fIMUConnected: receivedObj.fIMU.connected, 
-        hasErrors: false });
+    // All at once
+    this.setState({
+      tofConnected: receivedObj.ToFSensor.connected,
+      flowConnected: receivedObj.flowSensor.connected,
+      alarmConnected: receivedObj.alarmSensor.connected,
+      pressureMatConnected: receivedObj.pressureMat.connected,
+      mIMUConnected: receivedObj.mIMU.connected,
+      fIMUConnected: receivedObj.fIMU.connected,
+      hasErrors: false,
+    });
 
     this.updateModulesStatus();
   }
@@ -55,10 +61,8 @@ class ModuleStatus extends Component {
   }
 
   componentWillUnmount() {
-
-    //Make sure websocket is closed
-    if (this.state.socket)
-    {
+    // Make sure websocket is closed
+    if (this.state.socket) {
       this.state.socket.close();
       delete this.state.socket;
     }

@@ -25,8 +25,10 @@ app.use(express.static(STATIC_DIR))
 app.use('/api', createProxyMiddleware({
 	target: 'http://localhost:1880',
 	changeOrigin: true,
+	ws: true,
 	pathRewrite: {
 		'/api': '/',
+		'/ws': '/ws'
 	},
 	}));
 

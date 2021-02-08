@@ -166,9 +166,12 @@ class MonthlySuccessTilt extends Component {
     return (
       <div classame="container" id="monthlyTilt">
         <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
-          + ` (${this.state.year}/${this.state.month +1})`
-          }</h4>}
+          header={(
+            <h4>{`${T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
+            } (${this.state.year}/${this.state.month + 1})`
+          }
+            </h4>
+)}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

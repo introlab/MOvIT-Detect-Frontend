@@ -88,7 +88,7 @@ class PressureCenter extends Component {
   async getPressureData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/gravityCenter?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/gravityCenter?Day=${+date}&Offset=${OFFSET}`);
       return response.data;
     } catch (error) {
       this.setState({ hasErrors: true });
@@ -228,8 +228,11 @@ class PressureCenter extends Component {
     return (
       <div className="container" style={style} id="dailyPressureCenter">
         <CustomCard
-          header={<h4>{this.props.title
-          + ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() +1}/${this.state.date.getDate()})`}</h4>}
+          header={(
+            <h4>{`${this.props.title
+            } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
+            </h4>
+)}
           element={getElement(this.state.isLoaded, this.state.hasErrors, this.getChart())}
         />
       </div>

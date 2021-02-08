@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { OFFSET } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -61,7 +61,7 @@ class DailySuccessTilt extends Component {
   async getData(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
       this.setState({
         dayData: response.data,
         isLoaded: true,
@@ -166,8 +166,11 @@ class DailySuccessTilt extends Component {
     return (
       <div className="container graphic" id="dailyTilt">
         <CustomCard
-          header={<h4>{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`) + 
-          ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}</h4>}
+          header={(
+            <h4>{`${T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
+            } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
+            </h4>
+)}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

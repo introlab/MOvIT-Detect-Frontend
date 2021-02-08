@@ -30,7 +30,7 @@ class TiltCalibration extends Component {
     }
 
     async calibrateIMU() {
-      await get(`${URL}calibrateIMU`);
+      await get(`${URL}/calibrateIMU`);
       this.setState({
         ...this.state,
         showCountdownIMU: false,

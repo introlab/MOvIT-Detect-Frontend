@@ -16,7 +16,7 @@ import GoalProgress from './goalProgress';
 import DailyLastTilts from './dailyLastTilts';
 
 import { T } from '../../../../utilities/translator';
-import { IS_TABLET, OFFSET } from '../../../../redux/applicationReducer';
+import { IS_TABLET, URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 
 
@@ -62,7 +62,7 @@ class DailyAngleResults extends Component {
     // console.log('DailyAngleResults - getDailySlidingProgress', date);
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/dailySlideProgress?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/dailySlideProgress?Day=${+date}&Offset=${OFFSET}`);
       this.loadDailySlidingData(response.data);
     } catch (error) {
       console.log('catching');

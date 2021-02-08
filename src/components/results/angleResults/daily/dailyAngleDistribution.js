@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
-import { OFFSET } from '../../../../redux/applicationReducer';
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
@@ -70,7 +70,7 @@ class DailyAngleDistribution extends Component {
     this.setState({ hasErrors: false, isLoaded: false });
     // console.log('DailyAngleDistribution - getDayData() date:', this.state.date);
     try {
-      const response = await get(`http://${process.env.BHOST}:${process.env.BPORT}/oneDay?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/oneDay?Day=${+date}&Offset=${OFFSET}`);
       this.state.dayData = response.data.map(v => v / 60000);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -147,8 +147,11 @@ class DailyAngleDistribution extends Component {
     return (
       <div className="container graphic" id="dailyAngle">
         <CustomCard
-          header={<h4>{T.translate(`dailyResults.angleDistribution.${this.props.language}`) 
-          + ` (${this.state.date.getFullYear()}/${this.state.date.getMonth() +1}/${this.state.date.getDate()})`} </h4>}
+          header={(
+            <h4>{`${T.translate(`dailyResults.angleDistribution.${this.props.language}`)
+            } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
+            </h4>
+)}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

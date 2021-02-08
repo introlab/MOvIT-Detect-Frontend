@@ -47,7 +47,8 @@ class Configuration extends Component {
       isLoaded: false,
       hasErrors: false,
       seatAngle: 0,
-      socket: null};
+      socket: null,
+    };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -66,25 +67,25 @@ class Configuration extends Component {
 
   componentDidMount() {
     // This is called only when component is instanciated
-    //console.log('Configuration - componentDidMount');
+    // console.log('Configuration - componentDidMount');
 
     // This should load data async
     this.load();
 
-    // Handle websocket info
-    const socket = new WebSocket(`ws://${process.env.BHOST}:${process.env.BPORT}/ws/chairState`); // websocket for reading current chair angle
+    var l = window.location;
 
-    this.setState({socket: socket});
+    // Handle websocket info
+    const socket = new WebSocket(`ws://${l.host}/ws/chairState`); // websocket for reading current chair angle
+
+    this.setState({ socket });
     socket.onmessage = this.websocketOnMessage.bind(this);
   }
 
-  componentWillUnmount()
-  {
-    //console.log("Configuration - componentWillUnmount");
-    if (this.state.socket)
-    {
+  componentWillUnmount() {
+    // console.log("Configuration - componentWillUnmount");
+    if (this.state.socket) {
       this.state.socket.close();
-      delete this.state.socket
+      delete this.state.socket;
     }
   }
 
@@ -101,7 +102,7 @@ class Configuration extends Component {
   // Initial fetch of the last value stored in the backend-connected database.
   async load() {
     try {
-      const response = await get(`${URL}configuration`);
+      const response = await get(`${URL}/configuration`);
       await this.mapData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -153,7 +154,7 @@ class Configuration extends Component {
       telaskHost: this.props.telaskHost,
     };
     try {
-      await post(`${URL}configuration`, data);
+      await post(`${URL}/configuration`, data);
       this.showSuccess();
     } catch {
       this.showError();

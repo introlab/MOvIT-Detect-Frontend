@@ -34,12 +34,11 @@ class Header extends Component {
     super(props);
     this.props.changeProfile(localStorage.getItem('profile'));
     this.props.changeToken(localStorage.getItem('token'));
-    this.props.updateLanguage();//localStorage.getItem('language'));
+    this.props.updateLanguage();// localStorage.getItem('language'));
   }
 
-  changeLanguage()
-  {
-    this.props.changeLanguage(); 
+  changeLanguage() {
+    this.props.changeLanguage();
     localStorage.setItem('language', this.props.language);
   }
 

@@ -52,10 +52,10 @@ cd ~/MOvITPlus/MOvIT-Detect-Frontend/
 ### 1.5. Installation des modules
 Pour lancer l'installation des modules qui sont déclarés dans le fichier package.json, il faut simplement faire la commande suivante :
 ```bash
-yarn install --network-timeout 1000000
+yarn install
 ```
 Cette installation peut prendre un certain temps spécialement sur un RaspberryPi
-> L'argument `--network-timeout 1000000` permet d'éviter des [erreurs][yarn issue] du type "_There appears to be trouble with your network connection. Retrying..._"
+
 ___
 
 

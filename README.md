@@ -32,22 +32,21 @@ ___
 Il faut débuter en installant NodeJS. Celui-ci devrait être déjà installé après avoir suivit les instuctions pour le Backend. Veuillez vous reférer à la sous-section "Installation de NodeJS" du [guide de la partie Backend du projet]
 
 ### 1.2. Installation de Yarn
-Pour gérer les dépendances et les modules nécessaires à la préparation du frontend, le gestionnaire de dépendances yarn est utilisé. En date du 16 Octobre 2019, la version la plus récente (`1.17.3`) est fonctionnelle. Il faut l'installer comme suit ou visiter le [guide d'installation yarn] :
+Pour gérer les dépendances et les modules nécessaires à la préparation du frontend, le gestionnaire de dépendances yarn est utilisé. Il faut l'installer comme suit ou visiter le [guide d'installation yarn] :
 ```bash
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update -y #au besoin
-sudo apt-get install yarn -y
+sudo wget -qO- https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs yarn
 ```
+
 ### 1.3. Installation de GitHub
 Si _git_ n'est pas installé, il faut exécuter cette commande : `sudo apt-get install -y git`
 
 ### 1.4. Installation du frontend
-Pour installer le frontend, il faut simplement suivre la procédure habituelle avec GitHub :
+
 ```bash
-git clone https://github.com/introlab/MOvIT-Detect-Frontend.git
-cd ~/MOvIT-Detect-Frontend/
-#git checkout #(+la branche désirée, permet d'accéder aux versions de branches en développment)
+# Ici nous avions déjà fait un clone du projet complet
+cd ~/MOvITPlus/MOvIT-Detect-Frontend/
+
 ```
 
 ### 1.5. Installation des modules

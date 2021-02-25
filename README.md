@@ -2,7 +2,7 @@
 
 # MOvIT-Detect-Frontend
 
-MOvIT-Detect-Frontend est la partie Frontend du projet MOvIT-Plus, destinée à fonctionner sur un ordinateur embarqué de type Raspberry Pi zero w. La page web est conçue en React, ce qui la rend flexible et rapide. Le serveur web est sous NodeJS, lancé avec Express et préparé avec Webpack. Le serveur, une fois démarré, est accesible à l'adresse [movit.plus], si le point d'accèes du Raspberry Pi Zero w est utilisé, autrement. Voir la section "[Accès à la page web](#accès-à-la-page-web)".
+MOvIT-Detect-Frontend est la partie Frontend du projet MOvIT-Plus, destinée à fonctionner sur un ordinateur embarqué de type Raspberry Pi. La page web est conçue en React, ce qui la rend flexible et rapide. Le serveur web est sous NodeJS, lancé avec Express et préparé avec Webpack. Le serveur, une fois démarré, est accesible à l'adresse [movit.plus], si le point d'accèes du Raspberry Pi est utilisé, autrement. Voir la section "[Accès à la page web](#accès-à-la-page-web)".
 ___
 ## Table des matières :
 - [MOvIT-Detect-Frontend](#movit-detect-frontend)

@@ -53,6 +53,7 @@ cd ~/MOvITPlus/MOvIT-Detect-Frontend/
 Pour lancer l'installation des modules qui sont déclarés dans le fichier package.json, il faut simplement faire la commande suivante :
 ```bash
 yarn install
+yarn build
 ```
 Cette installation peut prendre un certain temps spécialement sur un RaspberryPi
 

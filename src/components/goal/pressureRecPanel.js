@@ -16,6 +16,7 @@ import TiltLabels from './tiltLabels';
 import TiltSlidersCard from './tiltSlidersCard';
 import { post } from '../../utilities/secureHTTP';
 import { SEC_IN_MIN } from '../../utilities/constants';
+import { URL } from '../../redux/applicationReducer';
 
 class PressureRecPanel extends Component {
   static propTypes = {

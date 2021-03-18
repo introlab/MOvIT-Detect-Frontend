@@ -63,7 +63,7 @@ export default class TiltSlidersCard extends Component {
       <div className="row">
         <div className="col-9">
           <TiltSliders
-            tiltFrequecy={this.props.tiltFrequecy}
+            tiltFrequency={this.props.tiltFrequecy}
             tiltLength={this.props.tiltLength}
             tiltAngle={this.props.tiltAngle}
             maxAngle={this.props.maxAngle}

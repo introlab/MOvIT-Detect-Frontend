@@ -10,7 +10,7 @@ const config = require('./webpack.config'); // Configuration file for webpack
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || `192.168.10.1`;
+const host = process.env.HOST || `0.0.0.0`;
 
 app = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -22,7 +22,7 @@ app = new WebpackDevServer(webpack(config), {
 
 //Proxy /api calls to node-red backend
 app.use('/api', createProxyMiddleware({
-	target: 'http://192.168.10.1:1880',
+	target: 'http://10.0.1.9:1880',
 	changeOrigin: true,
 	ws: true,
 	pathRewrite: {

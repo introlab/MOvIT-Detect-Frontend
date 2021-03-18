@@ -237,7 +237,6 @@ class Recommendation extends Component {
   changeTiltAngle(value) {
     this.props.changeTiltAngleWeight(value);
     this.props.changeTiltAngleGoal(value);
-    console.log('Test...');
   }
 
   render() {

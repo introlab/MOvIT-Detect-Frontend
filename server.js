@@ -7,17 +7,32 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config'); // Configuration file for webpack
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3000;
 const host = process.env.HOST || `192.168.10.1`;
 
-new WebpackDevServer(webpack(config), {
+app = new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,
   compress: true,
   disableHostCheck: true,
-}).listen(port, host, (err) => {
+})
+
+//Proxy /api calls to node-red backend
+app.use('/api', createProxyMiddleware({
+	target: 'http://192.168.10.1:1880',
+	changeOrigin: true,
+	ws: true,
+	pathRewrite: {
+		'/api': '/',
+		'/ws': '/ws'
+	},
+	}));
+
+
+app.listen(port, host, (err) => {
   if (err) {
     console.log(err);
   }

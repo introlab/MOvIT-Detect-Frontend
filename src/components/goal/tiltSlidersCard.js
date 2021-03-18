@@ -14,6 +14,7 @@ import TiltSliders from '../shared/tiltSliders';
 import { URL } from '../../redux/applicationReducer';
 import { post } from '../../utilities/secureHTTP';
 
+
 export default class TiltSlidersCard extends Component {
   static propTypes = {
     tiltFrequecy: PropTypes.number,
@@ -38,8 +39,8 @@ export default class TiltSlidersCard extends Component {
       tiltAngle: this.props.tiltAngle,
     };
     try {
-      await post(`http://${process.env.BHOST}:${process.env.BPORT}/goal`, data);
-      console.log('succesfully updated');
+      await post(`${URL}/goal`, data);
+      console.log('Goal succesfully updated');
     } catch (error) {
       console.log(error);
     }

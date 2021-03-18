@@ -51,7 +51,7 @@ class PressureRecPanel extends Component {
   }
 
   save() {
-    post(`http://${process.env.BHOST}:${process.env.BPORT}/goal`, {
+    post(`${URL}/goal`, {
       tiltFrequency: this.props.tiltFrequencyGoal * SEC_IN_MIN,
       tiltLength: this.props.tiltLengthGoal * SEC_IN_MIN,
       tiltAngle: this.props.tiltAngleGoal,

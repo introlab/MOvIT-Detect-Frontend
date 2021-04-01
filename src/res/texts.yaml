@@ -528,9 +528,9 @@ dailyResults:
       cFR: "45° et plus"
       cEN: "45° and more"
   pressure:
-    FR: "Libérer la pression sur le siège"
+    FR: "Réduire la pression sur le siège"
     EN: "Relieving pressure on the buttocks"
-    cFR: "Libérer la pression sur le siège"
+    cFR: "Réduire la pression sur le siège"
     cEN: "Relieving pressure on the buttocks"
   travel:
     FR: "Faciliter vos déplacements"

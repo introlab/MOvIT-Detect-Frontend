@@ -106,28 +106,22 @@ class MonthlyPressureResults extends Component {
             <div className="col-lg-2 leftMenu">
               <ul className="graphlist">
                 <li className="graphLink">
-                  <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
-                </li>
-                {/* this.props.reduceWeight
-                  && (
-                    <li className="graphLink">
                       <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
-                    </li>
-                  ) */}
+                </li>
+
+                <li className="graphLink">
+                  <a href="results/pressure#monthlySitting">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
+                </li>  
               </ul>
             </div>
           )
         }
         <div className=" col-lg-10 offset-lg-2 results resultsContainer">
           <div className="col-lg-8 graphic" style={{ margin: 'auto' }}>
-            <div>
-              {(this.state.month >= 0 && this.state.month <= 11 && this.state.year)
-                && (<MonthlySittingTime month={this.state.month} year={this.state.year} />)
-              }
-              {/*
-              <div id="reduceWeight">
+
+          <div id="reduceWeight">
                 <RecGoalChart
-                  condition={this.props.reduceWeight}
+                  condition={this.props.reduceWeight || true}
                   title={T.translate(`monthlyResults.pressure.${this.props.language}`)}
                   goalTitle={T.translate(`monthlyResults.pressure.personal.${this.props.language}`)}
                   recTitle={T.translate(`monthlyResults.pressure.recommended.${this.props.language}`)}
@@ -135,7 +129,14 @@ class MonthlyPressureResults extends Component {
                   recData={personalTiltData}
                 />
               </div>
-              */}
+
+            <div>
+              {(this.state.month >= 0 && this.state.month <= 11 && this.state.year)
+                && (<MonthlySittingTime month={this.state.month} year={this.state.year} />)
+              }
+              
+
+              
             </div>
           </div>
         </div>

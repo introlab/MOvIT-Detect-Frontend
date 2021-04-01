@@ -28,8 +28,8 @@ class DailyPressureResults extends Component {
     this.state = {
       width: window.innerWidth,
       date: props.date,
-      value1: 50,
-      value2: 70,
+      value1: 0,
+      value2: 0,
       isLoaded: false,
       hasErrors: false,
     };
@@ -64,15 +64,13 @@ class DailyPressureResults extends Component {
           && (
             <div className="col-lg-2 leftMenu">
               <ul className="graphlist">
+
+                <li className="graphLink">
+                  <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
+                </li>
                 <li className="graphLink">
                   <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
-                </li>
-                {/* this.props.reduceWeight
-                  && (
-                    <li className="graphLink">
-                      <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
-                    </li>
-                  ) */}
+                </li>                                                 
               </ul>
             </div>
           )
@@ -83,18 +81,20 @@ class DailyPressureResults extends Component {
               {this.state.date
                 && (
                   <div>
-                    <PressureCenter
-                      title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
-                      date={this.state.date}
-                    />{/*
                     <div id="reduceWeight">
                       <RecGoalProgress
-                        condition={this.props.reduceWeight}
+                        condition={this.props.reduceWeight || true}
                         title={T.translate(`dailyResults.pressure.${this.props.language}`)}
                         goalValue={this.state.value2}
                         recValue={this.state.value1}
                       />
-                    </div> */}
+                    </div> 
+
+                    <PressureCenter
+                      title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
+                      date={this.state.date}
+                    />
+
                   </div>
                 )
               }

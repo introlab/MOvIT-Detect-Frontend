@@ -11,10 +11,10 @@ preferences:
 
 time:
   min:
-    FR: "min"
-    EN: "min"
-    cFR: "min"
-    cEN: "min"
+    FR: "min(s)"
+    EN: "min(s)"
+    cFR: "min(s)"
+    cEN: "min(s)"
   minutes:
     FR: "minutes"
     EN: "minutes"

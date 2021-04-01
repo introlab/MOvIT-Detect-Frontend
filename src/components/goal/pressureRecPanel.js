@@ -86,7 +86,7 @@ class PressureRecPanel extends Component {
                 : (
                   <TiltLabels
                     id="reduceWeight"
-                    title={T.translate(`recommendations.reduceWeight2.${this.props.language}`)}
+                    title={T.translate(`recommendations.reduceWeight.${this.props.language}`)}
                     tiltFrequecy={this.props.tiltFrequencyGoal}
                     tiltLength={this.props.tiltLengthGoal}
                     tiltAngle={this.props.tiltAngleGoal}

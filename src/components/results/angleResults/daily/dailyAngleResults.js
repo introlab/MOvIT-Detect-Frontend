@@ -72,8 +72,8 @@ class DailyAngleResults extends Component {
 
   loadDailySlidingData(data) {
     this.setState({
-      daySildeRest: data[0] * 100,
-      daySildeMoving: data[1] * 100,
+      daySildeRest: 0.5,//data[0] * 100,
+      daySildeMoving: 0.4,//data[1] * 100,
       isLoaded: true,
     });
   }
@@ -86,10 +86,20 @@ class DailyAngleResults extends Component {
           && (
             <div className="col-lg-2 leftMenu">
               <ul className="graphlist">
-                <li className="graphLink"><a href="results/angle#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
-                <li className="graphLink"><a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
+                <li className="graphLink">
+                  <a href="results/angle#dailyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a>
+                </li>
+                <li className="graphLink">
+                  <a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a>
+                </li>
+                <li className="graphLink">
+                  <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
+                </li>
+                <li className="graphLink">
+                  <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
+                </li>
                 {/* <li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`lastTilts.title.${this.props.language}`)}</a></li> */}
-                {this.props.reduceSlidingMoving
+                {/*this.props.reduceSlidingMoving
                   && (
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
@@ -100,7 +110,7 @@ class DailyAngleResults extends Component {
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
                     </li>
-                  )}
+                  )*/}
               </ul>
             </div>
           )
@@ -113,10 +123,9 @@ class DailyAngleResults extends Component {
                   <div>
                     <DailyAngleDistribution date={this.state.date} />
                     <DailySuccessTilt date={this.state.date} />
-                    {/*
                     <div id="reduceSlidingMoving">
                       <GoalProgress
-                        condition={this.props.reduceSlidingMoving}
+                        condition={this.props.reduceSlidingMoving || true}
                         title={T.translate(`dailyResults.travel.${this.props.language}`)}
                         value={this.state.daySildeMoving}
                         isLoaded={this.state.isLoaded}
@@ -125,20 +134,20 @@ class DailyAngleResults extends Component {
                     </div>
                     <div id="reduceSlidingRest">
                       <GoalProgress
-                        condition={this.props.reduceSlidingRest}
+                        condition={this.props.reduceSlidingRest || true}
                         title={T.translate(`dailyResults.rest.${this.props.language}`)}
                         value={this.state.daySildeRest}
                         isLoaded={this.state.isLoaded}
                         hasErrors={this.state.hasErrors}
                       />
+                      {/*
                     </div>
                       <div>
                       {//Graphic which shows the last 5 tilts. Very useful when testing
                       //<DailyLastTilts date={this.state.date} />
-                      }
-                      </div>
-                  */
+                      }  */
                     }
+                      </div>
                   </div>
                 )
               }

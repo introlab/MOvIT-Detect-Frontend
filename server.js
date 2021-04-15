@@ -22,7 +22,7 @@ app = new WebpackDevServer(webpack(config), {
 
 //Proxy /api calls to node-red backend
 app.use('/api', createProxyMiddleware({
-	target: 'http://10.0.1.9:1880',
+	target: 'http://localhost:1880',
 	changeOrigin: true,
 	ws: true,
 	pathRewrite: {

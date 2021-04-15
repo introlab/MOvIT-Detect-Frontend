@@ -15,6 +15,7 @@ import { IS_TABLET } from '../../../../redux/applicationReducer';
 import PressureCenter from './pressureCenter';
 import RecGoalProgress from './recGoalProgress';
 import { T } from '../../../../utilities/translator';
+import { get } from '../../../../utilities/secureHTTP';
 
 class DailyPressureResults extends Component {
   static propTypes = {
@@ -43,6 +44,26 @@ class DailyPressureResults extends Component {
 
     }
   }
+
+  async getDailySucessfulTilts(date) {
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
+      this.setState({
+        //dayData: response.data,
+        isLoaded: true,
+      });
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // This should load data async
+    this.getDailySucessfulTilts(this.state.date);
+  }
+
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function

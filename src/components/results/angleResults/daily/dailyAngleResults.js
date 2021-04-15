@@ -72,8 +72,8 @@ class DailyAngleResults extends Component {
 
   loadDailySlidingData(data) {
     this.setState({
-      daySildeRest: 0.5,//data[0] * 100,
-      daySildeMoving: 0.4,//data[1] * 100,
+      daySildeRest: data[0] * 100,
+      daySildeMoving: data[1] * 100,
       isLoaded: true,
     });
   }
@@ -99,7 +99,7 @@ class DailyAngleResults extends Component {
                   <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
                 </li>
                 {/* <li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`lastTilts.title.${this.props.language}`)}</a></li> */}
-                {/*this.props.reduceSlidingMoving
+                {/* this.props.reduceSlidingMoving
                   && (
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
@@ -110,7 +110,7 @@ class DailyAngleResults extends Component {
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
                     </li>
-                  )*/}
+                  ) */}
               </ul>
             </div>
           )
@@ -147,7 +147,7 @@ class DailyAngleResults extends Component {
                       //<DailyLastTilts date={this.state.date} />
                       }  */
                     }
-                      </div>
+                    </div>
                   </div>
                 )
               }

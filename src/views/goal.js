@@ -214,7 +214,7 @@ class Goal extends Component {
                       </h3>
                       <PressureRecPanel />
                       <div className="d-flex flex-wrap">
-                        
+
                         <RecPanel
                           id="reducePressureGoalClinician"
                           condition={this.props.reduceWeight}
@@ -222,7 +222,7 @@ class Goal extends Component {
                           value={`${T.translate(`recommendations.reduceWeight.textPart1.${this.props.language}`)}${this.props.tiltFrequencyWeight}${T.translate(`recommendations.reduceWeight.textPart2.${this.props.language}`)}${this.props.tiltLengthWeight}${T.translate(`recommendations.reduceWeight.textPart3.${this.props.language}`)}${this.props.tiltAngleWeight}${T.translate(`recommendations.reduceWeight.textPart4.${this.props.language}`)}`}
                           tooltip={T.translate(`recommendations.reduceWeight.recPanel.tooltip.${this.props.language}`)}
                         />
-                        
+
                         <RecPanel
                           id="slidingMovingRecPanel"
                           condition={this.props.reduceSlidingMoving}

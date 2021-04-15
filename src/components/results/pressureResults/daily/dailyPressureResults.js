@@ -70,7 +70,7 @@ class DailyPressureResults extends Component {
                 </li>
                 <li className="graphLink">
                   <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
-                </li>                                                 
+                </li>
               </ul>
             </div>
           )
@@ -88,7 +88,7 @@ class DailyPressureResults extends Component {
                         goalValue={this.state.value2}
                         recValue={this.state.value1}
                       />
-                    </div> 
+                    </div>
 
                     <PressureCenter
                       title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}

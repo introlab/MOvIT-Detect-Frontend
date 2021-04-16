@@ -53,9 +53,12 @@ class DailyAngleResults extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('componentDidUpdate', prevProps, prevState);
-    // this.getDailySlidingProgress();
-    return null;
+       // console.log('componentDidUpdate', prevProps, prevState);
+       if (prevState.date !== this.state.date) {
+        // This should load data async
+      this.getDailySlidingProgress(this.state.date);
+      }
+      //return null;
   }
 
   async getDailySlidingProgress(date) {

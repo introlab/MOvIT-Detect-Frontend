@@ -34,3 +34,8 @@ node_modules
 dist
 
 .idea
+
+
+#chrome
+
+.vscode/chrome

@@ -10,11 +10,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { IS_TABLET } from '../../../../redux/applicationReducer';
-
+import { URL, OFFSET } from '../../../../redux/applicationReducer';
 
 import PressureCenter from './pressureCenter';
 import RecGoalProgress from './recGoalProgress';
 import { T } from '../../../../utilities/translator';
+import { get } from '../../../../utilities/secureHTTP';
 
 class DailyPressureResults extends Component {
   static propTypes = {
@@ -40,9 +41,56 @@ class DailyPressureResults extends Component {
     // console.log('DailyPressureResults - ComponentDidUpdate', prevProps, prevState, this.state);
 
     if (prevState.date !== this.state.date) {
-
+        // This should load data async
+        this.getDailySucessfulTilts(this.state.date);
     }
   }
+
+
+  async getDailySucessfulTilts(date) {
+    this.setState({ hasErrors: false, isLoaded: false });
+    try {
+      const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
+
+      const bon_angle_bonne_duree = response.data[0];
+      const bon_angle_duree_insuffisante = response.data[1];
+      const bonne_duree_angle_insuffisant = response.data[2];
+      const non_realisee = response.data[3];
+      const snooze = response.data[4];
+      const somme = bon_angle_bonne_duree + bon_angle_duree_insuffisante + bonne_duree_angle_insuffisant + non_realisee; // + snooze;
+
+      if (somme != 0)
+      {
+        this.setState({
+          value1: Math.round(bon_angle_bonne_duree / somme * 100),
+          //Vérifier le calcul "recommandé", va probablement nécessiter un nouveau endpoint dans le backend
+          //Pour le calcul des angles avec la valeur recommandée en DB.
+          value2: Math.round(bon_angle_bonne_duree / somme * 100),
+          isLoaded: true,
+        });
+      }
+      else 
+      {
+        this.setState({
+          value1: 0,
+          value2: 0,
+          isLoaded: true,
+        });
+      }
+    } catch (error) {
+      this.setState({ hasErrors: true });
+    }
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // This should load data async
+    if (this.state.date != undefined)
+    {
+      this.getDailySucessfulTilts(this.state.date);
+    }
+  }
+
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function

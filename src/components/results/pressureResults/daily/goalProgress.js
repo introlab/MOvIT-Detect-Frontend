@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { T } from '../../../../utilities/translator';
 import CustomCard from '../../../shared/card';
 import { getElement } from '../../../../utilities/loader';
+import { get } from '../../../../utilities/secureHTTP';
 
 class GoalProgress extends Component {
   static propTypes = {

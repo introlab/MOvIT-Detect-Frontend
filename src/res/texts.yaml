@@ -331,9 +331,9 @@ goals:
     cFR: "lorsque vous êtes immobile pour éviter de glisser"
     cEN: "while at rest to avoid sliding"
   reduceSwelling:
-    FR: "Libérer l'enflure aux membres inférieurs"
+    FR: "Réduire l'enflure aux membres inférieurs"
     EN: "Release swelling"
-    cFR: "Libérer l'enflure aux membres inférieurs"
+    cFR: "Réduire l'enflure aux membres inférieurs"
     cEN: "Release swelling"
   noRecommendations:
     FR: "Il n'y a pas de recommandation enregistré"
@@ -533,10 +533,10 @@ dailyResults:
     cFR: "Réduire la pression sur le siège"
     cEN: "Relieving pressure on the buttocks"
   travel:
-    FR: "Faciliter vos déplacements"
-    EN: "Making your travel easier"
-    cFR: "Faciliter vos déplacements"
-    cEN: "Making your travel easier"
+    FR: "Réduire le glissement lors des déplacements"
+    EN: "Reduce sliding while moving"
+    cFR: "Réduire le glissement lors des déplacements"
+    cEN: "Reduce sliding while moving"
   rest:
     FR: "Réduire le glissement au repos"
     EN: "Reduce sliding at rest"
@@ -771,9 +771,9 @@ monthlyResults:
     cFR: "Temps passé en heures"
     cEN: "Time spent in hours"
   pressure:
-    FR: "Libérer la pression sur le siège"
+    FR: "Réduire la pression sur le siège"
     EN: "Release pressure under the seat"
-    cFR: "Libérer la pression sur le siège"
+    cFR: "Réduire la pression sur le siège"
     cEN: "Release pressure under the seat"
     personal:
       FR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"

@@ -376,7 +376,28 @@ class Recommendation extends Component {
   }
 }
 
+function FrtoEnRecommandationDefault(state)
+{
+  var textFr =T.translate(`recommendations.tiltAsNeeded.cFR`);
+  var textEn = T.translate(`recommendations.tiltAsNeeded.cEN`);
+  var languageNow = state.applicationReducer.language;
+  var toLook = (languageNow == "cEN") ? textFr : textEn; // if english, then look for french
+  var toChange = (languageNow == "cEN") ? textEn : textFr; // if english, then change it for french
+
+  if (state.recommendationReducer.painRecommendation != undefined &&  state.recommendationReducer.painRecommendation == toLook) 
+    { state.recommendationReducer.painRecommendation = toChange; }
+  if (state.recommendationReducer.swellingRecommendation  != undefined && state.recommendationReducer.swellingRecommendation == toLook) 
+    { state.recommendationReducer.swellingRecommendation = toChange; }
+  if (state.recommendationReducer.restRecommendation != undefined && state.recommendationReducer.restRecommendation == toLook)
+    { state.recommendationReducer.restRecommendation = toChange; }
+  if (state.recommendationReducer.transferRecommendation != undefined && state.recommendationReducer.transferRecommendation == toLook)
+    { state.recommendationReducer.transferRecommendation = toChange; }
+  if (state.recommendationReducer.comfortRecommendation != undefined && state.recommendationReducer.comfortRecommendation == toLook) 
+    { state.recommendationReducer.comfortRecommendation = toChange; }
+}
+
 function mapStateToProps(state) {
+  FrtoEnRecommandationDefault(state);
   return {
     language: state.applicationReducer.language,
     reduceWeight: state.recommendationReducer.reduceWeight,

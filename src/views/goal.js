@@ -22,6 +22,7 @@ import TiltLabels from '../components/goal/tiltLabels';
 import { URL } from '../redux/applicationReducer';
 import { get } from '../utilities/secureHTTP';
 import { SEC_IN_MIN } from '../utilities/constants';
+import recommendation from './recommendation';
 
 class Goal extends Component {
   static propTypes = {
@@ -317,7 +318,28 @@ class Goal extends Component {
   }
 }
 
+function FrtoEnRecommandationDefault(state)
+{
+  var languageNow = state.applicationReducer.language;
+  var textFr =T.translate(`recommendations.tiltAsNeeded.FR`);
+  var textEn = T.translate(`recommendations.tiltAsNeeded.EN`);
+  var toLook = (languageNow == "cEN" || languageNow == "EN") ? textFr : textEn; // if english, then look for french
+  var toChange = (languageNow == "cEN" || languageNow == "EN") ? textEn : textFr; // if english, then change it for french
+
+  if (state.recommendationReducer.painRecommendation != undefined &&  state.recommendationReducer.painRecommendation == toLook) 
+    { state.recommendationReducer.painRecommendation = toChange; }
+  if (state.recommendationReducer.swellingRecommendation  != undefined && state.recommendationReducer.swellingRecommendation == toLook) 
+    { state.recommendationReducer.swellingRecommendation = toChange; }
+  if (state.recommendationReducer.restRecommendation != undefined && state.recommendationReducer.restRecommendation == toLook)
+    { state.recommendationReducer.restRecommendation = toChange; }
+  if (state.recommendationReducer.transferRecommendation != undefined && state.recommendationReducer.transferRecommendation == toLook)
+    { state.recommendationReducer.transferRecommendation = toChange; }
+  if (state.recommendationReducer.comfortRecommendation != undefined && state.recommendationReducer.comfortRecommendation == toLook) 
+    { state.recommendationReducer.comfortRecommendation = toChange; }
+}
+
 function mapStateToProps(state) {
+  FrtoEnRecommandationDefault(state);
   return {
     language: state.applicationReducer.language,
     tiltFrequencyWeight: state.recommendationReducer.tiltFrequencyWeight,

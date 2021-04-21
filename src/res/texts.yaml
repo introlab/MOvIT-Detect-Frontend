@@ -115,21 +115,21 @@ recommendations:
         cFR: "La bascule de votre fauteuil est un moyen efficace pour réduire la pression sous vos fesses afin d’éviter de développer des plaies de pression. Pour réduire la pression sous vos fesses de manière efficace, il est recommandé de basculer au maximum le plus souvent et le plus longtemps possible. "
         cEN: "The tilt of your wheelchair is an effective way to reduce the pressure on your buttocks in order to avoid developing pressure sores. To relieve the pressure on your buttocks effectively, it is recommended to tilt as often  as possible and as long as possible."
   reduceSwelling:
-    FR: "Réduire l’œdème aux membres inférieurs"
+    FR: "Réduire l'enflure aux membres inférieurs"
     EN: "Reduce edema in the lower limbs"
-    cFR: "Réduire l’œdème aux membres inférieurs"
+    cFR: "Réduire l’enflure aux membres inférieurs"
     cEN: "Reduce edema in the lower limbs"
     tooltip:
-        FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        FR: "Pour diminuer l’accumulation l'enflure aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
         EN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
-        cFR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
-        cEN: "TTo reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
+        cFR: "Pour diminuer l’accumulation l'enflure aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        cEN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
     
     recPanel:
       tooltip:
-        FR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        FR: "Pour diminuer l’accumulation l'enflure aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
         EN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
-        cFR: "Pour diminuer l’accumulation d’œdème aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
+        cFR: "Pour diminuer l’accumulation l'enflure aux membres inférieurs, il est recommandé de combiner l’usage de la bascule avec le repose-jambes afin que les membres inférieurs soient au-dessus du cœur."
         cEN: "To reduce the accumulation of fluids in your lower limbs, it is recommended to combine both the use of the tilt with your leg-rest to ensure that your lower limbs are higher than your heart level."
   reducePain:
     FR: "Réduire la douleur"

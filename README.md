@@ -117,6 +117,16 @@ Lors de l'ouverture d'une session sur sur la page web, il est possible de se con
 >Si la connection est impossible avec les mots de passe fournis ci-haut, il y a de forte chances que la communication avec le backend ne fonctionne pas. Le backend doit être démarré pour naviguer l'interface!
 ___
 
+# 4. Exécuter le code dans vscode sous Windows 
+
+Faire ces étapes: 
+npm install
+npm i cross-env
+Aller dans le dossier : none_modules\chart\dist 
+Changer le nom du dossier "dist" pour "src". 
+Aller dans none_modules\chart\src
+Changer le nom du fichier "Chart.js" pour "chart.js"
+Aller dans package.json et exécuter les scripts : build_windows et dev_windows
 
 
 [guide de la partie Backend du projet]:https://github.com/introlab/MOvIT-Detect-Backend/blob/master/README.md#installation-de-nodejs "MOvIT-Detect-Backend"

@@ -86,7 +86,7 @@ class Header extends Component {
 
           <div className="collapse navbar-collapse" id="navbarContent">
             <ul className="nav navbar-nav mr-auto">
-              {this.props.profile === 'clinician'
+              {(this.props.profile === 'clinician' || this.props.profile === 'user')
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <Link to="/configurations" className="navLink">{T.translate(`configurations.${this.props.language}`)}</Link>

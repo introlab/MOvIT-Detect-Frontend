@@ -207,7 +207,7 @@ class Settings extends Component {
                 this.props.profile !== 'user' && <DbActions />
               } */}
               {
-                this.props.profile !== 'user' && (
+                //this.props.profile !== 'user' && (
                   <CustomCard
                     header={<span className="ui-card-title">{T.translate(`settings.modules.${this.props.language}`)}</span>}
                     element={(
@@ -217,7 +217,7 @@ class Settings extends Component {
                       />
                     )}
                   />
-                )
+               // )
               }
               {<CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.notification.${this.props.language}`)}</span>}
@@ -238,7 +238,7 @@ class Settings extends Component {
                 )}
               />}
               {
-                this.props.profile !== 'user' && (
+                //this.props.profile !== 'user' && (
                   <CustomCard
                     header={<span className="ui-card-title">{T.translate(`settings.wifi.${this.props.language}`)}</span>}
                     element={(
@@ -249,7 +249,7 @@ class Settings extends Component {
                       />
                     )}
                   />
-                )
+                //)
               }
               <CustomCard
                 header={<span className="ui-card-title">{T.translate(`settings.permissions.${this.props.language}`)}</span>}

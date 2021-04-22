@@ -39,6 +39,7 @@ class Configuration extends Component {
     userWeight: PropTypes.number,
     changeUserWeight: PropTypes.func.isRequired,
     overrideMin: PropTypes.bool,
+    profile: PropTypes.string.isRequired,
   };
 
   constructor(props) {
@@ -183,52 +184,73 @@ class Configuration extends Component {
             ? <ErrorMessage />
             : (
               <div>
+              {
+              this.props.profile !== 'user' && (
                 <LogoText
                   id="name"
                   iconClass="fa fa-user"
                   placeHolder={T.translate(`configurations.name.${this.props.language}`)}
                   value={this.props.userName}
                   onChange={this.props.changeUserName}
-                />
+                />)
+              }
+              {
+              this.props.profile !== 'user' && (
                 <LogoText
                   id="telask"
                   iconClass="fa fa-id-card"
                   placeHolder={T.translate(`configurations.telask.${this.props.language}`)}
                   value={this.props.userID}
                   onChange={this.props.changeUserID}
-                />
+                />)
+              }
+              {
+              this.props.profile !== 'user' && (
                 <LogoNumber
                   iconClass="fa fa-balance-scale"
                   placeHolder={T.translate(`configurations.weight.${this.props.language}`)}
                   value={this.props.userWeight}
                   onChange={this.props.changeUserWeight}
-                />
+                />)
+              }
+              {
+              this.props.profile !== 'user' && (
                 <LogoText
                   id="telaskHost"
                   iconClass="fa fa-server"
                   placeHolder={T.translate(`configurations.telaskHost.${this.props.language}`)}
                   value={this.props.telaskHost}
                   onChange={this.props.changeTelaskHost}
-                />
+                />)
+              }
+              {
+              this.props.profile !== 'user' && (
                 <LogoText
                   id="telaskUsername"
                   iconClass="fa fa-user-circle"
                   placeHolder={T.translate(`configurations.telaskUsername.${this.props.language}`)}
                   value={this.props.telaskUsername}
                   onChange={this.props.changeTelaskUsername}
-                />
+                />)
+              }
+              {
+              this.props.profile !== 'user' && (
                 <LogoPassword
                   iconClass="fa fa-key"
                   placeHolder={T.translate(`configurations.telaskKey.${this.props.language}`)}
                   value={this.props.telaskKey}
                   onChange={this.props.changeTelaskKey}
-                />
+                />)
+               }
+
                 <TiltCalibration
                   title={T.translate(`configurations.calibCardTitle.${this.props.language}`)}
                   tooltip={T.translate(`configurations.calibCardTooltip.${this.props.language}`)}
                   id="calibConfig"
                   seatAngle={this.state.seatAngle}
                 />
+                {
+                this.props.profile !== 'user' && (
                 <LogoButton
                   id="setMaxAngle"
                   iconClass="fa fa-plus-circle"
@@ -246,7 +268,10 @@ class Configuration extends Component {
                   value={this.props.maxAngle}
                   onChange={this.props.changeMaxAngle}
                   tooltip={T.translate(`configurations.maxTiltTooltip.${this.props.language}`)}
-                />
+                />)
+                }
+                {
+                this.props.profile !== 'user' && (
                 <LogoButton
                   id="setMinAngle"
                   iconClass="fa fa-minus-circle"
@@ -264,11 +289,15 @@ class Configuration extends Component {
                   value={this.props.minAngle}
                   onChange={this.props.changeMinAngle}
                   tooltip={T.translate(`configurations.minTiltTooltip.${this.props.language}`)}
-                />
+                />)
+                }
+                {
+                this.props.profile !== 'user' && (
                 <SubmitButtons
                   onSave={this.save.bind(this)}
                   onCancel={this.cancel.bind(this)}
-                />
+                />)
+                }
               </div>
             )
             }
@@ -291,6 +320,7 @@ function mapStateToProps(state) {
     telaskHost: state.configurationReducer.telaskHost,
     maxAngle: state.configurationReducer.maxAngle,
     minAngle: state.configurationReducer.minAngle,
+    profile: state.applicationReducer.profile,
   };
 }
 

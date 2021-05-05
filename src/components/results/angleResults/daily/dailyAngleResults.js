@@ -95,25 +95,27 @@ class DailyAngleResults extends Component {
                 <li className="graphLink">
                   <a href="results/angle#dailyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a>
                 </li>
+                {/*
                 <li className="graphLink">
                   <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
                 </li>
                 <li className="graphLink">
                   <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
                 </li>
-                {/* <li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`lastTilts.title.${this.props.language}`)}</a></li> */}
-                {/* this.props.reduceSlidingMoving
+                */}
+                {/*<li className="graphLink"><a href="results/angle#dailyLastTilt">{T.translate(`lastTilts.title.${this.props.language}`)}</a></li> */}
+                 {this.props.reduceSlidingMoving || true
                   && (
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
                     </li>
                   )}
-                {this.props.reduceSlidingRest
+                {this.props.reduceSlidingRest || true
                   && (
                     <li className="graphLink">
                       <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
                     </li>
-                  ) */}
+                  )} 
               </ul>
             </div>
           )

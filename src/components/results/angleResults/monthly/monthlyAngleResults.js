@@ -165,13 +165,13 @@ class MonthlyAngleResults extends Component {
             <ul className="graphlist">
               <li className="graphLink"><a href="results/angle#monthlyAngle">{T.translate(`results.graphicsLink.angle.${this.props.language}`)}</a></li>
               <li className="graphLink"><a href="results/angle#monthlyTilt">{T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)}</a></li>
-              {this.props.reduceSlidingMoving
+              {this.props.reduceSlidingMoving || true
                 && (
                   <li className="graphLink">
                     <a href="results/angle#reduceSlidingMoving">{T.translate(`dailyResults.travel.${this.props.language}`)}</a>
                   </li>
                 )}
-              {this.props.reduceSlidingRest
+              {this.props.reduceSlidingRest || true
                 && (
                   <li className="graphLink">
                     <a href="results/angle#reduceSlidingRest">{T.translate(`monthlyResults.rest.${this.props.language}`)}</a>
@@ -192,7 +192,7 @@ class MonthlyAngleResults extends Component {
                 <div>
                   <div id="reduceSlidingMoving">
                     <GoalChart
-                      condition={this.props.reduceSlidingMoving}
+                      condition={this.props.reduceSlidingMoving || true}
                       title={T.translate(`monthlyResults.travel.${this.props.language}`)}
                       successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
                       data={travelData}
@@ -203,7 +203,7 @@ class MonthlyAngleResults extends Component {
                   </div>
                   <div id="reduceSlidingRest">
                     <GoalChart
-                      condition={this.props.reduceSlidingRest}
+                      condition={this.props.reduceSlidingRest || true}
                       title={T.translate(`monthlyResults.rest.${this.props.language}`)}
                       successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
                       data={restData}

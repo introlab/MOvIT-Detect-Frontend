@@ -90,14 +90,6 @@ class TiltCalibration extends Component {
     }
   
 
-/*
-    componentDidMount() {
-      this.state.socketAngle.onmessage = this.onWebSocketAngleMessage.bind(this);
-      this.state.socketAngle.onerror = this.onWebSocketAngleError.bind(this);
-      this.state.socket.onmessage = this.onWebSocketMessage.bind(this);
-      this.state.socket.onerror = this.onWebSocketError.bind(this);
-    }*/
-
     async updateCalibrationState() {
       this.props.changeCalibrationState(this.state.calibrationState);
     }
@@ -109,12 +101,10 @@ class TiltCalibration extends Component {
       this.setState({
         ...this.state,
         showCountdownIMU: false,
-        // isPopupOpened: false,
       });
     }
 
     openModal() {
-      //this.calibrateIMU();
       this.refreashCalibration(0);
       this.setState({ 
         flagNextButton: false,
@@ -137,10 +127,9 @@ class TiltCalibration extends Component {
         labelCancelButton:T.translate(`calibrationPopup.cancel.${this.props.language}`),
       });
       this.refreashCalibration(1);
-      //this.enableCalibrateIMUButton();
     }
 
-   async startModal() // bouton continuer
+   async startModal() // bouton commencer
     {
       if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG")
       {
@@ -152,19 +141,8 @@ class TiltCalibration extends Component {
         await this.functionEtat();
       }
 
-     /* else if (this.props.calibrationState === "undefined")
-      {
-         await this.setState({initMode: true});
-      await this.setState({confirmationBody : T.translate(`calibrationPopup.init.${this.props.language}`), }) ;
-      await this.setState({ flagNextButton: false });
-      await this.setState({ flagStartButton: false });
-      await setTimeout(() => {  
-      this.startModal();
-      },4000);
-
-      }*/
       else{
-      await this.setState({
+        await this.setState({
         initMode: true,
         confirmationBody : T.translate(`calibrationPopup.init.${this.props.language}`), 
         flagNextButton: false ,
@@ -196,7 +174,6 @@ class TiltCalibration extends Component {
     {
       this.functionEtat();
     }
-      //this.functionEtat();
 
     }
 
@@ -227,26 +204,6 @@ class TiltCalibration extends Component {
       }, 4000); 
     }
 
-    /*
-    async startCalibration() // commencer la calibration avec wait_zero_trig
-    {
-      if  (this.props.calibrationState === "CALIBRATION_DONE" ||
-      this.props.calibrationState === "CALIBRATION_WAIT_INCLINED_TRIG" ||
-      this.props.calibrationState === "CALIBRATION_TODO")
-      {
-        this.calibrateIMU();
-      }
-
-      if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG" ||
-       this.props.calibrationState === "undefined")
-      {
-        return;
-      }
-      setTimeout(() => {
-        this.startCalibration();
-      }, 4000); 
-    }
-  */
     async functionEtat()
     {
       if (this.state.IMUConnected)
@@ -324,21 +281,8 @@ class TiltCalibration extends Component {
       this.state.socketAngle.onerror = this.onWebSocketAngleError.bind(this);
       this.state.socket.onmessage = this.onWebSocketMessage.bind(this);
       this.state.socket.onerror = this.onWebSocketError.bind(this);
-     // this.load();/*
-     /*
-      const state = this.state;
-      const props = this.props;*/
     }
-/*
-    async load() {
-      const promises = Promise.all([
-        // this.loadUpdateInfo(),
-        this.loadCalibrationState(),
-        this.loadNotificationSettings(),
-        this.loadPermissions(),
-        this.loadWifiConnection(),
-      ]);
-*/
+
 
     render() {
       const chairImagePath = require('../../res/images/chair-old.png');

@@ -50,10 +50,7 @@ class Configuration extends Component {
       isLoaded: false,
       hasErrors: false,
       seatAngle: 0,
-     /* calibrationState: "undefined",*/
-      IMUConnected: false,
       socket: null,
-      socketAngle: null,
     };
   }
 
@@ -75,31 +72,25 @@ class Configuration extends Component {
 
     // This should load data async
     this.load();
-/*
+
    const l = window.location;
 
     // Handle websocket info
     const socket = new WebSocket(`ws://${l.host}/ws/chairState`); // websocket for reading current chair angle
-   // const socketAngle = new WebSocket(`ws://${l.host}/ws/sensors/angle`); // websocket for reading calibration state
-*/
-    //this.setState({"socket" : socket /*, "socketAngle" : socketAngle*/});
-    //socket.onmessage = this.websocketOnMessage.bind(this);
-    //socketAngle.onmessage = this.websocketAngleOnMessage.bind(this);*/
+
+    this.setState({"socket" : socket });
+    socket.onmessage = this.websocketOnMessage.bind(this);
   }
-/*
+
   componentWillUnmount() {
     // console.log("Configuration - componentWillUnmount");
     if (this.state.socket) {
       this.state.socket.close();
       delete this.state.socket;
-    }/*
-    if (this.state.socketAngle) {
-      this.state.socketAngle.close();
-      delete this.state.socketAngle;
-    }*/
- // }
+    }
+ }
 
-/*
+
   websocketOnMessage(evt) {
     // console.log("websocketOnMessage");
     const receivedObj = JSON.parse(evt.data);
@@ -107,14 +98,6 @@ class Configuration extends Component {
     this.setState({ seatAngle });
     // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
   }
-/*
-  websocketAngleOnMessage(evt) {
-    const receivedObj = JSON.parse(evt.data);
-    const stateAngle = receivedObj.state["stateName AA"];
-    const IMUConnected = receivedObj.connected;
-    this.setState({ "calibrationState": stateAngle, "IMUConnected": IMUConnected});
-    //console.log(`Socket Angle received : ${stateAngle}`);
-  }*/
 
 
   // Initial fetch of the last value stored in the backend-connected database.
@@ -185,7 +168,6 @@ class Configuration extends Component {
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
-    // console.log(`Current seatAngle : ${this.state.seatAngle}`);
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
@@ -265,9 +247,8 @@ class Configuration extends Component {
                   tooltip={T.translate(`configurations.calibCardTooltip.${this.props.language}`)}
                   id="calibConfig"
                   seatAngle={this.state.seatAngle}
-                  calibrationState={this.props.calibrationState/*this.state.calibrationState*/}
+                  calibrationState={this.props.calibrationState}
                   changeCalibrationState = {this.props.changeCalibrationState}
-                  //IMUConnected = {this.state.IMUConnected}
                 />
                 {
                 this.props.profile !== 'user' && (

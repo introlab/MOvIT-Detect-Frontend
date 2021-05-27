@@ -40,6 +40,8 @@ class Configuration extends Component {
     changeUserWeight: PropTypes.func.isRequired,
     overrideMin: PropTypes.bool,
     profile: PropTypes.string.isRequired,
+    calibrationState : PropTypes.string.isRequired,
+    changeCalibrationState: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -54,8 +56,6 @@ class Configuration extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     // console.log('Configuration - ComponentDidUpdate', prevProps, prevState, this.state);
-
-
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -73,12 +73,12 @@ class Configuration extends Component {
     // This should load data async
     this.load();
 
-    const l = window.location;
+   const l = window.location;
 
     // Handle websocket info
     const socket = new WebSocket(`ws://${l.host}/ws/chairState`); // websocket for reading current chair angle
 
-    this.setState({ socket });
+    this.setState({"socket" : socket });
     socket.onmessage = this.websocketOnMessage.bind(this);
   }
 
@@ -88,7 +88,7 @@ class Configuration extends Component {
       this.state.socket.close();
       delete this.state.socket;
     }
-  }
+ }
 
 
   websocketOnMessage(evt) {
@@ -168,7 +168,6 @@ class Configuration extends Component {
 
   render() {
     const chairImagePath = require('../res/images/chair-old.png');
-    // console.log(`Current seatAngle : ${this.state.seatAngle}`);
     if (!this.state.isLoaded) {
       return <Loading key="loading" />;
     }
@@ -248,6 +247,8 @@ class Configuration extends Component {
                   tooltip={T.translate(`configurations.calibCardTooltip.${this.props.language}`)}
                   id="calibConfig"
                   seatAngle={this.state.seatAngle}
+                  calibrationState={this.props.calibrationState}
+                  changeCalibrationState = {this.props.changeCalibrationState}
                 />
                 {
                 this.props.profile !== 'user' && (
@@ -321,6 +322,7 @@ function mapStateToProps(state) {
     maxAngle: state.configurationReducer.maxAngle,
     minAngle: state.configurationReducer.minAngle,
     profile: state.applicationReducer.profile,
+    calibrationState: state.configurationReducer.calibrationState,
   };
 }
 
@@ -335,6 +337,7 @@ function mapDispatchToProps(dispatch) {
     changeTelaskUsername: ConfigurationActions.changeTelaskUsername,
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
     changeMinAngle: ConfigurationActions.changeMinAngle,
+    changeCalibrationState: ConfigurationActions.changeCalibrationState,
   }, dispatch);
 }
 

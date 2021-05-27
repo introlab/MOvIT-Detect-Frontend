@@ -17,16 +17,20 @@ class ConfirmationPopup extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
-    onConfirm: PropTypes.func.isRequired,
+    onStart: PropTypes.func.isRequired,
+    onNext: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     show: PropTypes.bool.isRequired,
+    flagNextButton: PropTypes.bool.isRequired,
+    flagStartButton: PropTypes.bool.isRequired,
+    labelCancelButton: PropTypes.string.isRequired,
   };
 
   render() {
     const style = {
       body: {
-        textAlign: 'justify',
+        textAlign: 'justify'
       },
       icon: {
         position: 'absolute',
@@ -39,14 +43,26 @@ class ConfirmationPopup extends Component {
       <div>
         <Button
           id="cancelButton"
-          label={T.translate(`confirmation.cancel.${this.props.language}`)}
+          label={this.props.labelCancelButton}
           onClick={this.props.onClose}
         />
+        
+        {this.props.flagStartButton && (
         <Button
-          id="confirmButton"
-          label={T.translate(`confirmation.confirm.${this.props.language}`)}
-          onClick={this.props.onConfirm}
-        />
+          id="startButton"
+          label={T.translate(`calibrationPopup.start.${this.props.language}`)}
+          onClick={this.props.onStart}
+        />)
+        }
+        {
+        this.props.flagNextButton && (
+         <Button
+          id="nextButton"
+          label={T.translate(`calibrationPopup.next.${this.props.language}`)}
+          onClick={this.props.onNext}
+        />)
+        }
+
       </div>
     );
     return (
@@ -61,13 +77,14 @@ class ConfirmationPopup extends Component {
         <div style={style.body}>
           <div className="row">
             <div className="col">
-              <i className="fa fa-question-circle fa-3x" style={style.icon} />
+             { <i className="fa fa-question-circle fa-3x" style={style.icon} />}
             </div>
             <div className="col-10">
               {this.props.body}
             </div>
           </div>
         </div>
+  
       </Dialog>
     );
   }

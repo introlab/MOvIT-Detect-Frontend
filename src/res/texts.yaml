@@ -1096,17 +1096,68 @@ settings:
         cFR: "Changer la base de données"
         cEN: "Change the database"
 
-confirmation:
+calibrationPopup:
   cancel:
     FR: "Annuler"
     EN: "Cancel"
     cFR: "Annuler"
     cEN: "Cancel"
-  confirm:
-    FR: "Continuer"
-    EN: "Continue"
-    cFR: "Continuer"
-    cEN: "Continue"
+  close:
+    FR: "Fermer"
+    EN: "Close"
+    cFR: "Fermer"
+    cEN: "Close"
+  start:
+    FR: "Commencer"
+    EN: "Start"
+    cFR: "Commencer"
+    cEN: "Start"
+  next:
+    FR: "Suivant"
+    EN: "Next"
+    cFR: "Suivant"
+    cEN: "Next"
+  init:
+    FR: "Initialisation..."
+    EN: "Initialization..."
+    cFR: "Initialisation..."
+    cEN: "Initialization..."
+  put_to0:
+    FR: "Placez le fauteuil à un angle de 0"
+    EN: "Place the chair at an angle of 0"
+    cFR: "Placez le fauteuil à un angle de 0"
+    cEN: "Place the chair at an angle of 0"
+  inclined: 
+    FR: "Inclinez le fauteuil jusqu'au maximum"
+    EN: "Tilt the chair to the maximum"
+    cFR: "Inclinez le fauteuil jusqu'au maximum"
+    cEN: "Tilt the chair to the maximum"
+  wait:
+    FR: "Attendez..."
+    EN: "Wait..."
+    cFR: "Attendez..."
+    cEN: "Wait..."
+  error:
+    FR: "Erreur de calibration, actualisez la page et recommencez"
+    EN: "Calibration error, refresh the page and start over"
+    cFR: "Erreur de calibration, actualisez la page et recommencez"
+    cEN: "Calibration error, refresh the page and start over"
+  IMUDisconnected: 
+    FR: "Les accéléromètres ne sont pas connectés"
+    EN: "The accelerometers are not connected"
+    cFR: "Les accéléromètres ne sont pas connectés"
+    cEN: "The accelerometers are not connected"
+  done:
+    FR: "Calibration terminée, fermez la fenêtre"
+    EN: "Calibration completed, close the window"
+    cFR: "Calibration terminée, fermez la fenêtre"
+    cEN: "Calibration completed, close the window"
+  to_do:
+    FR: "Fauteuil non calibré, veuillez effectuer la calibration"
+    EN: "Chair not calibrated, please perform calibration"
+    cFR: "Fauteuil non calibré, veuillez effectuer la calibration"
+    cEN: "Chair not calibrated, please perform calibration"
+
 
 demo:
   FR: "DÉMO"

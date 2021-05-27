@@ -12,6 +12,7 @@ export const MIN_ANGLE = 'MIN_ANGLE';
 export const TELASK_KEY = 'TELASK_KEY';
 export const TELASK_USERNAME = 'TELASK_USERNAME';
 export const TELASK_HOST = 'TELASK_HOST';
+export const CALIBRATION_STATE = 'CALIBRATION_STATE';
 
 
 // ------------------------------------
@@ -72,6 +73,13 @@ function changeMinAngle(angle) {
   };
 }
 
+function changeCalibrationState(state){
+  return {
+    type: CALIBRATION_STATE,
+    calibrationState: state,
+  }
+}
+
 export const ConfigurationActions = {
   changeUserName,
   changeUserID,
@@ -81,6 +89,7 @@ export const ConfigurationActions = {
   changeTelaskKey,
   changeTelaskHost,
   changeTelaskUsername,
+  changeCalibrationState,
 };
 
 const ACTION_HANDLERS = {
@@ -108,6 +117,9 @@ const ACTION_HANDLERS = {
   [TELASK_USERNAME]: (state, action) => (
     { ...state, telaskUsername: action.telaskUsername }
   ),
+  [CALIBRATION_STATE]: (state, action) => (
+    { ...state, calibrationState: action.calibrationState }
+  ),
 };
 
 // ------------------------------------
@@ -123,6 +135,7 @@ export const initConfiguration = {
   telaskKey: '',
   telaskUsername: '',
   telaskHost: '',
+  calibrationState: '',
 };
 export default function configurationReducer(state = initConfiguration, action) { // changed applicationReducer to configurationReducer
   const handler = ACTION_HANDLERS[action.type];

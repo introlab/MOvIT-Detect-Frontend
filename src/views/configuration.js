@@ -40,6 +40,8 @@ class Configuration extends Component {
     changeUserWeight: PropTypes.func.isRequired,
     overrideMin: PropTypes.bool,
     profile: PropTypes.string.isRequired,
+    calibrationState : PropTypes.string.isRequired,
+    changeCalibrationState: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -48,14 +50,15 @@ class Configuration extends Component {
       isLoaded: false,
       hasErrors: false,
       seatAngle: 0,
+     /* calibrationState: "undefined",*/
+      IMUConnected: false,
       socket: null,
+      socketAngle: null,
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     // console.log('Configuration - ComponentDidUpdate', prevProps, prevState, this.state);
-
-
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -72,25 +75,31 @@ class Configuration extends Component {
 
     // This should load data async
     this.load();
-
-    const l = window.location;
+/*
+   const l = window.location;
 
     // Handle websocket info
     const socket = new WebSocket(`ws://${l.host}/ws/chairState`); // websocket for reading current chair angle
-
-    this.setState({ socket });
-    socket.onmessage = this.websocketOnMessage.bind(this);
+   // const socketAngle = new WebSocket(`ws://${l.host}/ws/sensors/angle`); // websocket for reading calibration state
+*/
+    //this.setState({"socket" : socket /*, "socketAngle" : socketAngle*/});
+    //socket.onmessage = this.websocketOnMessage.bind(this);
+    //socketAngle.onmessage = this.websocketAngleOnMessage.bind(this);*/
   }
-
+/*
   componentWillUnmount() {
     // console.log("Configuration - componentWillUnmount");
     if (this.state.socket) {
       this.state.socket.close();
       delete this.state.socket;
-    }
-  }
+    }/*
+    if (this.state.socketAngle) {
+      this.state.socketAngle.close();
+      delete this.state.socketAngle;
+    }*/
+ // }
 
-
+/*
   websocketOnMessage(evt) {
     // console.log("websocketOnMessage");
     const receivedObj = JSON.parse(evt.data);
@@ -98,6 +107,14 @@ class Configuration extends Component {
     this.setState({ seatAngle });
     // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
   }
+/*
+  websocketAngleOnMessage(evt) {
+    const receivedObj = JSON.parse(evt.data);
+    const stateAngle = receivedObj.state["stateName AA"];
+    const IMUConnected = receivedObj.connected;
+    this.setState({ "calibrationState": stateAngle, "IMUConnected": IMUConnected});
+    //console.log(`Socket Angle received : ${stateAngle}`);
+  }*/
 
 
   // Initial fetch of the last value stored in the backend-connected database.
@@ -248,6 +265,9 @@ class Configuration extends Component {
                   tooltip={T.translate(`configurations.calibCardTooltip.${this.props.language}`)}
                   id="calibConfig"
                   seatAngle={this.state.seatAngle}
+                  calibrationState={this.props.calibrationState/*this.state.calibrationState*/}
+                  changeCalibrationState = {this.props.changeCalibrationState}
+                  //IMUConnected = {this.state.IMUConnected}
                 />
                 {
                 this.props.profile !== 'user' && (
@@ -321,6 +341,7 @@ function mapStateToProps(state) {
     maxAngle: state.configurationReducer.maxAngle,
     minAngle: state.configurationReducer.minAngle,
     profile: state.applicationReducer.profile,
+    calibrationState: state.configurationReducer.calibrationState,
   };
 }
 
@@ -335,6 +356,7 @@ function mapDispatchToProps(dispatch) {
     changeTelaskUsername: ConfigurationActions.changeTelaskUsername,
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
     changeMinAngle: ConfigurationActions.changeMinAngle,
+    changeCalibrationState: ConfigurationActions.changeCalibrationState,
   }, dispatch);
 }
 

@@ -615,6 +615,16 @@ SuccessfulTilt:
     EN: "Right angle but insufficient duration"
     cFR: "Bon angle mais durée insuffisante"
     cEN: "Right angle but insufficient duration"
+  tiltInformation:
+    FR: "Pour augmenter le nombre de bascules au bon angle et à la bonne durée, modifiez votre objectif personnel en cliquant"
+    EN: "To increase the number of tilts at the right angle and duration, change your personal goal by clicking"
+    cFR: "Pour augmenter le nombre de bascules au bon angle et à la bonne durée, modifiez votre objectif personnel en cliquant"
+    cEN: "To increase the number of tilts at the right angle and duration, change your personal goal by clicking"
+  tiltLink:
+    FR: " ici"
+    EN: " here"
+    cFR: " ici"
+    cEN: " here"
 
 lastTilts:
   title:

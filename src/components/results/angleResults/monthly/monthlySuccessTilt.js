@@ -114,14 +114,14 @@ class MonthlySuccessTilt extends Component {
           borderColor: 'red',
           backgroundColor: 'red',
         },
-        {
+      /*  {
           label: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`),
           lineTension: 0,
           data: this.state.tiltMonthData.snoozed,
           fill: true,
           borderColor: 'blue',
           backgroundColor: 'blue',
-        },
+        },*/
       ],
     };
   }
@@ -151,11 +151,19 @@ class MonthlySuccessTilt extends Component {
       scales: {
         xAxes: [{
           stacked: true,
+          scaleLabel: {
+            display: true,
+            labelString: T.translate(`graphics.day.${this.props.language}`),
+          },
         }],
         yAxes: [{
           stacked: true,
           ticks: {
             min: 0,
+          },
+          scaleLabel: {
+            display: true,
+            labelString: T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
           },
         }],
       },

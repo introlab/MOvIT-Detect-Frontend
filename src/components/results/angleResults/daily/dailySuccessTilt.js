@@ -123,7 +123,7 @@ class DailySuccessTilt extends Component {
           ],
           lineTension: 0,
         },
-        {
+       /* {
           label: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`),
           data: [newData[4]],
           fill: true,
@@ -134,15 +134,27 @@ class DailySuccessTilt extends Component {
             'blue',
           ],
           lineTension: 0,
-        },
+        },*/
       ],
     };
+  }
+
+  linkGoal(){
+  var anchorElem = document.createElement('a');
+   anchorElem.setAttribute("href", "http://google.com");
+   anchorElem.innerHTML = "huhuhuhu";
+   return document.body.appendChild(anchorElem); // append your new link to the body
   }
 
   render() {
     const tiltSuccessOptions = {
       legend: {
         display: true,
+      },
+      title: {
+        display: true,
+        labelString: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayData[4],
+        position: 'bottom',
       },
       scales: {
         xAxes: [{
@@ -159,9 +171,17 @@ class DailySuccessTilt extends Component {
           },
         }],
       },
+      
     };
+    
     const data = this.getChartData(this.state.dayData);
-    const chart = <Chart type="bar" data={data} options={tiltSuccessOptions} />;
+    const chart = (
+    <div>
+      <Chart type="bar" data={data} options={tiltSuccessOptions} />
+      <p>
+        {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> {T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</a>.</p>
+      </div>
+    );
 
     return (
       <div className="container graphic" id="dailyTilt">
@@ -170,7 +190,7 @@ class DailySuccessTilt extends Component {
             <h4>{`${T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
             } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
             </h4>
-)}
+            )}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

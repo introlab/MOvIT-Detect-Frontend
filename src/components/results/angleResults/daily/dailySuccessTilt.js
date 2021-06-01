@@ -20,7 +20,8 @@ class DailySuccessTilt extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dayData: [],
+      dayDataUser: [],
+      dayDataClinician: [],
       date: props.date,
       isLoaded: false,
       hasErrors: false,
@@ -63,7 +64,8 @@ class DailySuccessTilt extends Component {
     try {
       const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
       this.setState({
-        dayData: response.data,
+        dayDataUser: response.data.user,
+        dayDataClinician: response.data.clinician,
         isLoaded: true,
       });
     } catch (error) {
@@ -138,14 +140,14 @@ class DailySuccessTilt extends Component {
       ],
     };
   }
-
+/*
   linkGoal(){
   var anchorElem = document.createElement('a');
    anchorElem.setAttribute("href", "http://google.com");
    anchorElem.innerHTML = "huhuhuhu";
    return document.body.appendChild(anchorElem); // append your new link to the body
   }
-
+*/
   render() {
     const tiltSuccessOptions = {
       legend: {
@@ -153,11 +155,15 @@ class DailySuccessTilt extends Component {
       },
       title: {
         display: true,
-        labelString: T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayData[4],
+        labelString: "jjjj",//(T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]),
         position: 'bottom',
       },
       scales: {
         xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: (T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]),
+          },
           categoryPercentage: 1.0,
           barPercentage: 1.0,
         }],
@@ -174,13 +180,18 @@ class DailySuccessTilt extends Component {
       
     };
     
-    const data = this.getChartData(this.state.dayData);
+    const data = this.getChartData(this.state.dayDataUser);
     const chart = (
     <div>
       <Chart type="bar" data={data} options={tiltSuccessOptions} />
       <p>
         {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> {T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</a>.</p>
+
+     {/* <p>
+        {T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]}
+      </p>*/}
       </div>
+      
     );
 
     return (

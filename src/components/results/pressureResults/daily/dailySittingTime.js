@@ -1,7 +1,5 @@
 /**
- * @author Gabriel Boucher
- * @author Anne-Marie Desloges
- * @author Austin Didier Tran
+ * @author Marie-Laurence Bazinet
  */
 
 import '../../../../styles/results.css';
@@ -16,65 +14,65 @@ import { OFFSET, URL } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
 
-class MonthlySittingTime extends Component {
+
+
+class DailySittingTime extends Component {
   static propTypes = {
     language: PropTypes.string.isRequired,
-    month: PropTypes.number.isRequired,
-    year: PropTypes.number.isRequired,
+    date : PropTypes.instanceOf(Date),
+    title: PropTypes.string.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      sitMonthData: [],
-      sitMonthLabels: [],
-      month: props.month,
-      year: props.year,
+      sitHourData: [],
+      sitHourLabels: [],
+      date: props.date,
+      hours: [],
       isLoaded: false,
       hasErrors: false,
+      chart: {}
     };
 
-    // this.getSitMonthData(props.month, props.year);
+    // this.getsitHourData(props.day, props.year);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('MonthlySittingTime - ComponentDidUpdate', prevProps, prevState, this.state);
+    // console.log('DailySittingTime - ComponentDidUpdate', prevProps, prevState, this.state);
 
-    if (prevState.month !== this.state.month || prevState.year !== this.state.year) {
+    if (prevState.date !== this.state.date) {
       // This should load data async
-      this.getSitMonthData(this.state.month, this.state.year);
+      this.getsitHourData(this.state.date);
     }
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
-    // console.log('MonthlySittingTime - getDerivedStateFromProps', nextProps, prevState);
+    // console.log('DailySittingTime - getDerivedStateFromProps', nextProps, prevState);
 
-    if (nextProps.month !== prevState.month || nextProps.year !== prevState.year) {
-      // console.log('MonthlySittingTime - Month/Year updated!');
-
+    if (nextProps.date !== prevState.date) {
+      // console.log('PressureCenter - Date updated!');
       // Return new state
-      return {
-        month: nextProps.month, year: nextProps.year, isLoaded: false, hasErrors: false,
-      };
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
     }
     return null;
   }
 
   componentDidMount() {
     // This is called only when component is instanciated
-    // 0console.log('MonthlySittingTime - componentDidMount');
+    // 0console.log('DailySittingTime - componentDidMount');
 
     // This should load data async
-    this.getSitMonthData(this.state.month, this.state.year);
+    this.getsitHourData(this.state.date);
   }
 
-  async getSitMonthData(month, year) {
-    const date = new Date(year, month, 1);
-    // console.log('MonthlySittingTime - getSitMonthData with date:', date);
+  async getsitHourData(date) {
+
+    // console.log('DailySittingTime - getsitHourData with date:', date);
     this.setState({ isLoaded: false });
     try {
-      const response = await get(`${URL}/sittingTime?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}/dailySittingTime?Day=${+date}&Offset=${OFFSET}`);
       this.formatSitChartData(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {
@@ -83,24 +81,25 @@ class MonthlySittingTime extends Component {
   }
 
   formatSitChartData(data) {
-    this.state.sitMonthLabels = [];
-    this.state.sitMonthData = [];
+    this.state.sitHourLabels = [];
+    this.state.sitHourData = [];
     Object.keys(data).forEach((key) => {
-      this.state.sitMonthLabels.push(key.toString());
-      this.state.sitMonthData.push(data[key] / 60);
+      this.state.sitHourLabels.push(key.toString());
+      this.state.sitHourData.push(data[key]);
     });
     this.loadSitData();
   }
 
   loadSitData() {
     return {
-      labels: this.state.sitMonthLabels,
+      labels: ['0h', '1h','2h','3h','4h','5h','6h','7h',
+      '8h','8h','10h','11h','12h','13h','14h','15h','16h','17h','18h','19h','20h','21h','22h','23h'],
       datasets: [
         {
-          label: T.translate(`monthlyResults.hours.${this.props.language}`),
+          label: T.translate(`dailyResults.dailySittingTime.minute.${this.props.language}`),
           backgroundColor: 'red',
           borderColor: 'red',
-          data: this.state.sitMonthData,
+          data: this.state.sitHourData,
         },
       ],
     };
@@ -113,18 +112,24 @@ class MonthlySittingTime extends Component {
       },
     };
 
-    const hourOptions = {
+    const minOptions = {
       scales: {
         yAxes: [{
+          scaleLabel:{
+            display: false,
+            labelString: (T.translate(`dailyResults.dailySittingTime.yAxe.${this.props.language}`)),
+          },
           ticks: {
-            callback: value => `${value} h`,
-            min: 0,
+            callback: value => `${value} min`,
+            beginAtZero: true, 
+            max: 60,
+            stepSize: 10
           },
         }],
         xAxes: [{
           scaleLabel: {
             display: true,
-            labelString: T.translate(`graphParameter.axeDay.${this.props.language}`),
+            labelString: T.translate(`dailyResults.dailySittingTime.xAxe.${this.props.language}`),
           },
         }],
       },
@@ -136,7 +141,7 @@ class MonthlySittingTime extends Component {
               label += ': ';
             }
             label += Math.round(tooltipItem.yLabel * 100) / 100;
-            label += ' h';
+            label += ' min';
             return label;
           },
         },
@@ -146,13 +151,16 @@ class MonthlySittingTime extends Component {
       },
     };
     const data = this.loadSitData();
-    const chart = <Chart type="bar" data={data} options={hourOptions} />;
+    const chart = <Chart type="bar" data={data} options={minOptions} />;
+   // this.setState({chart: chart});
 
     return (
-      <div id="monthlySitting">
+      <div id="dailySittingTime">
         <CustomCard
-          header={(<h3 style = {style.center}>{T.translate(`monthlyResults.wheelChair.${this.props.language}`)} {"("}{this.state.month + 1}/{this.state.year}{")"}</h3>)}
-          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+         header ={(<h3 style = {style.center}>{`${this.props.title
+         } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
+         </h3>)}
+         element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>
     );
@@ -165,4 +173,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(MonthlySittingTime);
+export default connect(mapStateToProps)(DailySittingTime);

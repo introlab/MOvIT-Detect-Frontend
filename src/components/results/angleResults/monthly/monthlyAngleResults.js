@@ -111,10 +111,12 @@ class MonthlyAngleResults extends Component {
           lineTension: 0,
           data: this.state.monthSildeMoving,
           fill: true,
-          borderColor: 'red',
+          borderColor: 'rgba(18,128,181,255)',
+          backgroundColor: 'rgba(18,128,181,255)',
         },
       ],
     };
+    
 
     const restData = {
       labels: this.state.monthSlideLabels,
@@ -124,7 +126,8 @@ class MonthlyAngleResults extends Component {
           lineTension: 0,
           data: this.state.monthSildeRest,
           fill: true,
-          borderColor: 'red',
+          borderColor: 'rgba(18,128,181,255)',
+          backgroundColor: 'rgba(18,128,181,255)',
         },
       ],
     };
@@ -136,6 +139,12 @@ class MonthlyAngleResults extends Component {
             callback: value => `${value}%`,
             min: 0,
             max: 100,
+          },
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: T.translate(`graphParameter.axeDay.${this.props.language}`),
           },
         }],
       },
@@ -193,7 +202,7 @@ class MonthlyAngleResults extends Component {
                   <div id="reduceSlidingMoving">
                     <GoalChart
                       condition={this.props.reduceSlidingMoving || true}
-                      title={T.translate(`monthlyResults.travel.${this.props.language}`)}
+                      title={(T.translate(`monthlyResults.travel.${this.props.language}`) + " (" + (this.state.month + 1)+ "/" +(this.state.year) + ")")}       
                       successMessage={T.translate(`monthlyResults.travel.success.${this.props.language}`)}
                       data={travelData}
                       options={percentOptions}
@@ -204,8 +213,8 @@ class MonthlyAngleResults extends Component {
                   <div id="reduceSlidingRest">
                     <GoalChart
                       condition={this.props.reduceSlidingRest || true}
-                      title={T.translate(`monthlyResults.rest.${this.props.language}`)}
-                      successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)}
+                      title={(T.translate(`monthlyResults.rest.${this.props.language}`)+ " (" + (this.state.month + 1)+ "/" +(this.state.year) + ")")}
+                      successMessage={T.translate(`monthlyResults.rest.success.${this.props.language}`)} 
                       data={restData}
                       options={percentOptions}
                       isLoaded={this.state.isLoaded}

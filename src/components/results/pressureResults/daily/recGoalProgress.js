@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { T } from '../../../../utilities/translator';
 import CustomCard from '../../../shared/card';
+import { Tooltip } from 'primereact/components/tooltip/Tooltip';
+import NoDataMessage from '../../../shared/noDataMessage';
 
 class RecGoalProgress extends Component {
   static propTypes = {
@@ -20,6 +22,10 @@ class RecGoalProgress extends Component {
     title: PropTypes.string.isRequired,
     goalValue: PropTypes.number,
     recValue: PropTypes.number,
+    tooltip: PropTypes.string,
+    id: PropTypes.string,
+    noDataUser: PropTypes.bool.isRequired,
+    noDataClinician: PropTypes.bool.isRequired
   };
 
   render() {
@@ -31,24 +37,40 @@ class RecGoalProgress extends Component {
 
     const header = (
       <div>
-        <h2 style={style.center}>{this.props.title}</h2>
+        <h3 style={style.center}>{this.props.title}
+        {this.props.tooltip
+          && <i id={`tiltLabel${this.props.id}`} className="fa fa-info-circle px-2" />
+        }</h3>
       </div>
     );
+    const noData = <NoDataMessage />;
+    const user =  
+    <div>
+      <ProgressBar value={this.props.goalValue} />
+      <p style={style.center}>
+      {T.translate(`dailyResults.personal.description.${this.props.language}`,
+        { percent: Math.round(this.props.goalValue) })}
+      </p> 
+    </div>
+    
+    const clinician = 
+    <div>
+      <ProgressBar value={this.props.recValue} />
+      <p style={style.center}>
+      {T.translate(`dailyResults.recommended.description.${this.props.language}`,
+        { percent: Math.round(this.props.recValue) })}
+      </p>
+    </div>
+    
+    var element_user = this.props.noDataUser ? noData : user;
+    var element_clinician = this.props.noDataClinician ? noData : clinician;
 
     const element = (
       <div>
         <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>
-        <ProgressBar value={this.props.goalValue} />
-        <p style={style.center}>
-          {T.translate(`dailyResults.personal.description.${this.props.language}`,
-            { percent: Math.round(this.props.goalValue) })}
-        </p>
+        {element_user}
         <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>
-        <ProgressBar value={this.props.recValue} />
-        <p style={style.center}>
-          {T.translate(`dailyResults.recommended.description.${this.props.language}`,
-            { percent: Math.round(this.props.recValue) })}
-        </p>
+        {element_clinician}
       </div>
     );
 
@@ -61,6 +83,10 @@ class RecGoalProgress extends Component {
                 header={header}
                 element={element}
               />
+              <Tooltip
+              for={`#tiltLabel${this.props.id}`}
+              title={this.props.tooltip}
+             />
             </div>
           )
         }

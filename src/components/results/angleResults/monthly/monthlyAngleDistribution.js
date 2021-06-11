@@ -15,6 +15,7 @@ import CustomCard from '../../../shared/card';
 import { T } from '../../../../utilities/translator';
 import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
+import { colorCode } from '../../colorCode';
 import { getElement } from '../../../../utilities/loader';
 
 class MonthlyAngleDistribution extends Component {
@@ -93,32 +94,32 @@ class MonthlyAngleDistribution extends Component {
       datasets: [
         {
           label: T.translate(`monthlyResults.tiltDistribution.zero.${this.props.language}`),
-          backgroundColor: 'red',
-          borderColor: 'red',
+          backgroundColor: colorCode.angleDistribution.zero,
+          borderColor: colorCode.angleDistribution.zero,
           data: this.state.angleMonthData.zero,
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.fifteen.${this.props.language}`),
-          backgroundColor: 'green',
-          borderColor: 'green',
+          backgroundColor: colorCode.angleDistribution.fifteen,
+          borderColor: colorCode.angleDistribution.fifteen,
           data: this.state.angleMonthData.fifteen,
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.thirty.${this.props.language}`),
-          backgroundColor: 'blue',
-          borderColor: 'blue',
+          backgroundColor: colorCode.angleDistribution.thirty,
+          borderColor: colorCode.angleDistribution.thirty,
           data: this.state.angleMonthData.thirty,
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.fortyfive.${this.props.language}`),
-          backgroundColor: 'orange',
-          borderColor: 'orange',
+          backgroundColor: colorCode.angleDistribution.fortyfive,
+          borderColor: colorCode.angleDistribution.fortyfive,
           data: this.state.angleMonthData.fortyfive,
         },
         {
           label: T.translate(`monthlyResults.tiltDistribution.more.${this.props.language}`),
-          backgroundColor: 'purple',
-          borderColor: 'purple',
+          backgroundColor: colorCode.angleDistribution.more,
+          borderColor: colorCode.angleDistribution.more,
           data: this.state.angleMonthData.more,
         },
       ],
@@ -148,10 +149,20 @@ class MonthlyAngleDistribution extends Component {
   }
 
   render() {
+    const style = {
+      center: {
+        textAlign: 'center',
+      },
+    };
+
     const percentOptions2 = {
       scales: {
         xAxes: [{
           stacked: true,
+          scaleLabel: {
+            display: true,
+            labelString: T.translate(`graphParameter.axeDay.${this.props.language}`),
+          }
         }],
         yAxes: [{
           stacked: true,
@@ -180,16 +191,16 @@ class MonthlyAngleDistribution extends Component {
     const chart = <Chart type="bar" data={angleChartData} options={percentOptions2} />;
 
     return (
-      <div className="container graphic" id="monthlyAngle">
+      <div id="monthlyAngle">
         <CustomCard
           header={(
-            <h4>{`${T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)
+            <h3 style = {style.center}>{`${T.translate(`monthlyResults.tiltDistribution.${this.props.language}`)
             } (${this.state.year}/${this.state.month + 1})`
 
           }
-            </h4>
-)}
-          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+            </h3>
+        )}
+          element={(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>
     );

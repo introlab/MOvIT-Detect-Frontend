@@ -17,6 +17,8 @@ import { T } from '../../../../utilities/translator';
 import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
+import NoDataMessage from '../../../shared/noDataMessage';
+import { colorCode } from '../../colorCode';
 
 class DailyAngleDistribution extends Component {
   static propTypes = {
@@ -91,18 +93,18 @@ class DailyAngleDistribution extends Component {
         {
           data: this.state.dayData,
           backgroundColor: [
-            'red',
-            'green',
-            'blue',
-            'orange',
-            'purple',
+            colorCode.angleDistribution.zero,
+            colorCode.angleDistribution.fifteen,
+            colorCode.angleDistribution.thirty,
+            colorCode.angleDistribution.fortyfive,
+            colorCode.angleDistribution.more,
           ],
           hoverBackgroundColor: [
-            'red',
-            'green',
-            'blue',
-            'orange',
-            'purple',
+            colorCode.angleDistribution.zero,
+            colorCode.angleDistribution.fifteen,
+            colorCode.angleDistribution.thirty,
+            colorCode.angleDistribution.fortyfive,
+            colorCode.angleDistribution.more,
           ],
         },
       ],
@@ -123,9 +125,28 @@ class DailyAngleDistribution extends Component {
 
     return `${hours}h ${minutes}m ${seconds}s`;
   }
+  boolNoData (){
+    var emptydata = 0
+    var lenghtdata = this.state.dayData.length
+    for (var key = 0 ; key <lenghtdata ; key++) {
+      if (this.state.dayData[key] == 0) {
+        emptydata++
+      }
+    }
+    if (emptydata == lenghtdata)
+    {
+      return true
+    }
+      return false
+    }
 
   render() {
     // console.log('DailyAngleDistribution - render() date:', this.state.date);
+    const style = {
+      center: {
+        textAlign: 'center',
+      },
+    };
 
     const minOptions = {
       tooltips: {
@@ -142,16 +163,20 @@ class DailyAngleDistribution extends Component {
       },
     };
     const data = this.getChartData();
-    const chart = <Chart type="pie" data={data} options={minOptions} />;
-
-    return (
-      <div className="container graphic" id="dailyAngle">
+    const noData = <NoDataMessage />;
+    var chart = <Chart type="pie" data={data} options={minOptions} />;
+    if (this.boolNoData())
+    {
+      chart = noData;
+    }
+    return (  
+      //<div className="container graphic" id="dailyAngle">
+      <div id = "dailyAngle">
         <CustomCard
           header={(
-            <h4>{`${T.translate(`dailyResults.angleDistribution.${this.props.language}`)
+            <h3 style = {style.center}>{`${T.translate(`dailyResults.angleDistribution.${this.props.language}`)
             } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
-            </h4>
-)}
+            </h3>)}
           element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
         />
       </div>

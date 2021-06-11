@@ -3,6 +3,7 @@ import '../../../../styles/results.css';
 import React, { Component } from 'react';
 
 import { Chart } from 'primereact/components/chart/Chart';
+import { Dropdown } from 'primereact/components/dropdown/Dropdown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomCard from '../../../shared/card';
@@ -10,6 +11,8 @@ import { T } from '../../../../utilities/translator';
 import { URL, OFFSET } from '../../../../redux/applicationReducer';
 import { get } from '../../../../utilities/secureHTTP';
 import { getElement } from '../../../../utilities/loader';
+import NoDataMessage from '../../../shared/noDataMessage';
+import { colorCode } from '../../colorCode';
 
 class DailySuccessTilt extends Component {
   static propTypes = {
@@ -22,7 +25,9 @@ class DailySuccessTilt extends Component {
     this.state = {
       dayDataUser: [],
       dayDataClinician: [],
+      profil: 'clinician',
       date: props.date,
+      disableDropdown : false,
       isLoaded: false,
       hasErrors: false,
     };
@@ -34,6 +39,7 @@ class DailySuccessTilt extends Component {
 
     // This should load data async
     this.getData(this.state.date);
+    this.setState({});
   }
 
 
@@ -82,10 +88,10 @@ class DailySuccessTilt extends Component {
           data: [newData[0]],
           fill: true,
           backgroundColor: [
-            'green',
+           colorCode.successTilt.good,
           ],
           hoverBackgroundColor: [
-            'green',
+            colorCode.successTilt.good,
           ],
           lineTension: 0,
         },
@@ -94,10 +100,10 @@ class DailySuccessTilt extends Component {
           data: [newData[1]],
           fill: true,
           backgroundColor: [
-            'yellow',
+            colorCode.successTilt.badDuration,
           ],
           hoverBackgroundColor: [
-            'yellow',
+            colorCode.successTilt.badDuration,
           ],
           lineTension: 0,
         },
@@ -105,11 +111,11 @@ class DailySuccessTilt extends Component {
           label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),
           data: [newData[2]],
           fill: true,
-          backgroundColor: [
-            'orange',
+          backgroundColor: [ 
+            colorCode.successTilt.badAngle,
           ],
           hoverBackgroundColor: [
-            'orange',
+            colorCode.successTilt.badAngle,
           ],
           lineTension: 0,
         },
@@ -118,10 +124,10 @@ class DailySuccessTilt extends Component {
           data: [newData[3]],
           fill: true,
           backgroundColor: [
-            'red',
+            colorCode.successTilt.notMade,
           ],
           hoverBackgroundColor: [
-            'red',
+            colorCode.successTilt.notMade,
           ],
           lineTension: 0,
         },
@@ -140,69 +146,116 @@ class DailySuccessTilt extends Component {
       ],
     };
   }
-/*
-  linkGoal(){
-  var anchorElem = document.createElement('a');
-   anchorElem.setAttribute("href", "http://google.com");
-   anchorElem.innerHTML = "huhuhuhu";
-   return document.body.appendChild(anchorElem); // append your new link to the body
+
+  boolNoData (data){
+    var emptydata = 0
+    var lenghtdata = data.length
+    for (var key = 0 ; key <lenghtdata ; key++) {
+      if (data[key] == 0) {
+        emptydata++
+      }
+    }
+    return ((emptydata == lenghtdata)? true : false);
   }
-*/
-  render() {
+  
+  render() 
+  {
+    const style = {
+      center: {
+        textAlign: 'center',
+      },
+    };
+
+    const style2 = {
+      center: {
+        textAlign: 'center',
+      },
+      color : 'gray'
+    };
+
+
     const tiltSuccessOptions = {
       legend: {
         display: true,
       },
       title: {
         display: true,
-        labelString: "jjjj",//(T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]),
+        text: (T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]),
         position: 'bottom',
       },
       scales: {
         xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: (T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]),
-          },
-          categoryPercentage: 1.0,
-          barPercentage: 1.0,
-        }],
+            categoryPercentage: 1.0,
+            barPercentage: 1.0,
+          }],
         yAxes: [{
           scaleLabel: {
             display: true,
             labelString: T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
           },
           ticks: {
-            min: 0,
+            precision: 0,
+            beginAtZero: true
           },
         }],
       },
-      
     };
     
-    const data = this.getChartData(this.state.dayDataUser);
-    const chart = (
-    <div>
-      <Chart type="bar" data={data} options={tiltSuccessOptions} />
-      <p>
-        {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> {T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</a>.</p>
+    const profilSelectItems = [
+      {label: (T.translate(`dailyResults.recommended.${this.props.language}`)), 
+       value: 'clinician',
+      },
+       {label: (T.translate(`dailyResults.personal.${this.props.language}`)),
+        value: 'user',
+      }];
+    
 
-     {/* <p>
-        {T.translate(`SuccessfulTilt.tiltSnoozed.${this.props.language}`) + ": " + this.state.dayDataUser[4]}
-      </p>*/}
-      </div>
-      
-    );
+    const dropDownProfil = 
+      <Dropdown
+      value={this.state.profil}
+      options= {profilSelectItems}
+      disabled = {this.state.disableDropdown}
+      onChange={e => {
+        this.setState({ profil: e.value });
+      }}
+      style={{ width: '250px', marginRight: '15px'}}
+      placeholder= {this.state.profil}
+    />
+
+
+    
+    const noData = <NoDataMessage />;
+
+    const data_clinician = this.getChartData(this.state.dayDataClinician);
+    const chart_clinician = <Chart type="bar" data={data_clinician} options={tiltSuccessOptions}/>;
+    const subtitle_clinician = <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>;
+    const link = <p style = {style2}> {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> <u style = {style2}>{T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</u></a>.</p>;
+    const element_clinician = (<div> {dropDownProfil} {/*subtitle_clinician*/} {chart_clinician}<br/>{link} </div>);
+
+    const data_user = this.getChartData(this.state.dayDataUser);
+    const chart_user = <Chart type="bar" data={data_user} options={tiltSuccessOptions}/>;
+    const subtitle_user = <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>;
+    const element_user = (<div> {dropDownProfil}{/*subtitle_user*/} {chart_user}<br/>{link} </div>);
+
+    var element;
+    
+    if (this.state.profil === 'clinician')
+    {
+        element = (this.boolNoData(this.state.dayDataClinician)) ? (<div> {/*subtitle_clinician*/} {noData} </div>) : element_clinician;
+    }
+
+    else{
+        element = (this.boolNoData(this.state.dayDataUser))? (<div> {/*subtitle_user*/} {noData} </div>) : element_user;
+      }
+
 
     return (
-      <div className="container graphic" id="dailyTilt">
+      <div id="dailyTilt">
         <CustomCard
-          header={(
-            <h4>{`${T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`)
+          header={<div> <h3 style = {style.center}>{`${T.translate(`SuccessfulTilt.tiltMadeDaily.${this.props.language}`)
             } (${this.state.date.getFullYear()}/${this.state.date.getMonth() + 1}/${this.state.date.getDate()})`}
-            </h4>
-            )}
-          element={getElement(this.state.isLoaded, this.state.hasErrors, chart)}
+            </h3> </div>}
+          element={getElement(this.state.isLoaded, this.state.hasErrors, element)}
         />
       </div>
     );

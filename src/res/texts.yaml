@@ -487,6 +487,13 @@ personnal:
   cFR: "Personnel"
   cEN: "Personnal"
 
+graphParameter:
+  axeDay:
+    FR: "Jour du mois"
+    EN: "Day of the month"
+    cFR: "Jour du mois"
+    cEN: "Day of the month"
+    
 dailyResults:
   FR: "Mes résultats quotidiens"
   EN: "My daily results"
@@ -554,22 +561,53 @@ dailyResults:
       cEN: "You have reached {percent}% of your personnal goal. Do you feel the need to change your personnal goal?"
   recommended:
     FR: "Objectif recommandé"
-    EN: "Recommended Goal"
+    EN: "Recommended goal"
     cFR: "Objectif recommandé"
-    cEN: "Recommended Goal"
+    cEN: "Recommended goal"
     description:
       FR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       EN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
       cFR: "Vous avez atteint {percent}% de votre objectif recommandé. Ne vous découragez surtout pas! Vous pouvez y arriver!"
       cEN: "You have reached {percent}% of your recommended goal. Don’t get discouraged! You can do it!"
+  dailySittingTime:
+      FR: "Temps passé au fauteuil au cours de la journée"
+      EN: "Time spent in the wheelchair during the day"
+      cFR: "Temps passé au fauteuil au cours de la journée"
+      cEN: "Time spent in the wheelchair during the day"
+      minute:
+        FR: "Temps passé en minute"
+        EN: "Time spent in minute"
+        cFR: "Temps passé en minute"
+        cEN: "Time spent in minute"
+      xAxe:
+        FR: "Heure de la journée"
+        EN: "Hour of the day"
+        cFR: "Heure de la journée"
+        cEN: "Hour of the day"
+      yAxe:
+        FR: "Minute"
+        EN: "Minute"
+        cFR: "Minute"
+        cEN: "Minute"
+  
 
 
 SuccessfulTilt:
   tiltMade:
     FR: "Bascules réalisées"
-    EN: "Tilts made"
+    EN: "Tilts made during"
     cFR: "Bascules réalisées"
     cEN: "Tilts made"
+  tiltMadeDaily:
+    FR: "Bascules réalisées au cours de la journée"
+    EN: "Tilts made during the day"
+    cFR: "Bascules réalisées au cours de la journée"
+    cEN: "Tilts made during the day"
+  tiltMadeMonth:
+    FR: "Bascules réalisées au cours du mois"
+    EN: "Tilts made during the month"
+    cFR: "Bascules réalisées au cours du mois"
+    cEN: "Tilts made during the month"
   rightAngle:
     FR: "Bon angle"
     EN: "Right angle"
@@ -730,6 +768,7 @@ results:
       cFR: "Temps passé au fauteuil"
       cEN: "Time spent in the wheelchair"
 
+
 monthlyResults:
   FR: "Mes résultats mensuels"
   EN: "My monthly results"
@@ -786,25 +825,35 @@ monthlyResults:
     cFR: "Réduire la pression sur le siège"
     cEN: "Release pressure under the seat"
     personal:
-      FR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      EN: "~Personal goal~: comparison between the number of tilts made during the month and the goal to be achieved"
-      cFR: "~Objectif personnel~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      cEN: "~Personal goal~: comparison between the number of tilts made during the month and the goal to be achieved"
+      FR: "~Objectif personnel~"
+      EN: "~Personal goal~"
+      cFR: "~Objectif personnel~"
+      cEN: "~Personal goal~"
     recommended:
-      FR: "~Objectif recommandé~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      EN: "~Recommended goal~: comparison between the number of tilts made during the month and the goal to be achieved"
-      cFR: "~Objectif recommandé~: comparaison entre le nombre de bascules réalisées au cours du mois et l’objectif à atteindre"
-      cEN: "~Recommended goal~: comparison between the number of tilts made during the month and the goal to be achieved"
-    tiltMade:
-      FR: "Nombre de bascules réalisées"
-      EN: "Number of tilts made"
-      cFR: "Nombre de bascules réalisées"
-      cEN: "Number of tilts made"
-    tiltGoal:
-      FR: "Objectif de bascules à atteindre"
-      EN: "Tilt goal to be achieved"
-      cFR: "Objectif de bascules à atteindre"
-      cEN: "Tilt goal to be achieved"
+      FR: "~Objectif recommandé~"
+      EN: "~Recommended goal~"
+      cFR: "~Objectif recommandé~"
+      cEN: "~Recommended goal~"
+    successRate:
+      FR: "Taux de réussite selon l'objectif personnel et recommandé au cours du mois "
+      EN: "Success rate according to personal and recommended goals during the month "
+      cFR: "Taux de réussite selon l'objectif personnel et recommandé au cours du mois "
+      cEN: "Success rate according to personal and recommended goals during the month "
+    tiltLegendUser:
+      FR: "Objectif personnel"
+      EN: "Personal goal"
+      cFR: "Objectif personnel"
+      cEN: "Personal goal"
+    tiltLegendClinician:
+      FR: "Objectif recommandé"
+      EN: "Recommended goal"
+      cFR: "Objectif recommandé"
+      cEN: "Recommended goal"
+    pourcentageInfo:
+      FR: "Le pourcentage correspond au nombre de bascules «\u00A0bon angle et bonne durée\u00A0» divisé par le nombre de bascules attendues. Les calculs sont en fonction des valeurs d'angle, fréquence et durée pour chacun des objectifs (personnel et recommandé)"
+      EN: "The percentage is equal to the number of tilts \"\u00A0right angle and duration\u00A0\" divided by the number of expected tilts. The calculations are based on the angle, frequency and duration values for each of the objectives (personal and recommended)"
+      cFR: "Le pourcentage correspond au nombre de bascules «\u00A0bon angle et bonne durée\u00A0» divisé par le nombre de bascules attendues. Les calculs sont en fonction des valeurs d'angle, fréquence et durée pour chacun des objectifs (personnel et recommandé)"
+      cEN: "The percentage is equal to the number of tilts \"\u00A0right angle and duration\u00A0\" divided by the number of expected tilts.The calculations are based on the angle, frequency and duration values for each of the objectives (personal and recommended)"
   travel:
     FR: "Réduire le glissement lors des déplacements"
     EN: "Reduce sliding while moving"

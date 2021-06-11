@@ -38,18 +38,30 @@ class DailyAngleResults extends Component {
       daySildeMoving: 0,
       hasErrors: false,
       isLoaded: false,
+      noDataSildeRest: false,
+      noDataSildeMoving: false,
     };
   }
 
 
   static getDerivedStateFromProps(nextProps, prevState) {
     // console.log('DailyAngleResults - getDerivedStateFromProps', nextProps, prevState);
-    if (nextProps.date !== undefined) {
-      // Updating state with date
-      // console.log('DailyAngleResults - getDerivedStateFromProps - updating date');
-      return { date: nextProps.date };
+    if (nextProps.date !== prevState.date) {
+      // console.log('DailySuccessTilt - Date updated!');
+
+      // Return new state
+      return { date: nextProps.date, isLoaded: false, hasErrors: false };
     }
     return null;
+  }
+
+  componentDidMount() {
+    // This is called only when component is instanciated
+    // console.log('DailySuccessTilt - componentDidMount');
+
+    // This should load data async
+    this.getDailySlidingProgress(this.state.date);
+    this.setState({});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,11 +86,33 @@ class DailyAngleResults extends Component {
   }
 
   loadDailySlidingData(data) {
-    this.setState({
-      daySildeRest: data[0] * 100,
-      daySildeMoving: data[1] * 100,
-      isLoaded: true,
-    });
+    if (data[0] == -1)
+    {
+      this.setState({
+        noDataSildeRest : true, 
+        daySildeRest: 0 * 100,
+      });
+    }
+    else{
+      this.setState({
+        daySildeRest: data[0] * 100,
+        noDataSildeRest : false,
+      });
+    }
+    if (data[1] == -1)
+    {
+      this.setState({
+        noDataSildeMoving : true, 
+        daySildeMoving : 0,
+      });
+    }
+    else{
+      this.setState({
+        daySildeMoving: data[1] * 100,
+        noDataSildeMoving : false,
+      });
+    }
+    this.setState({isLoaded: true})
   }
 
   render() {
@@ -131,19 +165,25 @@ class DailyAngleResults extends Component {
                     <div id="reduceSlidingMoving">
                       <GoalProgress
                         condition={this.props.reduceSlidingMoving || true}
-                        title={T.translate(`dailyResults.travel.${this.props.language}`)}
+                        title={(T.translate(`dailyResults.travel.${this.props.language}`) + " (" + (this.state.date.getFullYear()) + "/" + (this.state.date.getMonth() + 1)
+                        + "/" + (this.state.date.getDate()) + ")")}
+                       // subtitle = {T.translate(`dailyResults.recommended.${this.props.language}`)}
                         value={this.state.daySildeMoving}
                         isLoaded={this.state.isLoaded}
                         hasErrors={this.state.hasErrors}
+                        noData={this.state.noDataSildeMoving}
                       />
                     </div>
                     <div id="reduceSlidingRest">
                       <GoalProgress
                         condition={this.props.reduceSlidingRest || true}
-                        title={T.translate(`dailyResults.rest.${this.props.language}`)}
+                        title={(T.translate(`dailyResults.rest.${this.props.language}`)  + " (" + (this.state.date.getFullYear()) + "/" + (this.state.date.getMonth() + 1)
+                        + "/" + (this.state.date.getDate()) + ")")}
+                       // subtitle = {T.translate(`dailyResults.recommended.${this.props.language}`)}
                         value={this.state.daySildeRest}
                         isLoaded={this.state.isLoaded}
                         hasErrors={this.state.hasErrors}
+                        noData={this.state.noDataSildeRest}
                       />
                       {/*
                     </div>

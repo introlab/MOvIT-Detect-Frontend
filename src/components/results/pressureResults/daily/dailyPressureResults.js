@@ -14,6 +14,7 @@ import { URL, OFFSET } from '../../../../redux/applicationReducer';
 
 import PressureCenter from './pressureCenter';
 import RecGoalProgress from './recGoalProgress';
+import DailySittingTime from './dailySittingTime';
 import { T } from '../../../../utilities/translator';
 import { get } from '../../../../utilities/secureHTTP';
 
@@ -29,10 +30,12 @@ class DailyPressureResults extends Component {
     this.state = {
       width: window.innerWidth,
       date: props.date,
-      value1: 0,
-      value2: 0,
+      value_user: 0,
+      value_clinician: 0,
       isLoaded: false,
       hasErrors: false,
+      noDataUser : false,
+      noDataClinician: false,
     };
   }
 
@@ -52,31 +55,49 @@ class DailyPressureResults extends Component {
     try {
       const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
 
-      const bon_angle_bonne_duree = response.data[0];
-      const bon_angle_duree_insuffisante = response.data[1];
-      const bonne_duree_angle_insuffisant = response.data[2];
-      const non_realisee = response.data[3];
-      const snooze = response.data[4];
-      const somme = bon_angle_bonne_duree + bon_angle_duree_insuffisante + bonne_duree_angle_insuffisant + non_realisee; // + snooze;
+      const bon_angle_bonne_duree_user = response.data.user[0];
+      const bon_angle_duree_insuffisante_user = response.data.user[1];
+      const bonne_duree_angle_insuffisant_user = response.data.user[2];
+      const non_realisee_user = response.data.user[3];
+      //const snooze_user = response.data.user[4];
+      const somme_user = bon_angle_bonne_duree_user + bon_angle_duree_insuffisante_user + bonne_duree_angle_insuffisant_user + non_realisee_user; 
+      
+      const bon_angle_bonne_duree_clinician = response.data.clinician[0];
+      const bon_angle_duree_insuffisante_clinician = response.data.clinician[1];
+      const bonne_duree_angle_insuffisant_clinician = response.data.clinician[2];
+      const non_realisee_clinician = response.data.clinician[3];
+      //const snooze_clinician = response.data.clinician[4];
+      const somme_clinician = bon_angle_bonne_duree_clinician + bon_angle_duree_insuffisante_clinician + bonne_duree_angle_insuffisant_clinician + non_realisee_clinician; 
 
-      if (somme != 0)
+      if (somme_user != 0)
       {
         this.setState({
-          value1: Math.round(bon_angle_bonne_duree / somme * 100),
-          //Vérifier le calcul "recommandé", va probablement nécessiter un nouveau endpoint dans le backend
-          //Pour le calcul des angles avec la valeur recommandée en DB.
-          value2: Math.round(bon_angle_bonne_duree / somme * 100),
-          isLoaded: true,
+          value_user: Math.round(bon_angle_bonne_duree_user / somme_user * 100),
+          noDataUser: false,
         });
       }
       else 
       {
         this.setState({
-          value1: 0,
-          value2: 0,
-          isLoaded: true,
+          value_user: 0,
+          noDataUser : true,
         });
       }
+      if (somme_clinician != 0)
+      {
+        this.setState({
+          value_clinician: Math.round(bon_angle_bonne_duree_clinician / somme_clinician * 100),
+          noDataClinician: false,
+        });
+      }
+      else 
+      {
+        this.setState({
+          value_clinician: 0,
+          noDataClinician: true,
+        });
+      }
+      this.setState({isLoaded: true})
     } catch (error) {
       this.setState({ hasErrors: true });
     }
@@ -117,8 +138,11 @@ class DailyPressureResults extends Component {
                   <a href="results/pressure#reduceWeight">{T.translate(`dailyResults.pressure.${this.props.language}`)}</a>
                 </li>
                 <li className="graphLink">
-                  <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
+                  <a href="results/pressure#dailySittingTime">{T.translate(`results.graphicsLink.sittingTime.${this.props.language}`)}</a>
                 </li>
+                {/*<li className="graphLink">
+                  <a href="results/pressure#dailyPressureCenter">{T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}</a>
+                </li>*/}
               </ul>
             </div>
           )
@@ -132,16 +156,28 @@ class DailyPressureResults extends Component {
                     <div id="reduceWeight">
                       <RecGoalProgress
                         condition={this.props.reduceWeight || true}
-                        title={T.translate(`dailyResults.pressure.${this.props.language}`)}
-                        goalValue={this.state.value2}
-                        recValue={this.state.value1}
+                        title={(T.translate(`dailyResults.pressure.${this.props.language}`) + " (" + (this.state.date.getFullYear()) + "/" + (this.state.date.getMonth() + 1)
+                        + "/" + (this.state.date.getDate()) + ")")}
+                        goalValue={this.state.value_user}
+                        recValue={this.state.value_clinician}
+                        noDataUser = {this.state.noDataUser}
+                        noDataClinician = {this.state.noDataClinician}
+                        tooltip = {(T.translate(`monthlyResults.pressure.pourcentageInfo.${this.props.language}`))}
+                        id ="reduceWeight"
                       />
                     </div>
-
-                    <PressureCenter
+                  
+                  {/* <PressureCenter
                       title={T.translate(`results.graphicsLink.pressureCenter.${this.props.language}`)}
                       date={this.state.date}
+                    />*/}
+                    <div id="dailySittingTime">
+                    <DailySittingTime
+                    title={T.translate(`dailyResults.dailySittingTime.${this.props.language}`)}
+                    date={this.state.date}
                     />
+                    </div>
+
 
                   </div>
                 )

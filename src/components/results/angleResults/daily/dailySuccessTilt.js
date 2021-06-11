@@ -235,7 +235,7 @@ class DailySuccessTilt extends Component {
     const data_user = this.getChartData(this.state.dayDataUser);
     const chart_user = <Chart type="bar" data={data_user} options={tiltSuccessOptions}/>;
     const subtitle_user = <h4>{T.translate(`dailyResults.personal.${this.props.language}`)}</h4>;
-    const element_user = (<div> {dropDownProfil}{/*subtitle_user*/} {chart_user}<br/>{link} </div>);
+    const element_user = (<div> {dropDownProfil}{/*subtitle_user*/} {chart_user}<br/><br/></div>);
 
     var element;
     

@@ -224,7 +224,7 @@ class MonthlySuccessTilt extends Component {
 
     const data_clinician = this.getChartData(this.state.tiltMonthData_clinician);
     const data_user = this.getChartData(this.state.tiltMonthData_user);
-    const chart_user = <div> {dropDownProfil} <br> </br> <Chart type="bar" data={data_user} options={tiltSuccessOptions} /></div>;
+    const chart_user = <div> {dropDownProfil} <Chart type="bar" data={data_user} options={tiltSuccessOptions} /></div>;
     const chart_clinician = <div> {dropDownProfil} <Chart type="bar" data={data_clinician} options={tiltSuccessOptions} /></div>;
 
     var element = (this.state.profil === 'clinician') ? chart_clinician: chart_user;

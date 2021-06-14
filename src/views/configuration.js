@@ -42,6 +42,8 @@ class Configuration extends Component {
     profile: PropTypes.string.isRequired,
     calibrationState : PropTypes.string.isRequired,
     changeCalibrationState: PropTypes.func.isRequired,
+    IMUState: PropTypes.bool.isRequired,
+    changeIMUState: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -61,8 +63,6 @@ class Configuration extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     // WARNING - this does not exist in this static function
     // console.log('Configuration - getDerivedStateFromProps', nextProps, prevState);
-
-
     return null;
   }
 
@@ -249,6 +249,8 @@ class Configuration extends Component {
                   seatAngle={this.state.seatAngle}
                   calibrationState={this.props.calibrationState}
                   changeCalibrationState = {this.props.changeCalibrationState}
+                  IMUState = {this.props.IMUState}
+                  changeIMUState = {this.props.changeIMUState}
                 />
                 {
                 this.props.profile !== 'user' && (
@@ -323,6 +325,7 @@ function mapStateToProps(state) {
     minAngle: state.configurationReducer.minAngle,
     profile: state.applicationReducer.profile,
     calibrationState: state.configurationReducer.calibrationState,
+    IMUState: state.configurationReducer.IMUState,
   };
 }
 
@@ -338,6 +341,7 @@ function mapDispatchToProps(dispatch) {
     changeMaxAngle: ConfigurationActions.changeMaxAngle,
     changeMinAngle: ConfigurationActions.changeMinAngle,
     changeCalibrationState: ConfigurationActions.changeCalibrationState,
+    changeIMUState: ConfigurationActions.changeIMUState,
   }, dispatch);
 }
 

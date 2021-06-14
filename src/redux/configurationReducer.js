@@ -13,6 +13,7 @@ export const TELASK_KEY = 'TELASK_KEY';
 export const TELASK_USERNAME = 'TELASK_USERNAME';
 export const TELASK_HOST = 'TELASK_HOST';
 export const CALIBRATION_STATE = 'CALIBRATION_STATE';
+export const IMU_STATE = 'IMU_STATE';
 
 
 // ------------------------------------
@@ -80,6 +81,13 @@ function changeCalibrationState(state){
   }
 }
 
+function changeIMUState(state){
+  return {
+    type: IMU_STATE,
+    IMUState: state,
+  }
+}
+
 export const ConfigurationActions = {
   changeUserName,
   changeUserID,
@@ -90,6 +98,7 @@ export const ConfigurationActions = {
   changeTelaskHost,
   changeTelaskUsername,
   changeCalibrationState,
+  changeIMUState,
 };
 
 const ACTION_HANDLERS = {
@@ -120,6 +129,9 @@ const ACTION_HANDLERS = {
   [CALIBRATION_STATE]: (state, action) => (
     { ...state, calibrationState: action.calibrationState }
   ),
+  [IMU_STATE]: (state, action) => (
+    { ...state, IMUState: action.IMUState }
+  ),
 };
 
 // ------------------------------------
@@ -136,6 +148,7 @@ export const initConfiguration = {
   telaskUsername: '',
   telaskHost: '',
   calibrationState: '',
+  IMUState: false,
 };
 export default function configurationReducer(state = initConfiguration, action) { // changed applicationReducer to configurationReducer
   const handler = ACTION_HANDLERS[action.type];

@@ -25,7 +25,8 @@ class TiltCalibration extends Component {
       seatAngle: PropTypes.number.isRequired,
       calibrationState: PropTypes.string.isRequired,
       changeCalibrationState: PropTypes.func.isRequired,
-      //IMUConnected: PropTypes.bool.isRequired,
+      IMUState: PropTypes.bool.isRequired,
+      changeIMUState: PropTypes.func.isRequired,
     };
 
     constructor(props) {
@@ -33,11 +34,10 @@ class TiltCalibration extends Component {
       const l = window.location;
 
       this.state = {
-        socketAngle: new WebSocket(`ws://${l.host}/ws/sensors/angle`), // websocket for reading calibration state)
-        socket : new WebSocket(`ws://${l.host}/ws/chairState`),
+        socket: new WebSocket(`ws://${l.host}/ws/sensors/angle`), // websocket for reading calibration state)
         isPopupOpened: false,
         calibrationState: '',/*props.calibrationState,*/
-        IMUConnected: false,//props.IMUConnected,
+        IMUState: false,//props.IMUConnected,
         confirmationBody: T.translate(`calibrateIMU.confirmation.${this.props.language}`),
         flagNextButton: false,
         flagStartButton: true,
@@ -51,29 +51,18 @@ class TiltCalibration extends Component {
     }
 
     
-    onWebSocketAngleMessage(evt) {
+    onWebSocketMessage(evt) {
       const receivedObj = JSON.parse(evt.data);
       this.setState({
       calibrationState : receivedObj.state["stateName AA"],
-      IMUConnected : receivedObj.connected,
+      IMUState : receivedObj.connected,
       hasErrors: false,
       //console.log(`Socket Angle received : ${stateAngle}`);
       });
 
-      this.updateCalibrationState();
+      this.updateState();
     }
 
-    onWebSocketAngleError(evt) {
-      this.setState({ hasErrors: true });
-    }
-
-    onWebSocketMessage(evt) {
-      // console.log("websocketOnMessage");
-      const receivedObj = JSON.parse(evt.data);
-      const seatAngle = receivedObj.Angle.seatAngle;
-      this.setState({ seatAngle });
-      // console.log(`on Message print, seatAngle : ${this.state.seatAngle} `);
-    }
     onWebSocketError(evt) {
       this.setState({ hasErrors: true });
     }
@@ -83,18 +72,12 @@ class TiltCalibration extends Component {
         this.state.socket.close();
         delete this.state.socket;
       }
-      if (this.state.socketAngle) {
-        this.state.socketAngle.close();
-        delete this.state.socketAngle;
-      }
     }
-  
 
-    async updateCalibrationState() {
+    async updateState() {
       this.props.changeCalibrationState(this.state.calibrationState);
+      this.props.changeIMUState(this.state.IMUState);
     }
-
-
 
     async calibrateIMU() {
       await get(`${URL}/calibrateIMU`);
@@ -115,8 +98,6 @@ class TiltCalibration extends Component {
         isPopupOpened: true });
     }
   
-    
-
     closeModal() {
 
       this.setState({ 
@@ -131,7 +112,10 @@ class TiltCalibration extends Component {
 
    async startModal() // bouton commencer
     {
-      if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG")
+      if (!this.props.IMUState) // IMU not connected 
+       {this.functionEtat();}
+
+     else if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG")
       {
         await this.setState({ 
           flagNextButton: true,
@@ -139,7 +123,7 @@ class TiltCalibration extends Component {
          initMode: false,
         });
         await this.functionEtat();
-      }
+      } 
 
       else{
         await this.setState({
@@ -166,7 +150,7 @@ class TiltCalibration extends Component {
     CALIBRATION_WAIT_ROT_WORLD_CALC = 7
     CALIBRATION_DONE = 8
     CALIBRATION_TODO = 9*/
-    if (this.state.IMUConnected)
+    if (this.props.IMUState)
     {
       this.calibrateIMU();
     }
@@ -179,34 +163,37 @@ class TiltCalibration extends Component {
 
   async refreashCalibration(step) // remettre à calibration done ou todo si step = 1 et remettre calibration à wait zero trig si step = 0
     {
-      var calib_wait_trig_zero = "CALIBRATION_WAIT_ZERO_TRIG"; var calib_done = "CALIBRATION_DONE"; var calib_todo = "CALIBRATION_TODO";
+      if (this.props.IMUState)
+      {
+        var calib_wait_trig_zero = "CALIBRATION_WAIT_ZERO_TRIG"; var calib_done = "CALIBRATION_DONE"; var calib_todo = "CALIBRATION_TODO";
 
-      var objectif = calib_wait_trig_zero; var pass = calib_done; var pass2 = calib_todo; var objectif2 = "";
-      if (step)
-      {
-        objectif = calib_done; objectif2 = calib_todo; pass = calib_wait_trig_zero; pass2 = "";
-      }
-      if  (this.props.calibrationState === pass ||
-        this.props.calibrationState === pass2 ||
-      this.props.calibrationState === "CALIBRATION_WAIT_INCLINED_TRIG")
-      {
-        this.calibrateIMU();
-      }
+        var objectif = calib_wait_trig_zero; var pass = calib_done; var pass2 = calib_todo; var objectif2 = "";
+        if (step)
+        {
+          objectif = calib_done; objectif2 = calib_todo; pass = calib_wait_trig_zero; pass2 = "";
+        }
+        if  (this.props.calibrationState === pass ||
+          this.props.calibrationState === pass2 ||
+        this.props.calibrationState === "CALIBRATION_WAIT_INCLINED_TRIG")
+        {
+          this.calibrateIMU();
+        }
 
-      if (this.props.calibrationState === objectif || 
-        this.props.calibrationState == objectif2 ||
-        this.props.calibrationState === '')
-      {
-        return;
+        if (this.props.calibrationState === objectif || 
+          this.props.calibrationState == objectif2 ||
+          this.props.calibrationState === '')
+        {
+          return;
+        }
+        setTimeout(() => {
+          this.refreashCalibration(step);
+        }, 4000); 
       }
-      setTimeout(() => {
-        this.refreashCalibration(step);
-      }, 4000); 
     }
 
     async functionEtat()
     {
-      if (this.state.IMUConnected)
+      if (this.props.IMUState)
       {
         if (!this.state.initMode){
           this.setState({flagNextButton: true});
@@ -276,9 +263,6 @@ class TiltCalibration extends Component {
     }
 
     componentDidMount() {
-      
-      this.state.socketAngle.onmessage = this.onWebSocketAngleMessage.bind(this);
-      this.state.socketAngle.onerror = this.onWebSocketAngleError.bind(this);
       this.state.socket.onmessage = this.onWebSocketMessage.bind(this);
       this.state.socket.onerror = this.onWebSocketError.bind(this);
     }
@@ -350,6 +334,7 @@ function mapStateToProps(state) {
   return {
     language: state.applicationReducer.language,
     calibrationState: state.configurationReducer.calibrationState,
+    IMUState: state.configurationReducer.IMUState,
   };
 }
 

@@ -13,7 +13,7 @@ import ConfirmationPopup from '../popups/confirmationPopup';
 import CustomCard from '../shared/card';
 import { T } from '../../utilities/translator';
 import { URL } from '../../redux/applicationReducer';
-import { get } from '../../utilities/secureHTTP';
+import { get, post} from '../../utilities/secureHTTP';
 import confirmationPopup from '../popups/confirmationPopup';
 import { TELASK_HOST } from '../../redux/configurationReducer';
 
@@ -34,6 +34,7 @@ class TiltCalibration extends Component {
       const l = window.location;
 
       this.state = {
+        doneCalibration : false,
         socket: new WebSocket(`ws://${l.host}/ws/sensors/angle`), // websocket for reading calibration state)
         isPopupOpened: false,
         calibrationState: '',/*props.calibrationState,*/
@@ -79,18 +80,16 @@ class TiltCalibration extends Component {
       this.props.changeIMUState(this.state.IMUState);
     }
 
-    async calibrateIMU() {
-      await get(`${URL}/calibrateIMU`);
-      this.setState({
-        ...this.state,
-        showCountdownIMU: false,
-      });
+    async calibrateIMU(state) {
+      post(`${URL}/calibrateIMU`, {'calibrationState': state});
     }
 
     openModal() {
+     // this.calibrateIMU(true);
       this.refreashCalibration(0);
       this.setState({ 
         flagNextButton: false,
+        doneCalibration : false,
         flagStartButton: true ,
         initMode: true,
         confirmationBody: T.translate(`calibrateIMU.confirmation.${this.props.language}`),
@@ -99,7 +98,7 @@ class TiltCalibration extends Component {
     }
   
     closeModal() {
-
+      this.calibrateIMU(this.state.doneCalibration);
       this.setState({ 
         isPopupOpened: false,
         flagNextButton: false,
@@ -107,7 +106,6 @@ class TiltCalibration extends Component {
         confirmationBody: T.translate(`calibrateIMU.confirmation.${this.props.language}`),
         labelCancelButton:T.translate(`calibrationPopup.cancel.${this.props.language}`),
       });
-      this.refreashCalibration(1);
     }
 
    async startModal() // bouton commencer
@@ -152,7 +150,7 @@ class TiltCalibration extends Component {
     CALIBRATION_TODO = 9*/
     if (this.props.IMUState)
     {
-      this.calibrateIMU();
+      this.calibrateIMU(true);
     }
     else
     {
@@ -161,32 +159,22 @@ class TiltCalibration extends Component {
 
     }
 
-  async refreashCalibration(step) // remettre à calibration done ou todo si step = 1 et remettre calibration à wait zero trig si step = 0
+  async refreashCalibration() // remettre à calibration done ou todo si step = 1 et remettre calibration à wait zero trig si step = 0
     {
       if (this.props.IMUState)
       {
-        var calib_wait_trig_zero = "CALIBRATION_WAIT_ZERO_TRIG"; var calib_done = "CALIBRATION_DONE"; var calib_todo = "CALIBRATION_TODO";
-
-        var objectif = calib_wait_trig_zero; var pass = calib_done; var pass2 = calib_todo; var objectif2 = "";
-        if (step)
-        {
-          objectif = calib_done; objectif2 = calib_todo; pass = calib_wait_trig_zero; pass2 = "";
-        }
-        if  (this.props.calibrationState === pass ||
-          this.props.calibrationState === pass2 ||
+        if  (this.props.calibrationState === "CALIBRATION_DONE" || this.props.calibrationState === "CALIBRATION_TODO" ||
         this.props.calibrationState === "CALIBRATION_WAIT_INCLINED_TRIG")
         {
-          this.calibrateIMU();
+          this.calibrateIMU(true);
         }
 
-        if (this.props.calibrationState === objectif || 
-          this.props.calibrationState == objectif2 ||
-          this.props.calibrationState === '')
+        if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG" ||this.props.calibrationState === '')
         {
           return;
         }
         setTimeout(() => {
-          this.refreashCalibration(step);
+          this.refreashCalibration();
         }, 4000); 
       }
     }
@@ -230,9 +218,13 @@ class TiltCalibration extends Component {
                 break;
               
               case "CALIBRATION_DONE":
-                this.setState({ confirmationBody: T.translate(`calibrationPopup.done.${this.props.language}`) });
-                this.setState({ flagNextButton: false });
-                this.setState({ labelCancelButton: T.translate(`calibrationPopup.close.${this.props.language}`) });
+                this.setState({ 
+                  confirmationBody: T.translate(`calibrationPopup.done.${this.props.language}`),
+                  calibrationDone : true, 
+                  flagNextButton: false,
+                  labelCancelButton: T.translate(`calibrationPopup.close.${this.props.language}`),
+                });
+
                 break;
               
               case "CALIBRATION_TODO":

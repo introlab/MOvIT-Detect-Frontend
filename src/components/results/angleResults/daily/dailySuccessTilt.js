@@ -188,8 +188,9 @@ class DailySuccessTilt extends Component {
             display: true,
             labelString: T.translate(`SuccessfulTilt.tiltMade.${this.props.language}`),
           },
+          format: Intl.NumberFormat,
           ticks: {
-            precision: 0,
+            stepSize: 1,
             beginAtZero: true
           },
         }],

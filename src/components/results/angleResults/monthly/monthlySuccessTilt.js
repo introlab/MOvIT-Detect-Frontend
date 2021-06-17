@@ -145,6 +145,8 @@ class MonthlySuccessTilt extends Component {
           fill: true,
           borderColor: colorCode.successTilt.badDuration,
           backgroundColor: colorCode.successTilt.badDuration,
+          borderColor : colorCode.successTilt.badDurationColorborder,
+          borderWidth : 1,
         },
         {
           label: T.translate(`SuccessfulTilt.tiltBadAngle.${this.props.language}`),

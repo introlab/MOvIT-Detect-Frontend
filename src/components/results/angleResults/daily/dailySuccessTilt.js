@@ -102,6 +102,8 @@ class DailySuccessTilt extends Component {
           backgroundColor: [
             colorCode.successTilt.badDuration,
           ],
+          borderColor : colorCode.successTilt.badDurationColorborder,
+          borderWidth : 2,
           hoverBackgroundColor: [
             colorCode.successTilt.badDuration,
           ],
@@ -166,13 +168,6 @@ class DailySuccessTilt extends Component {
       },
     };
 
-    const style2 = {
-      center: {
-        textAlign: 'center',
-      },
-      color : 'gray'
-    };
-
 
     const tiltSuccessOptions = {
       legend: {
@@ -229,7 +224,7 @@ class DailySuccessTilt extends Component {
     const data_clinician = this.getChartData(this.state.dayDataClinician);
     const chart_clinician = <Chart type="bar" data={data_clinician} options={tiltSuccessOptions}/>;
     const subtitle_clinician = <h4>{T.translate(`dailyResults.recommended.${this.props.language}`)}</h4>;
-    const link = <p style = {style2}> {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> <u style = {style2}>{T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</u></a>.</p>;
+    const link = <p style = {style.center}> {T.translate(`SuccessfulTilt.tiltInformation.${this.props.language}`)} <a href="/goals"> <u style = {style.center}>{T.translate(`SuccessfulTilt.tiltLink.${this.props.language}`)}</u></a>.</p>;
     const element_clinician = (<div> {dropDownProfil} {/*subtitle_clinician*/} {chart_clinician}<br/>{link} </div>);
 
     const data_user = this.getChartData(this.state.dayDataUser);

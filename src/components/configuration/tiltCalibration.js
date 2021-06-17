@@ -34,7 +34,6 @@ class TiltCalibration extends Component {
       const l = window.location;
 
       this.state = {
-        doneCalibration : false,
         socket: new WebSocket(`ws://${l.host}/ws/sensors/angle`), // websocket for reading calibration state)
         isPopupOpened: false,
         calibrationState: '',/*props.calibrationState,*/
@@ -42,10 +41,7 @@ class TiltCalibration extends Component {
         confirmationBody: T.translate(`calibrateIMU.confirmation.${this.props.language}`),
         flagNextButton: false,
         flagStartButton: true,
-        showInitialMessage: true,
-        flagWaiting: false,
         labelCancelButton: T.translate(`calibrationPopup.cancel.${this.props.language}`),
-        labelStartButton: T.translate(`calibrationPopup.start.${this.props.language}`),
         initMode: true,
         hasErrors: false,
       };
@@ -80,16 +76,13 @@ class TiltCalibration extends Component {
       this.props.changeIMUState(this.state.IMUState);
     }
 
-    async calibrateIMU(state) {
+    calibrateIMU(state) {
       post(`${URL}/calibrateIMU`, {'calibrationState': state});
     }
 
     openModal() {
-     // this.calibrateIMU(true);
-      this.refreashCalibration(0);
       this.setState({ 
         flagNextButton: false,
-        doneCalibration : false,
         flagStartButton: true ,
         initMode: true,
         confirmationBody: T.translate(`calibrateIMU.confirmation.${this.props.language}`),
@@ -98,7 +91,7 @@ class TiltCalibration extends Component {
     }
   
     closeModal() {
-      this.calibrateIMU(this.state.doneCalibration);
+      this.calibrateIMU(false);
       this.setState({ 
         isPopupOpened: false,
         flagNextButton: false,
@@ -108,31 +101,28 @@ class TiltCalibration extends Component {
       });
     }
 
-   async startModal() // bouton commencer
+   startModal() // bouton commencer
     {
-      if (!this.props.IMUState) // IMU not connected 
-       {this.functionEtat();}
-
-     else if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG")
-      {
-        await this.setState({ 
+      if (!this.props.IMUState){ // IMU not connected 
+        this.functionEtat();
+      }
+      else {
+        this.calibrateIMU(true);
+        this.setState({ 
           flagNextButton: true,
-         flagStartButton: false,
-         initMode: false,
+          flagStartButton: false,
+          initMode: false,
+          confirmationBody : T.translate(`calibrationPopup.init.${this.props.language}`), 
+          flagNextButton: false ,
+          flagStartButton: false,
         });
-        await this.functionEtat();
-      } 
-
-      else{
-        await this.setState({
-        initMode: true,
-        confirmationBody : T.translate(`calibrationPopup.init.${this.props.language}`), 
-        flagNextButton: false ,
-        flagStartButton: false,
-      });
-       setTimeout(() => {  
-      this.startModal();
-      },4000);
+        setTimeout(() => {  
+          this.functionEtat;
+          this.setState({
+            flagNextButton: true,
+            flagStartButton: false,
+          })
+        },3500);
       }
     }
 
@@ -157,26 +147,6 @@ class TiltCalibration extends Component {
       this.functionEtat();
     }
 
-    }
-
-  async refreashCalibration() // remettre à calibration done ou todo si step = 1 et remettre calibration à wait zero trig si step = 0
-    {
-      if (this.props.IMUState)
-      {
-        if  (this.props.calibrationState === "CALIBRATION_DONE" || this.props.calibrationState === "CALIBRATION_TODO" ||
-        this.props.calibrationState === "CALIBRATION_WAIT_INCLINED_TRIG")
-        {
-          this.calibrateIMU(true);
-        }
-
-        if (this.props.calibrationState === "CALIBRATION_WAIT_ZERO_TRIG" ||this.props.calibrationState === '')
-        {
-          return;
-        }
-        setTimeout(() => {
-          this.refreashCalibration();
-        }, 4000); 
-      }
     }
 
     async functionEtat()
@@ -220,7 +190,6 @@ class TiltCalibration extends Component {
               case "CALIBRATION_DONE":
                 this.setState({ 
                   confirmationBody: T.translate(`calibrationPopup.done.${this.props.language}`),
-                  calibrationDone : true, 
                   flagNextButton: false,
                   labelCancelButton: T.translate(`calibrationPopup.close.${this.props.language}`),
                 });

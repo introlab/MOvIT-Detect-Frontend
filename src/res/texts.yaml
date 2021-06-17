@@ -634,9 +634,9 @@ SuccessfulTilt:
     cFR: "Bascules non réalisées"
     cEN: "Tilt not made"
   tiltSnoozed:
-    FR: "Bascules mise en veille"
+    FR: "Bascule mise en veille"
     EN: "Snoozed tilt"
-    cFR: "Bascules mise en veille"
+    cFR: "Bascule mise en veille"
     cEN: "Snoozed tilt"
   tiltSucessful:
     FR: "Bon angle et bonne durée"

@@ -12,6 +12,7 @@ const colorCode = {
         badAngle: "rgba(254, 145, 0, 1)", //orange
         notMade: 'red',
         snooze: "blue",
+        badDurationColorborder: 'rgba(102, 102, 0, 1)', //dark yellow
     },
 };
 module.exports = { colorCode };

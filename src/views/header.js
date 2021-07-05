@@ -107,7 +107,7 @@ class Header extends Component {
                   </li>
                 )
               }
-              {this.props.profile && !IS_MOBILE
+              {this.props.profile //&& !IS_MOBILE
                 && (
                   <li className="nav-item px-3 mt-1" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <Link to="/results" className="navLink">{T.translate(`graphics.${this.props.language}`)}</Link>

@@ -90,12 +90,12 @@ class DailyAngleResults extends Component {
     {
       this.setState({
         noDataSildeRest : true, 
-        daySildeRest: 0 * 100,
+        daySildeRest: 0,
       });
     }
     else{
       this.setState({
-        daySildeRest: data[0] * 100,
+        daySildeRest: data[0],
         noDataSildeRest : false,
       });
     }
@@ -108,7 +108,7 @@ class DailyAngleResults extends Component {
     }
     else{
       this.setState({
-        daySildeMoving: data[1] * 100,
+        daySildeMoving: data[1],
         noDataSildeMoving : false,
       });
     }

@@ -57,42 +57,16 @@ class MonthlyPressureResults extends Component {
   dataDaily(data){
     this.state.tiltMonthData_user = [];
     this.state.tiltMonthData_clinician = [];  
-    var data_user = [];
-    var data_clinician = [];
     this.state.labels = [];
     try {
-    for (let key in data) {
-      this.state.labels.push(key.toString());
-      data_user = data[key].user;
-      data_clinician = data[key].clinician;
-      var value_user = 0;
-      var value_clinician = 0;
-
-      const bon_angle_bonne_duree_user = data_user[0];
-      const bon_angle_duree_insuffisante_user = data_user[1];
-      const bonne_duree_angle_insuffisant_user = data_user[2];
-      const non_realisee_user = data_user[3];
-      const somme_user = bon_angle_bonne_duree_user + bon_angle_duree_insuffisante_user + bonne_duree_angle_insuffisant_user + non_realisee_user; 
-  
-      const bon_angle_bonne_duree_clinician = data_clinician[0];
-      const bon_angle_duree_insuffisante_clinician = data_clinician[1];
-      const bonne_duree_angle_insuffisant_clinician = data_clinician[2];
-      const non_realisee_clinician = data_clinician[3];
-      const somme_clinician = bon_angle_bonne_duree_clinician + bon_angle_duree_insuffisante_clinician + bonne_duree_angle_insuffisant_clinician + non_realisee_clinician; 
-
-      if(somme_user!=0)
-      {
-        value_user = Math.round(bon_angle_bonne_duree_user / somme_user * 100);
-      }
-      if(somme_clinician!=0)
-      {
-        value_clinician = Math.round(bon_angle_bonne_duree_clinician / somme_clinician * 100);
-      }
-      this.state.tiltMonthData_clinician.push(value_clinician);
-      this.state.tiltMonthData_user.push(value_user);
+      this.state.tiltMonthData_clinician = data.clinician;
+      this.state.tiltMonthData_user = data.user;
+      
+      for(var i = 1; i <= (data.clinician).length; i++){
+        this.state.labels.push(i);
       }
     }
-      catch (error) {
+    catch (error) {
         this.setState({ hasErrors: true });
       }
     }
@@ -101,7 +75,7 @@ class MonthlyPressureResults extends Component {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
       const date = new Date(year, month, 1);
-      const response = await get(`${URL}monthlySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
+      const response = await get(`${URL}monthlyRelievePressurePercent?Day=${+date}&Offset=${OFFSET}`);
       this.dataDaily(response.data);
       this.setState({ isLoaded: true });
     } catch (error) {

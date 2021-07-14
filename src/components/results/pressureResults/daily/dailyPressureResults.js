@@ -53,26 +53,11 @@ class DailyPressureResults extends Component {
   async getDailySucessfulTilts(date) {
     this.setState({ hasErrors: false, isLoaded: false });
     try {
-      const response = await get(`${URL}/dailySuccessfulTilts?Day=${+date}&Offset=${OFFSET}`);
-
-      const bon_angle_bonne_duree_user = response.data.user[0];
-      const bon_angle_duree_insuffisante_user = response.data.user[1];
-      const bonne_duree_angle_insuffisant_user = response.data.user[2];
-      const non_realisee_user = response.data.user[3];
-      //const snooze_user = response.data.user[4];
-      const somme_user = bon_angle_bonne_duree_user + bon_angle_duree_insuffisante_user + bonne_duree_angle_insuffisant_user + non_realisee_user; 
-      
-      const bon_angle_bonne_duree_clinician = response.data.clinician[0];
-      const bon_angle_duree_insuffisante_clinician = response.data.clinician[1];
-      const bonne_duree_angle_insuffisant_clinician = response.data.clinician[2];
-      const non_realisee_clinician = response.data.clinician[3];
-      //const snooze_clinician = response.data.clinician[4];
-      const somme_clinician = bon_angle_bonne_duree_clinician + bon_angle_duree_insuffisante_clinician + bonne_duree_angle_insuffisant_clinician + non_realisee_clinician; 
-
-      if (somme_user != 0)
+      const response = await get(`${URL}/dailyRelievePressurePercent?Day=${+date}&Offset=${OFFSET}`);
+      if (response.data.user !== -1)
       {
         this.setState({
-          value_user: Math.round(bon_angle_bonne_duree_user / somme_user * 100),
+          value_user: response.data.user,
           noDataUser: false,
         });
       }
@@ -83,10 +68,10 @@ class DailyPressureResults extends Component {
           noDataUser : true,
         });
       }
-      if (somme_clinician != 0)
+      if (response.data.clinician !== -1)
       {
         this.setState({
-          value_clinician: Math.round(bon_angle_bonne_duree_clinician / somme_clinician * 100),
+          value_clinician: response.data.clinician,
           noDataClinician: false,
         });
       }
@@ -97,6 +82,7 @@ class DailyPressureResults extends Component {
           noDataClinician: true,
         });
       }
+
       this.setState({isLoaded: true})
     } catch (error) {
       this.setState({ hasErrors: true });

@@ -91,8 +91,8 @@ class MonthlyAngleResults extends Component {
     const newMonthSlideMoving = [];
     Object.keys(data).forEach((key) => {
       newMonthSlideLabels.push(key.toString());
-      newMonthSildeRest.push(data[key][0] * 100);
-      newMonthSlideMoving.push(data[key][1] * 100);
+      newMonthSildeRest.push(data[key][0]);
+      newMonthSlideMoving.push(data[key][1]);
     });
 
     this.setState({
